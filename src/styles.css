@@ -1,9 +1,9 @@
 html, body {
-  font-size: large;
+  font-size: large !important;
 }
 
 body {
-  background: url(assets/images/backgroundimage.jpg) no-repeat center center fixed;
+  background: url(assets/images/backgroundimage3.jpg) center center fixed no-repeat;
   color: white !important;
   font-family: 'Dosis', sans-serif !important;
 }
