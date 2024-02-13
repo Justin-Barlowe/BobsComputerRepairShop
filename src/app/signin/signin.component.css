@@ -1,0 +1,35 @@
+/* Override Bootstrap theme for Gryffindor Theme */
+.btn {
+  border-radius: 0 !important;
+  color:#f8b400 !important;
+  border-color: #f8b400 !important;
+}
+
+/* Override theme on hover */
+.btn:hover {
+  background-color: #f8b400 !important;
+  color: black !important;
+  border-color: #f8b400 !important;
+}
+
+/* Remove border on input field and override color */
+input {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+}
+
+/* Remove white background from input field when focused */
+input:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}
+
+/* Change placeholder color due to dark background */
+input::placeholder {
+  color: white;
+}

@@ -1,5 +1,6 @@
+/* Change footer color and center */
 .footer {
-  color: white;
+  color: #f8b400 !important;
   text-align: center;
   padding: 10px 0;
 }
