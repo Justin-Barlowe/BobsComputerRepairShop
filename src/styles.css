@@ -1,3 +1,9 @@
 html, body {
   font-size: large;
 }
+
+body {
+  background: url(assets/images/backgroundimage.jpg) no-repeat center center fixed;
+  color: white !important;
+  font-family: 'Dosis', sans-serif !important;
+}
