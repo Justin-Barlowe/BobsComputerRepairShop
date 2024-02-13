@@ -1,0 +1,6 @@
+.footer {
+  background-image: linear-gradient(to right bottom, #ac0918, #830920, #590e1f, #2f0f17, #000000);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}

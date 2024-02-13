@@ -1,6 +1,8 @@
 /**
  * Title: nav.component.ts
  * Author: Professor Krasso
+ * Modified by: Justin Barlowe
+ * Modified on: 02/12/2023
  * Date: 8/5/23
  */
 

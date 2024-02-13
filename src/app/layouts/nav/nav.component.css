@@ -1,0 +1,15 @@
+.navbar-brand {
+  padding-left: 10px;
+}
+
+.navbar-nav {
+  padding-right: 10px;
+}
+
+.navbar {
+  background-image: linear-gradient(to right bottom, #ac0918, #830920, #590e1f, #2f0f17, #000000);
+}
+
+.navbar-nav .nav-link {
+  color: white;
+}
