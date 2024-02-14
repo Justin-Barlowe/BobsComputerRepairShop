@@ -13,6 +13,7 @@ const path = require('path')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require(swagger-ui-express) // Import swaggerUi
 const createUsers = require('./users')
+const employeeRoute = require("./routes/employee"); // Import employee.js file
 
 createUsers()
 
@@ -40,6 +41,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../dist/bcrs')))
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
+
+app.use("/api/employees", employeeRoute); // Use employee routes
 
 // error handler for 404 errors
 app.use(function(req, res, next) {

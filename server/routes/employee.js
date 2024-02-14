@@ -11,8 +11,6 @@
 "use strict";
 
 // Import necessary dependencies
-const express = require("express");
-const router = express.Router();
 const { mongo } = require("../utils/mongo");
 
 // Define schema for selected security questions
