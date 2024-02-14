@@ -11,7 +11,7 @@ const express = require('express')
 const createServer = require('http-errors')
 const path = require('path')
 const swaggerJsDoc = require('swagger-jsdoc')
-const swaggerUi = require(swagger-ui-express) // Import swaggerUi
+const swaggerUi = require('swagger-ui-express') // Import swaggerUi
 const createUsers = require('./users')
 const employeeRoute = require("./routes/employee"); // Import employee.js file
 

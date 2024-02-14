@@ -10,6 +10,10 @@
 // Make strict
 "use strict";
 
+const express = require("express");
+const router = express.Router();
+const { mongo } = require("../utils/mongo");
+
 // Import the User model from employee.js
 const { User } = require('./employee');
 
@@ -45,6 +49,32 @@ async function createUsers() {
     console.error('Error creating users:', error);
   }
 }
+
+
+// findAllUsers ** By John Davidson
+router.get('/users', (req, res, next) => {
+  try {
+    mongo(async db => {
+      // Find all users in the collection.
+      const users = await db.collection('users').find();
+
+      // If no users are found, generate a 404 error response.
+      if(!users) {
+        const err = new Error('No users found.');
+        err.status = 404;
+        console.log('err', err);
+        next(err);
+        return;
+      }
+      // Respond with status 200 and send the user record as a JSON response object.
+      res.status(200).send(users)
+    })
+  } catch (err) {
+    // Handle any unexpected errors by logging them and passing them to the next middleware.
+    console.error('err', err);
+    next(err);
+  }
+})
 
 // Export the function to create users
 module.exports = createUsers;
