@@ -1,7 +1,7 @@
 /**
  * Title: app.js
  * Author: Nolan Berryhill
- * Date: 02/12/2024
+ * Date: 02/13/2024
  */
 
 'use strict'
@@ -12,6 +12,9 @@ const createServer = require('http-errors')
 const path = require('path')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require(swagger-ui-express) // Import swaggerUi
+const createUsers = require('./users')
+
+createUsers()
 
 // Create the Express app
 const app = express()

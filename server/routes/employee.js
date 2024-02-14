@@ -14,8 +14,6 @@
 const express = require("express");
 const router = express.Router();
 const { mongo } = require("../utils/mongo");
-const Ajv = require('ajv');
-const { ObjectId } = require('mongodb');
 
 // Define schema for selected security questions
 const SelectedSecurityQuestionSchema = new mongo.Schema({
