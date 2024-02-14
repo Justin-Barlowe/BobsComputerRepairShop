@@ -1,17 +1,36 @@
 /**
  * Title: app.js
- * Author: Professor Krasso
- * Date: 8/5/2023
+ * Author: Nolan Berryhill
+ * Date: 02/12/2024
  */
+
 'use strict'
 
 // Require statements
 const express = require('express')
 const createServer = require('http-errors')
 const path = require('path')
+const swaggerJsDoc = require('swagger-jsdoc')
+const swaggerUi = require(swagger-ui-express) // Import swaggerUi
 
 // Create the Express app
 const app = express()
+
+// Title and version for API
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Bob Computer Repair Shop",
+      version: "1.0.0",
+    },
+  },
+  apis: ['server/routes/*.js'],
+};
+
+const openapiSpecification = swaggerJsDoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 // Configure the app
 app.use(express.json())
