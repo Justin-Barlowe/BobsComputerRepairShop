@@ -1,59 +1,71 @@
 const express = require("express");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const { ObjectId } = require("mongodb");
 
 const router = express.Router();
 
 // Find all users
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-      // Find all users in the collection.
-      const users = await User.find();
+    const users = await User.find();
 
-      // If no users are found, generate a 404 error response.
-      if(!users) {
-        const err = new Error('No users found.');
-        err.status = 404;
-        console.log('err', err);
-        next(err);
-        return;
-      }
-      // Respond with status 200 and send the user record as a JSON response object.
-      res.status(200).send(users)
-    }
-  catch (err) {
-    // Handle any unexpected errors by logging them and passing them to the next middleware.
-    console.error('err', err);
-    next(err);
-  }
-})
-
-// findById
-router.get('/users/:id',  async (req, res, next) => {
-  try {
-    let userId = req.params.userId;
-
-    if (!userId) {
-      const err = new Error('The userId you entered does not exist.');
-      err.status = 400;
-      console.log('err', err);
+    if (!users) {
+      const err = new Error("No users found.");
+      err.status = 404;
+      console.log("err", err);
       next(err);
       return;
     }
-
-    mongo(async db => {
-      const user = await db.collection('users').findOne(userId);
-
-      res.status(200).send(user)
-    })
-
+    res.status(200).send(users);
   } catch (err) {
-    console.error('err', err);
+    console.error("err", err);
     next(err);
   }
-})
+});
 
+// findById
+router.get("/:id", async (req, res, next) => {
+  try {
+    let userId = req.params.id;
 
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    res.status(200).send(user);
+  } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).send({ message: "Invalid user ID format" });
+    }
+    console.error("err", err);
+    next(err);
+  }
+});
+
+// Create a new user
+router.post("/", async (req, res, next) => {
+  try {
+    // Hash the password
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+
+    // Create a new user object
+    const user = new User({
+      userName: req.body.userName,
+      password: hashedPassword,
+      email: req.body.email,
+    });
+
+    const savedUser = await user.save();
+
+    res.status(201).send(savedUser);
+  } catch (err) {
+    console.error("err", err);
+    next(err);
+  }
+});
 
 // Export the router
 module.exports = router;

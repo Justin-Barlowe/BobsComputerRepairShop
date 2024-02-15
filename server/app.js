@@ -13,6 +13,7 @@ const YAML = require("yamljs");
 
 // Import API routes
 const UserAPI = require("./routes/usersApi");
+const SigninAPI = require("./routes/signinApi");
 
 // import MongoDB database connection string from config.json
 const config = require("./utils/config.json");
@@ -57,9 +58,8 @@ const openapiSpecification = swaggerJsdoc(swaggerOptions);
 
 // Connect SwaggerUI
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
-// app.use("/api", UserAPI);
-
 app.use("/api/users", UserAPI);
+app.use("/api/signin", SigninAPI);
 
 // Connect to Database
 mongoose.connect(CONN).then(

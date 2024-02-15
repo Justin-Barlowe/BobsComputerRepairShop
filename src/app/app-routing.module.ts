@@ -15,6 +15,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { SigninComponent } from './signin/signin.component';
 import { FaqComponent } from './faq/faq.component';
+import { authGuard } from './auth.guard';
+import { AdminComponent } from './admin/admin.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -51,6 +53,12 @@ const routes: Routes = [
         path: 'faq',
         component: FaqComponent,
         title: 'BCRS: FAQ'
+      },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        title: 'BCRS: Admin',
+        canActivate: [authGuard]
       }
     ]
   },
