@@ -20,26 +20,31 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   // getUsers function
+  // This function will return an observable of the users
   getUsers(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
 
   // getUser function
+  // This function will return an observable of the user with the given id
   getUser(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
   // createUser function
+  // This function will return an observable of the user that was created
   createUser(user: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, user);
   }
 
   // updateUser function
+  // This function will return an observable of the user that was updated
   updateUser(id: string, user: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${id}`, user);
   }
 
   // deleteUser function
+  // This function will return an observable of the user that was deleted
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
