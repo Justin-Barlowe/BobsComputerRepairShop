@@ -1,0 +1,21 @@
+/**
+    Title: fourzerofour.component.css
+    Author: Nolan Berryhill
+    Date: 14 February 2024
+    Description: CSS styles for 404 component
+*/
+
+/**
+Styles for grids
+*/
+
+#grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+
+.grid-item {
+  margin: 10px;
+  border-radius: 30px;
+}

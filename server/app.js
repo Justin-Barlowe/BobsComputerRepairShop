@@ -1,11 +1,13 @@
 /**
  * Title: app.js
  * Author: Nolan Berryhill
- * Date: 02/13/2024
+ * Date: 02/14/2024
  */
 
+// Use strict
 "use strict";
 
+// imports statements
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");

@@ -18,3 +18,55 @@ paths:
           description: Server Exception
         '501':
           description: MongoDB Exception
+    delete:
+      tags:
+        - Users
+      summary: Delete a user
+      description: Disables a user by deleting
+      operationId: deleteUser
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: ID of the user to delete
+      responses:
+        '204':
+          description: User deleted successfully
+        '400':
+          description: Bad Request - Missing or invalid user ID
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error - Server Exception of MongoDB Exception
+  /api/security/signin:
+    post:
+      tags:
+        - Security
+      summary: Signin
+      description: Authenticates a user
+      operationId: signin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                  description: The username of the user
+                password:
+                  type: string
+                  format: password
+                  description: The password of the user
+      responses:
+        '200':
+          description: Signin successful
+        '400':
+          description: Bad Request - Username and password are required
+        '404':
+          description: Not Found - User not found
+        '500':
+          description: Internal Server Error
