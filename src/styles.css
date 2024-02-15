@@ -12,3 +12,9 @@ body {
   color: white !important;
   font-family: 'Dosis', sans-serif !important;
 }
+
+.table {
+
+  --bs-table-bg: #212529!important;
+  --bs-table-color: white !important;
+}

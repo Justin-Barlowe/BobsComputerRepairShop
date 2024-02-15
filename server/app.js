@@ -1,6 +1,6 @@
 /**
  * Title: app.js
- * Author: Nolan Berryhill
+ * Author: Nolan Berryhill, Justin Barlowe, John Davidson
  * Date: 02/14/2024
  */
 
@@ -12,6 +12,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const YAML = require("yamljs");
+const cors = require("cors");
 
 // Import API routes
 const UserAPI = require("./routes/usersApi");
@@ -34,6 +35,9 @@ app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/",
   express.static(path.join(__dirname, "../dist/bcrs"))
 );
+
+// Use CORS to allow all origins.
+app.use(cors());
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../dist/bcrs/index.html'));
