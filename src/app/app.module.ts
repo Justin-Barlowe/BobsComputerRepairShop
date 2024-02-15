@@ -18,9 +18,13 @@ import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './security/signin/signin.component';
 import { FaqComponent } from './faq/faq.component';
 import { AdminComponent } from './admin/admin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EmployeeLandingComponent } from './employee-landing/employee-landing.component';
+import { ViewUsersComponent } from './view-users/view-users.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +37,15 @@ import { AdminComponent } from './admin/admin.component';
     AboutComponent,
     SigninComponent,
     FaqComponent,
-    AdminComponent
+    AdminComponent,
+    EmployeeLandingComponent,
+    ViewUsersComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

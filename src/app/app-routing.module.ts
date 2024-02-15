@@ -13,10 +13,12 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './security/signin/signin.component';
 import { FaqComponent } from './faq/faq.component';
 import { authGuard } from './auth.guard';
 import { AdminComponent } from './admin/admin.component';
+import { EmployeeLandingComponent } from './employee-landing/employee-landing.component';
+import { ViewUsersComponent } from './view-users/view-users.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -45,7 +47,7 @@ const routes: Routes = [
         title: 'BCRS: About'
       },
       {
-        path: 'signin',
+        path: 'security/signin',
         component: SigninComponent,
         title: 'BCRS: Signin'
       },
@@ -53,6 +55,18 @@ const routes: Routes = [
         path: 'faq',
         component: FaqComponent,
         title: 'BCRS: FAQ'
+      },
+      {
+        path: 'employee-landing',
+        component: EmployeeLandingComponent,
+        title: 'BCRS: Employee Landing',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'view-users',
+        component: ViewUsersComponent,
+        title: 'BCRS: View Users',
+        canActivate: [authGuard]
       },
       {
         path: 'admin',

@@ -1,0 +1,46 @@
+<!-- Sign in Form Start -->
+<div
+  class="container pt-5"
+  style="align-items: center; display: flex; justify-content: center">
+  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+    <div class="card bg-dark text-white" style="border-radius: 1rem">
+      <div class="card-body p-5 text-center">
+        <div class="mb-md-5 mt-md-4 pb-5">
+          <h2 class="fw-bold mb-5 text-uppercase">Employee Login</h2>
+
+          <!-- Sign In Form -->
+          <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+            <div class="form-outline form-white mb-4">
+              <input
+                formControlName="email"
+                type="email"
+                placeholder="E-Mail"
+                style="color: white"
+                class="form-control form-control-lg"
+              />
+            </div>
+
+            <div class="form-outline form-white mb-4">
+              <input
+                formControlName="password"
+                type="password"
+                placeholder="Password"
+                class="form-control form-control-lg"
+              />
+            </div>
+
+            <!-- Forgot Password Link -->
+            <p class="small mb-5 pb-lg-2">
+              <a class="text-white-50" href="#!">Forgot password?</a>
+            </p>
+
+            <!-- Login Button -->
+            <button class="btn btn-lg px-5" type="submit">Login</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
