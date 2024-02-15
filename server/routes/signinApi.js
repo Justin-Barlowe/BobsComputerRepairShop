@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 router.post("/", async (req, res) => {
   try {
-    const user = await User.findOne({ userName: req.body.userName });
+    const user = await User.findOne({ email: req.body.email });
     if (user) {
       let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
       if (passwordIsValid) {

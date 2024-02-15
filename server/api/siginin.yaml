@@ -16,10 +16,10 @@ paths:
          application/json:
             schema:
               required:
-                - userName
+                - email
                 - password
               properties:
-               userName:
+               email:
                  type: string
                password:
                  type: string

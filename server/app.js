@@ -35,9 +35,9 @@ app.use("/",
   express.static(path.join(__dirname, "../dist/bcrs"))
 );
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/bcrs/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../dist/bcrs/index.html'));
+// });
 
 
 // Set port to environment variable or 3000
