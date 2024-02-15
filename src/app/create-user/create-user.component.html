@@ -1,0 +1,92 @@
+<!-- User Creation Form Start -->
+<div
+  class="container pt-5"
+  style="align-items: center; display: flex; justify-content: center">
+  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+    <div class="card bg-dark text-white" style="border-radius: 1rem">
+      <div class="card-body p-5 text-center">
+        <div class="mb-md-5 mt-md-4 pb-5">
+          <h2 class="fw-bold mb-5 text-uppercase">Create User</h2>
+
+          <!-- User Creation Form -->
+          <form [formGroup]="createUserForm" (ngSubmit)="createUser(createUserForm.value)">
+            <div class="form-outline form-white mb-4">
+              <input
+                formControlName="userName"
+                type="text"
+                placeholder="Username (required)"
+                style="color: white"
+                class="form-control form-control-lg"
+              />
+              <div *ngIf="createUserForm.controls['userName'].invalid && createUserForm.controls['userName'].touched">
+               <p id="userConfirmation"> Username is required</p>
+              </div>
+            </div>
+
+            <!-- Password input field with form control and validation -->
+            <div class="form-outline form-white mb-4">
+              <input type="password" id="password" formControlName="password" placeholder="Password" class="form-control form-control-lg">
+              <div *ngIf="createUserForm.controls['password'].invalid && createUserForm.controls['password'].touched">
+                <p id="userConfirmation">Password is required</p>
+              </div>
+            </div>
+
+            <!-- Confirm Password input field with form control and validation -->
+            <div class="form-outline form-white mb-4">
+              <input type="password" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" class="form-control form-control-lg">
+              <div *ngIf="createUserForm.controls['confirmPassword'].errors?.['NoPassswordMatch'] && createUserForm.controls['confirmPassword'].touched">
+                <p id="userConfirmation">Passwords must match</p>
+              </div>
+            </div>
+
+            <!-- Email input field with form control and validation -->
+            <div class="form-outline form-white mb-4">
+              <input
+                formControlName="email"
+                type="email"
+                placeholder="E-Mail (required)"
+                style="color: white"
+                class="form-control form-control-lg"
+              />
+              <div *ngIf="createUserForm.controls['email'].invalid && createUserForm.controls['email'].touched">
+                <p id="userConfirmation">Email is required</p>
+              </div>
+            </div>
+
+            <!-- First Name input field with form control -->
+            <div class="form-outline form-white mb-4">
+              <input
+                formControlName="firstName"
+                type="text"
+                placeholder="First Name"
+                style="color: white"
+                class="form-control form-control-lg"
+              />
+            </div>
+
+            <!-- Last Name input field with form control -->
+            <div class="form-outline form-white mb-4">
+              <input
+                formControlName="lastName"
+                type="text"
+                placeholder="Last Name"
+                style="color: white"
+                class="form-control form-control-lg"
+              />
+            </div>
+
+            <!-- Create User Button -->
+            <button class="btn btn-lg px-5" type="submit">Create User</button>
+
+          </form>
+          <br>
+          <br>
+
+          <!-- User Message area -->
+          <p id="userConfirmation">{{ message }}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

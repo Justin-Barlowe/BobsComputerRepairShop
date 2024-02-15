@@ -9,6 +9,7 @@
 // imports statements
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeLandingComponent } from './employee-landing/employee-landing.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +41,15 @@ import { ViewUsersComponent } from './view-users/view-users.component';
     FaqComponent,
     AdminComponent,
     EmployeeLandingComponent,
-    ViewUsersComponent
+    ViewUsersComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

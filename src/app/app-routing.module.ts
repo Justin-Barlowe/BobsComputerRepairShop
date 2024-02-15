@@ -19,6 +19,7 @@ import { authGuard } from './auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { EmployeeLandingComponent } from './employee-landing/employee-landing.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -66,6 +67,12 @@ const routes: Routes = [
         path: 'view-users',
         component: ViewUsersComponent,
         title: 'BCRS: View Users',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'create-user',
+        component: CreateUserComponent,
+        title: 'BCRS: Create User',
         canActivate: [authGuard]
       },
       {

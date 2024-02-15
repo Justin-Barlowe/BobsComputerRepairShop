@@ -54,22 +54,36 @@ router.get("/:id", async (req, res, next) => {
 
 // Create a new user
 router.post("/", async (req, res, next) => {
+  const { userName, password, email } = req.body;
+
+  // Check if userName and password are provided
+  if (!userName || !password) {
+    return res.status(400).json({ error: 'userName and password are required' });
+  }
+
   try {
     // Hash the password
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
     // Create a new user object
     const user = new User({
-      userName: req.body.userName,
+      userName,
       password: hashedPassword,
-      email: req.body.email,
+      email,
     });
 
     const savedUser = await user.save();
 
-    res.status(201).send(savedUser);
+    // Send a response with a confirmation message
+    res.status(201).json({ message: 'User created successfully', user: savedUser });
   } catch (err) {
     console.error("err", err);
+
+    // Check if error is a MongoDB duplicate key error
+    if (err.code === 11000) {
+      return res.status(400).json({ error: 'userName already exists' });
+    }
+
     next(err);
   }
 });
