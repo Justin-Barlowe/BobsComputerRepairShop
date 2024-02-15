@@ -94,5 +94,29 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
+// Update a user
+router.put('/:id', async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const updateData = req.body;
+
+    // Optional: Hash the new password if it's being changed.
+    if(updateData.password) {
+      updateData.password = bcrypt.hashSync(updateData.password, 10);
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    res.status(200).send(updatedUser);
+  } catch (err) {
+    console.error("Error updating user:", err);
+    next(err); // Pass errors to the error handler
+  }
+});
+
 // Export the router
 module.exports = router;
