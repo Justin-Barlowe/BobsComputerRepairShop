@@ -6,6 +6,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-users',
@@ -16,7 +17,7 @@ export class ViewUsersComponent implements OnInit {
   users: User[] = [];
   message: string = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private http: HttpClient) { }
 
   // ngOnInit method to get the users from the user service
   ngOnInit() {
@@ -28,13 +29,14 @@ export class ViewUsersComponent implements OnInit {
   deleteUser(id: string) {
     if (confirm('Are you sure you want to delete this user?')) {
       this.userService.deleteUser(id).subscribe(() => {
-        this.users = this.users.filter(user => user.id !== id);
+        this.users = this.users.filter(user => user._id !== id);
         this.message = 'User deleted successfully!';
-      }, error => {
+      },
+
+      error => {
         console.error(error)
         this.message = 'Error deleting user.'
       });
     }
   }
-
-}
+  }

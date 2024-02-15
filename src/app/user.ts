@@ -5,7 +5,7 @@
 
 // User interface for the user object in the view all users component.
 export interface User {
-  id: string;
+  _id: string;
   userName: string;
   email: string;
   firstName: string;
