@@ -1,3 +1,8 @@
+// Name: Justin Barlowe
+// Date: 2/15/2024
+// File: view-users.component.ts
+// Description: View users component file
+
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
@@ -12,6 +17,7 @@ export class ViewUsersComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
+  // ngOnInit method to get the users from the user service
   ngOnInit() {
     this.userService.getUsers().subscribe(users => {
       this.users = users;

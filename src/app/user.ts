@@ -3,6 +3,7 @@
 // File: user.ts
 // Description: User interface file
 
+// User interface for the user object in the view all users component.
 export interface User {
   userName: string;
   email: string;

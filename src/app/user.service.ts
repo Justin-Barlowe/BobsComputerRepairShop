@@ -12,6 +12,9 @@ import { Observable } from 'rxjs';
  providedIn: 'root'
 })
 export class UserService {
+
+  // Will probably need to change this when the app is deployed....works for now.
+  // May use environment variables or relative URL to change this later.
   private apiUrl = 'http://localhost:3000/api/users';
 
   constructor(private http: HttpClient) { }
