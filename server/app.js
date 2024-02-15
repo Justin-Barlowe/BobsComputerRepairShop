@@ -30,10 +30,15 @@ const swaggerJsdoc = require("swagger-jsdoc");
 // Express middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../dist/BobsComputerRepairShop")));
+app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/",
-  express.static(path.join(__dirname, "../dist/BobsComputerRepairShop"))
+  express.static(path.join(__dirname, "../dist/bcrs"))
 );
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/bcrs/index.html'));
+});
+
 
 // Set port to environment variable or 3000
 const PORT = process.env.PORT || 3000;
