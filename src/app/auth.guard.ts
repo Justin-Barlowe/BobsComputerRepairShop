@@ -12,10 +12,12 @@ export const authGuard: CanActivateFn = (route, state) => {
   const cookie = inject(CookieService);
 
   // Check if the user has a valid session cookie
+  // If they do, console log message and return true
   if (cookie.get('authToken')) {
     console.log('You are logged in and have a valid session cookie set!');
     return true;
   } else {
+    // If the user does not have a valid session cookie, console log message and return false.
     console.log('You must be logged in to access this page!');
     const router = inject(Router);
 

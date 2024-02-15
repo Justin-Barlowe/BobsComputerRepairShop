@@ -24,6 +24,10 @@ export class SigninComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private cookieService: CookieService, private authService: AuthService) { }
 
+
+  // SignIn function, takes in email and password from the form and sends it to the server.
+  // If the server returns a 200 status code, the user is signed in and the authentication token is stored in a cookie.
+  // The user is then navigated to the employee-landing page.
   signIn() {
     const { email, password } = this.signInForm.value;
     this.http.post('/api/signin', { email, password })
@@ -37,9 +41,11 @@ export class SigninComponent {
             // Navigate to the admin page
             this.router.navigate(['/employee-landing']);
           } else {
+            // If the server returns an error, log the error to the console
             console.log(response.message);
           }
         },
+        // If the server returns an error, log the error to the console
         (error) => {
           console.error(error);
         }
