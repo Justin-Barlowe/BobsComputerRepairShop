@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node ./bin/www",
+    "start": "ng build && node ./server/app.js",
     "build": "ng build",
     "server": "nodemon ./bin/www",
     "client": "ng serve --open"
