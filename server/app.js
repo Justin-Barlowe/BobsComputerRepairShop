@@ -39,10 +39,6 @@ app.use("/",
 // Use CORS to allow all origins.
 app.use(cors());
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../dist/bcrs/index.html'));
-// });
-
 
 // Set port to environment variable or 3000
 const PORT = process.env.PORT || 3000;
