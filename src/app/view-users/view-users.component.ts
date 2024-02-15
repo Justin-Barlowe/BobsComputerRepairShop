@@ -14,6 +14,7 @@ import { User } from '../user';
 })
 export class ViewUsersComponent implements OnInit {
   users: User[] = [];
+  message: string = '';
 
   constructor(private userService: UserService) { }
 
@@ -23,4 +24,17 @@ export class ViewUsersComponent implements OnInit {
       this.users = users;
     });
   }
+
+  deleteUser(id: string) {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.userService.deleteUser(id).subscribe(() => {
+        this.users = this.users.filter(user => user.id !== id);
+        this.message = 'User deleted successfully!';
+      }, error => {
+        console.error(error)
+        this.message = 'Error deleting user.'
+      });
+    }
+  }
+
 }
