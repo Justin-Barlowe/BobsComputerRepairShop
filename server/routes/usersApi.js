@@ -72,66 +72,25 @@ router.post("/", async (req, res, next) => {
     console.error("err", err);
     next(err);
   }
-});// deleteUser
-router.delete('/api/users/:userId', async (req, res, next) => {
-  try {
-    const userId = req.params.userId;
-
-    // Check if the userId is provided
-    if (!userId) {
-      return res.status(400).json({ message: "User ID is required" });
-    }
-
-    mongo(async db => {
-        // Check if the user exists
-        const user = await db.collection('users').findByIdandUpdate(
-          userId,
-          // Soft delete the user by setting isDisabled to true
-          { $set: { isDisabled: true } },
-          { new: true }
-        );
-
-        if (!user) {
-          return res.status(404).json({ message: "User not found" });
-        }
-
-      // Send response with status 204 - No Content
-      res.status(204).send();
-    }, next);
-  } catch (error) {
-    // Handle internal server errors
-    console.error('Error deleting user:', error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
 });
 
-// Signin
-router.post('/api/security/signin', async (req, res, next) => {
-  try{
-    const { username, password } = req.body;
+// deleteUser
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const userId = req.params.id;
 
-    // Check if username and password are provided
-    if (!username || !password) {
-      return res.status(400).json({ message: "Username and password are required" });
+    // Soft delete the user by setting isDisabled to true
+    const updatedUser = await User.findByIdAndUpdate(userId, { isDisabled: true }, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).send({ message: "User not found" });
     }
 
-    // Use the mongo function to interact with MongoDB
-    mongo(async db => {
-      // Check if the user exists in the database
-      const user = await db.collection('users').findOne({ username, password });
-
-      if (!user) {
-        // If user is not found, return 404 Not Found
-        return res.status(404).json({ message: "User not found" });
-      }
-
-      // If user is found, return 200 OK with user data
-      res.status(200).json({ message: "Signin successful", user });
-    }, next);
-  } catch (error) {
-    // Handle errors
-    console.error('Error signing in:', error);
-    res.status(500).json({ message: "Internal Server Error" });
+    // Send message that user was deleted.
+    res.status(204).send({ message: "User deleted" });
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    next(err); // Pass errors to the error handler
   }
 });
 
