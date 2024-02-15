@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+  description: API for finding all users
+paths:
+  /api/users:
+    get:
+      tags:
+        - Users
+      summary: Returns all users
+      description: Retrieves all users from the database
+      operationId: findAllUsers
+      responses:
+        '200':
+          description: Returned all users
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception

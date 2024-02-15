@@ -4,62 +4,84 @@
  * Date: 02/13/2024
  */
 
-'use strict'
+"use strict";
 
-// Require statements
-const express = require('express')
-const createServer = require('http-errors')
-const path = require('path')
-const swaggerJsDoc = require('swagger-jsdoc')
-const swaggerUi = require('swagger-ui-express') // Import swaggerUi
-const createUsers = require('./users')
-const employeeRoute = require("./routes/employee"); // Import employee.js file
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const YAML = require("yamljs");
 
-createUsers()
+// Import API routes
+const UserAPI = require("./routes/usersApi");
 
-// Create the Express app
-const app = express()
+// import MongoDB database connection string from config.json
+const config = require("./utils/config.json");
 
-// Title and version for API
-const options = {
+// Express variable.
+const app = express();
+
+// Swagger Imports
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
+
+// Express middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../dist/BobsComputerRepairShop")));
+app.use("/",
+  express.static(path.join(__dirname, "../dist/BobsComputerRepairShop"))
+);
+
+// Set port to environment variable or 3000
+const PORT = process.env.PORT || 3000;
+
+// Connect to database
+const CONN = config.dbConn;
+
+// Swagger Options
+const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Bob Computer Repair Shop",
+      title: "WEB450 Bob's Computer Repair Shop",
       version: "1.0.0",
     },
   },
-  apis: ['server/routes/*.js'],
+  // Path to the API docs
+  apis: ["routes/*.js", path.join(__dirname, "./api/*.yaml")],
+
 };
 
-const openapiSpecification = swaggerJsDoc(options);
+// Open API specification
+const openapiSpecification = swaggerJsdoc(swaggerOptions);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+// Connect SwaggerUI
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+// app.use("/api", UserAPI);
 
-// Configure the app
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, '../dist/bcrs')))
-app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
+app.use("/api/users", UserAPI);
 
-app.use("/api/employees", employeeRoute); // Use employee routes
+// Connect to Database
+mongoose.connect(CONN).then(
+  () => {
+    console.log("Connection to the database was successful");
+  },
+  (err) => {
+    console.log("MongoDB Error: " + err.message);
+  }
+);
 
-// error handler for 404 errors
-app.use(function(req, res, next) {
-  next(createServer(404)) // forward to error handler
-})
+mongoose.connection.on("error", (err) => {
+  console.log(config.mongoServerError + ": " + err.message);
+});
 
-// error handler for all other errors
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500) // set response status code
+mongoose.connection.on("disconnected", () => {
+  console.log("Server disconnected from host (MongoDB Atlas).");
+});
 
-  // send response to client in JSON format with a message and stack trace
-  res.json({
-    type: 'error',
-    status: err.status,
-    message: err.message,
-    stack: req.app.get('env') === 'development' ? err.stack : undefined
-  })
-})
+// Connect to express server
+app.listen(PORT, () => {
+  console.log("Application started and listening on PORT: " + PORT);
+});
 
-module.exports = app // export the Express application
+module.exports = app;
