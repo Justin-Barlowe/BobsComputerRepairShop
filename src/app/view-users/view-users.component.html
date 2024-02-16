@@ -4,6 +4,7 @@
       <div class="card-header text-center h1">View All Users</div>
       <div class="card-body">
         <table class="table" style="background-color: #343a40 !important; color: white !important;">
+          <!-- Table headers -->
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -14,6 +15,7 @@
               <th scope="col">Actions</th>
             </tr>
           </thead>
+          <!-- User account information -->
           <tbody>
             <tr *ngFor="let user of users; index as i">
               <th scope="row">{{ i + 1 }}</th>
@@ -22,12 +24,16 @@
               <td>{{ user.firstName }}</td>
               <td>{{ user.lastName }}</td>
               <td>
+                <!-- User edit button -->
                 <button class="btn btn-primary me-2" id="editButton">Edit</button>
+                <!-- User delete button -->
                 <button class="btn btn-danger" id="deleteButton" (click)="deleteUser(user._id)">Delete</button>
               </td>
             </tr>
           </tbody>
         </table>
+        <!-- Display success or error message on deletion attempt -->
+        <div *ngIf="message" class="text-center deleteConfirmation" >{{ message }}</div>
       </div>
     </div>
   </div>

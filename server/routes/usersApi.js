@@ -13,11 +13,13 @@ const user = require("../models/user");
 
 const router = express.Router();
 
-// Find all users
+// FindAllUsers
 router.get("/", async (req, res, next) => {
   try {
+    // Find all users in the collection.
     const users = await User.find();
 
+    // If no users are found, generate a 404 error response.
     if (!users) {
       const err = new Error("No users found.");
       err.status = 404;
@@ -25,33 +27,51 @@ router.get("/", async (req, res, next) => {
       next(err);
       return;
     }
+    // Respond with status 200 and send the user record as a JSON response object.
     res.status(200).send(users);
   } catch (err) {
+    // Handle any unexpected errors by logging them and passing them to the next middleware.
     console.error("err", err);
     next(err);
   }
 });
 
-// findById
-router.get("/:id", async (req, res, next) => {
+ // findById
+ router.get('/:id',  async (req, res, next) => {
   try {
+    // Extract the user ID from the request parameters
     let userId = req.params.id;
 
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).send({ message: "User not found" });
+    // If userId is falsy, generate a 400 error response.
+    if (!userId) {
+      const err = new Error('The userId you entered does not exist.');
+      err.status = 400;
+      console.log('err', err);
+      next(err);
+      return;
     }
 
-    res.status(200).send(user);
+    // Find the user by their ID in the User collection.
+    const findById = await User.findOne({_id: userId});
+
+    // If user is not found, return a 404 error.
+    if(!findById) {
+      const err = new Error('User not found.');
+      err.status = 404;
+      console.log('err', err);
+      next(err);
+      return;
+    }
+
+    // Send the user data in a response.
+    res.status(200).send(findById)
+
   } catch (err) {
-    if (err.name === "CastError") {
-      return res.status(400).send({ message: "Invalid user ID format" });
-    }
-    console.error("err", err);
+    // Handle unexpected errors by logging them and passing them to the next middleware.
+    console.error('err', err);
     next(err);
   }
-});
+})
 
 // Create a new user
 router.post("/", async (req, res, next) => {

@@ -1,4 +1,4 @@
-// Name: Justin Barlowe
+// Name: Justin Barlowe, John Davidson
 // Date: 2/15/2024
 // File: view-users.component.ts
 // Description: View users component file
@@ -14,8 +14,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./view-users.component.css']
 })
 export class ViewUsersComponent implements OnInit {
-  users: User[] = [];
-  message: string = '';
+  users: User[] = []; // Array to hold user data.
+  message: string = ''; // Variable to hold message displayed to user.
 
   constructor(private userService: UserService, private http: HttpClient) { }
 
@@ -26,17 +26,22 @@ export class ViewUsersComponent implements OnInit {
     });
   }
 
+  // DeleteUser function
   deleteUser(id: string) {
+    // If user confirms deletion, carry out with deleting selected user.
     if (confirm('Are you sure you want to delete this user?')) {
+      // Call the deleteUser method of the userService to delete user.
       this.userService.deleteUser(id).subscribe(() => {
+        // Remove the deleted user from the users array.
         this.users = this.users.filter(user => user._id !== id);
+        // Set the message to indicate successful deletion.
         this.message = 'User deleted successfully!';
       },
-
+      // If there's an error during deletion, log the error and set an error message.
       error => {
         console.error(error)
         this.message = 'Error deleting user.'
       });
     }
   }
-  }
+}

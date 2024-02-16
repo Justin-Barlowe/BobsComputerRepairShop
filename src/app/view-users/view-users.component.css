@@ -13,3 +13,9 @@
   background-color: #cf9800 !important;
   border-color: #cf9800 !important;
 }
+
+/* Styling for the delete message displayed to the user */
+.deleteConfirmation {
+  color: #f8b400 !important;
+  font-size: large !important;
+}
