@@ -28,7 +28,7 @@ const userSchema = new Schema(
     dateCreated: { type: Date, default: new Date() },
     dateModified: { type: Date },
   },
-  { collection: "users" } // pre-build collection in mongodb atlas
+  { collection: "users" }
 );
 
 // Export user schema

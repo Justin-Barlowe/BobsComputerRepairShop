@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Import line item schema
-const lineItemDocument = require("../schemas/line-item");
+const lineItemDocument = require("../schemas/lineItem");
 
 // Create model
 const invoiceSchema = new Schema({
