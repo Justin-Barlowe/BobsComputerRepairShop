@@ -21,8 +21,10 @@ paths:
               properties:
                email:
                  type: string
+                 format: email
                password:
                  type: string
+                 format: password
       responses:
         '200':
           description: Query successful
