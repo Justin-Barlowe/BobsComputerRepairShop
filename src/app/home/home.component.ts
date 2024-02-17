@@ -9,11 +9,14 @@
 // imports statements
 import { Component } from '@angular/core';
 
+// Component of selector, templateUrl, styleUrls
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+// Export HomeComponent
 export class HomeComponent {
 
 }

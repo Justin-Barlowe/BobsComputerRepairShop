@@ -1,7 +1,7 @@
 /**
  * Title: app.js
  * Author: Nolan Berryhill, Justin Barlowe, John Davidson
- * Date: 02/14/2024
+ * Date: 02/17/2024
  */
 
 // Use strict
@@ -91,4 +91,5 @@ app.listen(PORT, () => {
   console.log("Application started and listening on PORT: " + PORT);
 });
 
+// Export app
 module.exports = app;

@@ -28,6 +28,7 @@ import { EmployeeLandingComponent } from './employee-landing/employee-landing.co
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 
+// @NgModule assign declarations and imports with bootstrap value
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,4 +55,6 @@ import { CreateUserComponent } from './create-user/create-user.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
+// Export AppModule
 export class AppModule { }

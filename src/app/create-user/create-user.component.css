@@ -1,3 +1,10 @@
+/**
+  Title: create-user.component.css
+  Author: Justin Barlowe
+  Date: 2/17/2024
+  Description: Styles for BCRS create user page
+*/
+
 /* Override Bootstrap theme for Gryffindor Theme */
 .btn {
   border-radius: 0 !important;

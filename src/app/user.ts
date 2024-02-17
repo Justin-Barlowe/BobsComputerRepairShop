@@ -1,4 +1,4 @@
-// Name: Justin Barlowe
+// Name: Justin Barlowe, Nolan Berryhill
 // Date: 2/13/2024
 // File: user.ts
 // Description: User interface file

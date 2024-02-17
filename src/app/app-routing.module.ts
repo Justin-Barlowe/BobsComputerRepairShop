@@ -95,4 +95,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true, enableTracing: false, scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
+
+// export AppRoutingModule
 export class AppRoutingModule { }

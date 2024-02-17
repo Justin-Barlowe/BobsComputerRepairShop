@@ -17,5 +17,7 @@ import { Component } from '@angular/core';
   `,
   styles: []
 })
+
+// Export AppComponent
 export class AppComponent {
 }
