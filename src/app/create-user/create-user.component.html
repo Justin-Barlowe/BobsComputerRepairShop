@@ -30,17 +30,9 @@ Date: 2/17/2024-->
 
             <!-- Password input field with form control and validation -->
             <div class="form-outline form-white mb-4">
-              <input type="password" id="password" formControlName="password" placeholder="Password" class="form-control form-control-lg">
+              <input type="password" id="password" formControlName="password" placeholder="Password" class="form-control form-control-lg password-input">
               <div *ngIf="createUserForm.controls['password'].invalid && createUserForm.controls['password'].touched">
                 <p id="userConfirmation">Password is required</p>
-              </div>
-            </div>
-
-            <!-- Confirm Password input field with form control and validation -->
-            <div class="form-outline form-white mb-4">
-              <input type="password" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" class="form-control form-control-lg">
-              <div *ngIf="createUserForm.controls['confirmPassword'].errors?.['NoPassswordMatch'] && createUserForm.controls['confirmPassword'].touched">
-                <p id="userConfirmation">Passwords must match</p>
               </div>
             </div>
 

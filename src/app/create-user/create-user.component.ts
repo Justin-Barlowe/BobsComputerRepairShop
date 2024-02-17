@@ -25,13 +25,12 @@ export class CreateUserComponent implements OnInit {
     this.createUserForm = new FormGroup({
       'userName': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required),
-      'confirmPassword': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'firstName': new FormControl(null),
       'lastName': new FormControl(null),
       'phoneNumber': new FormControl(null),
       'address': new FormControl(null)
-    }, { validators: this.passwordMatchValidator });
+    });
 
   }
   ngOnInit() {}
@@ -56,12 +55,4 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
-  // Custom validator to check if the password and confirm password match.
-  // If they do not match, return an error.
-  passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const password = control.get('password');
-    const confirmPassword = control.get('confirmPassword');
-
-    return password && confirmPassword && password.value === confirmPassword.value ? null : { 'NoPassswordMatch': true };
-  };
 }

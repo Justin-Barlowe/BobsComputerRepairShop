@@ -18,3 +18,7 @@ body {
   --bs-table-bg: #212529!important;
   --bs-table-color: white !important;
 }
+
+.password-input {
+  color: white !important;
+}
