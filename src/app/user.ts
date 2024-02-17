@@ -10,4 +10,6 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
+  // Add the isEditMode property
+  isEditMode?: boolean;
 }
