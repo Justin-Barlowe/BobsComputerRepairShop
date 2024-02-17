@@ -24,6 +24,7 @@ router.post("/", async (req, res) => {
       if (passwordIsValid) {
         console.log("Login successful");
         return res.status(200).json({ status: 200, message: 'Login successful', user: user });
+
       } // If they don't match throw error for email or password
         else {
         console.log("Invalid password: Please try again");

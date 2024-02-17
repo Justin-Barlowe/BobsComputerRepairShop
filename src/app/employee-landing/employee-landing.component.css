@@ -1,0 +1,7 @@
+.portalLinks {
+  text-decoration: none;
+}
+
+.portalLinks:hover {
+  text-decoration: underline;
+}

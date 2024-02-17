@@ -6,69 +6,98 @@
 // Import Statements
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { User } from '../user';
-import { HttpClient } from '@angular/common/http';
+import { User } from '../user'; // Assuming this is the path to your User model
+import { set } from 'mongoose';
 
-// Component of selector, templateUrl, styleUrls
+// Extend the User model for component-specific properties
+interface EditableUser extends User {
+  isEditMode?: boolean; // Optional property to manage edit mode in the UI
+}
+
+// Component Decorator with selector, templateUrl, and styleUrls
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
   styleUrls: ['./view-users.component.css']
 })
 
-// Export ViewUsersComponent
+// Export ViewUsersComponent class
 export class ViewUsersComponent implements OnInit {
-  users: User[] = []; // Array to hold user data.
-  message: string = ''; // Variable to hold message displayed to user.
+  users: EditableUser[] = []; // Array to hold user data with edit mode property
+  message: string = ''; // Variable to hold message displayed to user
 
-  constructor(private userService: UserService, private http: HttpClient) { }
+  // Constructor with injected UserService
+  constructor(private userService: UserService) { }
 
-  // ngOnInit method to get the users from the user service
+  // ngOnInit lifecycle hook to get users from the user service
   ngOnInit() {
-    this.userService.getUsers().subscribe(users => {
-      this.users = users;
+    this.userService.getUsers().subscribe((users: User[]) => {
+      // Filter out users with isDisabled true and add isEditMode property
+      this.users = users.filter(user => !user.isDisabled).map(user => ({
+        ...user,
+        isEditMode: false // Initialize isEditMode for UI purposes
+      }));
     });
   }
 
-  // DeleteUser function
+  // deleteUser method to remove a user by id
   deleteUser(id: string) {
-    // If user confirms deletion, carry out with deleting selected user.
+    // Confirm deletion with the user
     if (confirm('Are you sure you want to delete this user?')) {
-      // Call the deleteUser method of the userService to delete user.
       this.userService.deleteUser(id).subscribe(() => {
-        // Remove the deleted user from the users array.
+        // Update the users array by filtering out the deleted user
         this.users = this.users.filter(user => user._id !== id);
-        // Set the message to indicate successful deletion.
+        // Display success message
         this.message = 'User deleted successfully!';
-      },
-      // If there's an error during deletion, log the error and set an error message.
-      error => {
-        console.error(error)
-        this.message = 'Error deleting user.'
+        // Clear the message after 5 seconds
+        setTimeout(() => {
+          this.message = '';
+        }, 5000);
+
+      }, error => {
+        // Handle deletion error
+        console.error(error);
+        this.message = 'Error deleting user.';
+
+        // Clear the message after 5 seconds
+        setTimeout(() => {
+          this.message = '';
+        }, 5000);
       });
     }
   }
 
-  editUser(user: User) {
-    // Toggle edit mode for the user
+  // editUser method to enable edit mode for a user
+  editUser(user: EditableUser) { // Use the EditableUser type
     user.isEditMode = true;
   }
 
-  saveUser(user: User) {
-    // Save user changes
+  // saveUser method to save changes made to a user's details
+  saveUser(user: EditableUser) { // Use the EditableUser type
     this.userService.updateUser(user._id, user).subscribe(() => {
-      user.isEditMode = false; // Exit edit mode
-      // Optionally, you can show a success message
+      // Exit edit mode and display success message
+      user.isEditMode = false;
       this.message = 'User updated successfully!';
+
+      // Clear the message after 5 seconds
+      setTimeout(() => {
+        this.message = '';
+      }, 5000);
+
     }, error => {
+      // Handle update error
       console.error(error);
-      // Optionally, you can show an error message
       this.message = 'Error updating user.';
+
+      // Clear the message after 5 seconds
+      setTimeout(() => {
+        this.message = '';
+      }, 5000);
     });
   }
 
-  cancelEdit(user: User) {
-    // Cancel edit mode
+  // cancelEdit method to cancel editing mode for a user
+  cancelEdit(user: EditableUser) {
     user.isEditMode = false;
   }
 

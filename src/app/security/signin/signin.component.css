@@ -40,3 +40,7 @@ input:focus {
 input::placeholder {
   color: white;
 }
+
+.password-input {
+  color: white;
+}

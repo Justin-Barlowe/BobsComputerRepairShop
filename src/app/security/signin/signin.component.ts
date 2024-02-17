@@ -20,6 +20,8 @@ import { AuthService } from '../auth-service.service';
 
 // export SigninComponent
 export class SigninComponent {
+  errorMessage: string = '';
+
   signInForm = this.fb.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
@@ -27,13 +29,12 @@ export class SigninComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private cookieService: CookieService, private authService: AuthService) { }
 
-
   // SignIn function, takes in email and password from the form and sends it to the server.
   // If the server returns a 200 status code, the user is signed in and the authentication token is stored in a cookie.
   // The user is then navigated to the employee-landing page.
   signIn() {
     const { email, password } = this.signInForm.value;
-    this.http.post('/api/signin', { email, password })
+    this.http.post('/api/signin', { email, password }, { withCredentials: true })
       .subscribe(
         (response: any) => {
           if (response.status === 200) {
@@ -41,15 +42,23 @@ export class SigninComponent {
             this.authService.setSignedIn(true);
             // Store the authentication token in a cookie
             this.cookieService.set('authToken', response.token);
+            // Store the user's name and role in a cookie
+            this.cookieService.set('userName', response.user.userName);
+            // Store the user's name in a cookie
+            this.cookieService.set('name', response.user.firstName + ' ' + response.user.lastName);
+            // Store the user's role in a cookie
+            this.cookieService.set('userRole', response.user.role);
             // Navigate to the admin page
             this.router.navigate(['/employee-landing']);
           } else {
-            // If the server returns an error, log the error to the console
+            // If the server returns an error, set the error message
+            this.errorMessage = response.message;
             console.log(response.message);
           }
         },
-        // If the server returns an error, log the error to the console
+        // If the server returns an error, set the error message
         (error) => {
+          this.errorMessage = 'Invalid email or password.';
           console.error(error);
         }
       );

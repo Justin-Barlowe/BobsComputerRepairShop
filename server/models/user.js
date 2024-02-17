@@ -23,7 +23,7 @@ const userSchema = new Schema(
     address: { type: String },
     email: { type: String },
     isDisabled: { type: Boolean, default: false },
-    role: userRoleSchema,
+    role: { type: String },
     securityQuestion: [securityQuestion],
     dateCreated: { type: Date, default: new Date() },
     dateModified: { type: Date },

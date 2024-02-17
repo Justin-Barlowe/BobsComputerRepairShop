@@ -8,7 +8,7 @@
 <!-- Opening of divs for the view user page -->
 <div class="container mt-5">
   <div class="d-flex justify-content-center">
-    <div class="card text-white bg-dark mb-3 w-75">
+    <div class="card text-white bg-dark mb-3 w-100">
       <div class="card-header text-center h1">View All Users</div>
       <div class="card-body">
         <table class="table" style="background-color: #343a40 !important; color: white !important;">
@@ -64,20 +64,23 @@
                 </ng-template>
               </td>
               <td>
-                <!-- User edit button -->
-                <button class="btn btn-primary me-2" (click)="editUser(user)">
-                  {{ user.isEditMode ? 'Table' : 'Edit' }}
-                </button>
-                <button *ngIf="user.isEditMode" class="btn btn-secondary" (click)="cancelEdit(user)">Cancel</button>
-                <button *ngIf="user.isEditMode" class="btn btn-success" (click)="saveUser(user)">Save</button>
-                <!-- User delete button -->
-                <button class="btn btn-danger" id="deleteButton" (click)="deleteUser(user._id)">Delete</button>
+                <!-- Hide Edit and Delete buttons when in edit mode -->
+                <ng-container *ngIf="!user.isEditMode">
+                  <button class="btn btn-primary me-2" id="editButton" (click)="editUser(user)">Edit</button>
+                  <button class="btn btn-danger me-2" (click)="deleteUser(user._id)">Delete</button>
+                </ng-container>
+
+                <!-- Show Cancel and Save buttons when in edit mode -->
+                <ng-container *ngIf="user.isEditMode">
+                  <button class="btn btn-secondary me-2" (click)="cancelEdit(user)">Cancel</button>
+                  <button class="btn btn-success me-2" (click)="saveUser(user)">Save</button>
+                </ng-container>
               </td>
             </tr>
           </tbody>
         </table>
         <!-- Display success or error message on deletion attempt -->
-        <div *ngIf="message" class="text-center deleteConfirmation" >{{ message }}</div>
+        <div *ngIf="message" class="text-center deleteConfirmation">{{ message }}</div>
       </div>
     </div>
   </div>

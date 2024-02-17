@@ -59,3 +59,8 @@
   height: 100%;
   border-color: #f8b400;
 }
+
+/* Used to fix pointer after sign in */
+.sign-out-link {
+  cursor: pointer;
+}

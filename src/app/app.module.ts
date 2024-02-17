@@ -22,11 +22,13 @@ import { AboutComponent } from './about/about.component';
 import { SigninComponent } from './security/signin/signin.component';
 import { FaqComponent } from './faq/faq.component';
 import { AdminComponent } from './admin/admin.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpRequest, HttpHandler,HttpEvent } from '@angular/common/http';
+import { HttpInterceptor } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeLandingComponent } from './employee-landing/employee-landing.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { Observable } from 'rxjs';
 
 // @NgModule assign declarations and imports with bootstrap value
 @NgModule({
@@ -52,7 +54,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 

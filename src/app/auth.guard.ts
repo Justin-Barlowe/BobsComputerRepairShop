@@ -22,7 +22,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
 
     // Redirect the user to the signin page if they are not logged in
-    router.navigate(['/signin'], { queryParams: { returnUrl: state.url}});
+    router.navigate(['/security/signin'], { queryParams: { returnUrl: state.url}});
 
     return false;
   }
