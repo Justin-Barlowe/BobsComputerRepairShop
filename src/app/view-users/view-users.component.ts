@@ -44,4 +44,28 @@ export class ViewUsersComponent implements OnInit {
       });
     }
   }
+
+  editUser(user: User) {
+    // Toggle edit mode for the user
+    user.isEditMode = true;
+  }
+
+  saveUser(user: User) {
+    // Save user changes
+    this.userService.updateUser(user._id, user).subscribe(() => {
+      user.isEditMode = false; // Exit edit mode
+      // Optionally, you can show a success message
+      this.message = 'User updated successfully!';
+    }, error => {
+      console.error(error);
+      // Optionally, you can show an error message
+      this.message = 'Error updating user.';
+    });
+  }
+
+  cancelEdit(user: User) {
+    // Cancel edit mode
+    user.isEditMode = false;
+  }
+
 }

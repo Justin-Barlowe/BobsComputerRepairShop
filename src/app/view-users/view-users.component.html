@@ -19,13 +19,49 @@
           <tbody>
             <tr *ngFor="let user of users; index as i">
               <th scope="row">{{ i + 1 }}</th>
-              <td>{{ user.userName }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.firstName }}</td>
-              <td>{{ user.lastName }}</td>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display username -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInput">
+                  {{ user.userName }}
+                </ng-container>
+                <ng-template #editModeInput>
+                  <input type="text" [(ngModel)]="user.userName">
+                </ng-template>
+              </td>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display email -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInputEmail">
+                  {{ user.email }}
+                </ng-container>
+                <ng-template #editModeInputEmail>
+                  <input type="text" [(ngModel)]="user.email">
+                </ng-template>
+              </td>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display first name -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInputFirstName">
+                  {{ user.firstName }}
+                </ng-container>
+                <ng-template #editModeInputFirstName>
+                  <input type="text" [(ngModel)]="user.firstName">
+                </ng-template>
+              </td>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display last name -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInputLastName">
+                  {{ user.lastName }}
+                </ng-container>
+                <ng-template #editModeInputLastName>
+                  <input type="text" [(ngModel)]="user.lastName">
+                </ng-template>
+              </td>
               <td>
                 <!-- User edit button -->
-                <button class="btn btn-primary me-2" id="editButton">Edit</button>
+                <button class="btn btn-primary me-2" (click)="editUser(user)">
+                  {{ user.isEditMode ? 'Table' : 'Edit' }}
+                </button>
+                <button *ngIf="user.isEditMode" class="btn btn-secondary" (click)="cancelEdit(user)">Cancel</button>
+                <button *ngIf="user.isEditMode" class="btn btn-success" (click)="saveUser(user)">Save</button>
                 <!-- User delete button -->
                 <button class="btn btn-danger" id="deleteButton" (click)="deleteUser(user._id)">Delete</button>
               </td>
