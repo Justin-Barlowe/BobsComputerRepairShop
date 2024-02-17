@@ -1,18 +1,22 @@
-// Name: Justin Barlowe, John Davidson
-// Date: 2/15/2024
+// Name: Justin Barlowe, John Davidson, Nolan Berryhill
+// Date: 2/17/2024
 // File: view-users.component.ts
 // Description: View users component file
 
+// Import Statements
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
 import { HttpClient } from '@angular/common/http';
 
+// Component of selector, templateUrl, styleUrls
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
   styleUrls: ['./view-users.component.css']
 })
+
+// Export ViewUsersComponent
 export class ViewUsersComponent implements OnInit {
   users: User[] = []; // Array to hold user data.
   message: string = ''; // Variable to hold message displayed to user.

@@ -1,6 +1,8 @@
 /**
  * Title: security.component.ts
  * Author: Professor Krasso
+ * Modified by: Justin Barlowe, John Davidson, Nolan Berryhill
+ * Modified Date: 02/17/2024
  * Date: 8/5/23
  */
 
@@ -14,6 +16,8 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
+
+// export SecurityComponent
 export class SecurityComponent {
 
 }

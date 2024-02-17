@@ -3,6 +3,7 @@
 // File: signin.component.ts
 // Description: Signin component file
 
+// imports statements
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,12 +11,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth-service.service';
 
+// at Components
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
 
+// export SigninComponent
 export class SigninComponent {
   signInForm = this.fb.group({
     email: ['', Validators.required],

@@ -1,14 +1,24 @@
+/**
+  Title: view-users.component.css
+  Author: Justin Barlowe
+  Date: 2/17/2024
+  Description: Styles for BCRS view user page
+*/
+
+/* Change for background color and color for table */
 .table {
   background-color: #212529 !important;
   color: white !important;
 }
 
+/* Change for background color, border color, and color for editButton */
 #editButton {
   background-color: #f8b400 !important;
   border-color: #f8b400 !important;
   color: black !important;
 }
 
+/* Change for background color and border color for editButton */
 #editButton:hover {
   background-color: #cf9800 !important;
   border-color: #cf9800 !important;

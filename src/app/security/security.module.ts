@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
 
+// @NgModule assign declarations and imports with bootstrap value
 @NgModule({
   declarations: [
     SecurityComponent
@@ -28,4 +29,6 @@ import { SecurityComponent } from './security.component';
     HttpClientModule
   ]
 })
+
+// Export SecurityModule
 export class SecurityModule { }
