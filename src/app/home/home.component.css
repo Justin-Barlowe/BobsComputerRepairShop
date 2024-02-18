@@ -1,0 +1,64 @@
+/**
+  Title: home.component.css
+  Author: Justin Barlowe
+  Date: 2/17/2024
+  Description: Styles for BCRS home page
+*/
+
+/* Font size for html and body */
+html, body {
+  font-size: large;
+}
+
+/* Font size for container fluid */
+.container-fluid {
+    font-size: large;
+  }
+
+/* Change background and color for card */
+.card {
+  background: none;
+  color: white;
+}
+
+/* Overriding bootstrap styles and time transition */
+.btn-primary {
+  font-size: 2rem !important;
+  padding: 20px 40px !important;
+  width: auto !important;
+  height: auto !important;
+  background-color: transparent !important;
+  border-color: #ae0001 !important;
+  border-radius: 0 !important;
+  color: #ae0001 !important;
+  border-width: 5px !important;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.5s ease-in-out;
+  color: white !important;
+}
+
+/* On hover left to right fill effect when hovering */
+.btn-primary:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ae0001;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
+}
+
+/* Change text color on hover */
+.btn-primary:hover {
+  color: white !important;
+}
+
+/* Transform on hover */
+.btn-primary:hover:after {
+  transform: scaleX(1);
+}

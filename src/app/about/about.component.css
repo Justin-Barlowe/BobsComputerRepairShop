@@ -1,0 +1,23 @@
+/**
+  Title: about.component.css
+  Author: John Davidson
+  Date: 2/17/2024
+  Description: Styles for BCRS about page
+*/
+
+/* Styling for the about-bio container */
+.about-bio {
+  margin-top: 20px;
+  padding-bottom: 150px; /* keep or discard tbd */
+}
+
+/* Styling for the bio paragraph tags */
+.about-bio p {
+  font-size: 1.15rem
+}
+
+/* Styling for the about image */
+img {
+  width: 425px;
+  height: 550px;
+}

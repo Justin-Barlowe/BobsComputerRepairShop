@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  font-size: large !important;
+}
+
+body {
+  background: url(assets/images/backgroundimage3.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+  color: white !important;
+  font-family: 'Dosis', sans-serif !important;
+}
+
+.table {
+
+  --bs-table-bg: #212529!important;
+  --bs-table-color: white !important;
+}
+
+.password-input {
+  color: white !important;
+}

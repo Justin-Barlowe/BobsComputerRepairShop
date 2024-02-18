@@ -1,6 +1,8 @@
 /**
  * Title: app.component.ts
  * Author: Professor Krasso
+ * Modified by: Justin Barlowe
+ * Modified Date: 02/13/2024
  * Date: 8/5/23
  */
 
@@ -15,5 +17,7 @@ import { Component } from '@angular/core';
   `,
   styles: []
 })
+
+// Export AppComponent
 export class AppComponent {
 }

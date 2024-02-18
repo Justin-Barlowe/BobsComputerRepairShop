@@ -1,6 +1,8 @@
 /**
  * Title: base-layout.component.ts
  * Author: Professor Krasso
+ * Modified by: Justin Barlowe
+ * Modified Date: 02/13/2024
  * Date: 8/5/23
  */
 

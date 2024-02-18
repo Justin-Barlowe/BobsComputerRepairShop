@@ -1,0 +1,66 @@
+/**
+  Title: nav.component.css
+  Author: Justin Barlowe
+  Date: 2/17/2024
+  Description: Styles for BCRS nav page
+*/
+
+/* Style changes for navbar */
+.navbar-brand {
+  padding-left: 10px;
+}
+
+.navbar-nav {
+  padding-right: 10px;
+}
+
+
+.navbar-nav .nav-link {
+  color: white;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #f8b400 !important;
+}
+
+.navbar-nav .nav-link:after,
+.navbar-nav .nav-link:before {
+  content: "";
+  position: absolute;
+  display: block;
+  border: 0px solid transparent;
+  width: 0%;
+  height: 0%;
+  transition: all 0.5s ease;
+}
+
+.navbar-nav .nav-link:after {
+  width: 0%;
+  height: 0%;
+  top: 0;
+  left: 0;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+}
+
+.navbar-nav .nav-link:before {
+  width: 0%;
+  height: 0%;
+  right: 0;
+  bottom: 0;
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+.navbar-nav .nav-link:hover::before,
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+  height: 100%;
+  border-color: #f8b400;
+}
+
+/* Used to fix pointer after sign in */
+.sign-out-link {
+  cursor: pointer;
+}

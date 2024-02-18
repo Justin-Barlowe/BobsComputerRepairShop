@@ -1,1 +1,45 @@
-<nav></nav>
+<!-- Name: Justin Barlowe
+File: nav.component.html
+Description: HTML file for the nav component
+Date: 2/17/2024-->
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand pl-3" style="color: rgb(224, 224, 224);" routerLink="/"><strong>Bob's Computer Repair Shop</strong></a>
+
+  <!-- Navbar toggler for smaller view ports, creates hamburger menu when viewed on smaller view ports -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- End Navbar toggler  -->
+
+  <!-- Nav Links -->
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">HOME</a>
+      </li>
+      <li class="nav-item"*ngIf="!isSignedIn">
+        <a class="nav-link" routerLink="/about">ABOUT</a>
+      </li>
+      <li class="nav-item" *ngIf="!isSignedIn">
+        <a class="nav-link" routerLink="/contact">CONTACT</a>
+      </li>
+      <li class="nav-item" *ngIf="!isSignedIn">
+        <a class="nav-link" routerLink="/faq">FAQ</a>
+      </li>
+      <li class="nav-item" *ngIf="isSignedIn">
+        <a class="nav-link" routerLink="/employee-landing">EMPLOYEE PORTAL</a>
+      </li>
+      <li class="nav-item" *ngIf="!isSignedIn">
+        <a class="nav-link" routerLink="/security/signin">SIGN IN</a>
+      </li>
+      <li class="nav-item" *ngIf="isSignedIn">
+        <a class="nav-link sign-out-link" (click)="signOut()">SIGN OUT</a>
+      </li>
+    </ul>
+  </div>
+  <!-- End Nav Links -->
+
+</nav>
+<!-- Navbar end -->

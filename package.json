@@ -1,9 +1,9 @@
 {
-  "name": "nodebucket",
+  "name": "bcrs",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node ./bin/www",
+    "start": "ng build && node ./server/app.js",
     "build": "ng build",
     "server": "nodemon ./bin/www",
     "client": "ng serve --open"
@@ -20,15 +20,22 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "ajv": "^8.12.0",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
-    "bootstrap": "^5.3.1",
+    "bootstrap": "^5.3.2",
     "chart.js": "^4.3.3",
     "express": "^4.18.2",
     "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^5.7.0",
-    "ngx-cookie-service": "^16.0.0",
+    "mongoose": "^8.1.2",
+    "ngx-cookie-service": "^16.1.0",
     "rxjs": "~7.8.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "tslib": "^2.3.0",
+    "yaml": "^2.3.4",
+    "yamljs": "^0.3.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

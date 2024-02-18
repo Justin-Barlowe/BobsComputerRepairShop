@@ -1,0 +1,87 @@
+<!--
+  Title: view-users.component.html
+  Author: Nolan Berryhill, Justin Barlowe, John Davidson
+  Date: 02/17/2024
+  Description: View User Table for BCRS
+-->
+
+<!-- Opening of divs for the view user page -->
+<div class="container mt-5">
+  <div class="d-flex justify-content-center">
+    <div class="card text-white bg-dark mb-3 w-100">
+      <div class="card-header text-center h1">View All Users</div>
+      <div class="card-body">
+        <table class="table" style="background-color: #343a40 !important; color: white !important;">
+          <!-- Table headers -->
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <!-- User account information -->
+          <tbody>
+            <tr *ngFor="let user of users; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display username -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInput">
+                  {{ user.userName }}
+                </ng-container>
+                <ng-template #editModeInput>
+                  <input type="text" [(ngModel)]="user.userName">
+                </ng-template>
+              </td>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display email -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInputEmail">
+                  {{ user.email }}
+                </ng-container>
+                <ng-template #editModeInputEmail>
+                  <input type="text" [(ngModel)]="user.email">
+                </ng-template>
+              </td>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display first name -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInputFirstName">
+                  {{ user.firstName }}
+                </ng-container>
+                <ng-template #editModeInputFirstName>
+                  <input type="text" [(ngModel)]="user.firstName">
+                </ng-template>
+              </td>
+              <td>
+                <!-- Display input field if in edit mode, otherwise display last name -->
+                <ng-container *ngIf="!user.isEditMode; else editModeInputLastName">
+                  {{ user.lastName }}
+                </ng-container>
+                <ng-template #editModeInputLastName>
+                  <input type="text" [(ngModel)]="user.lastName">
+                </ng-template>
+              </td>
+              <td>
+                <!-- Hide Edit and Delete buttons when in edit mode -->
+                <ng-container *ngIf="!user.isEditMode">
+                  <button class="btn btn-primary me-2" id="editButton" (click)="editUser(user)">Edit</button>
+                  <button class="btn btn-danger me-2" (click)="deleteUser(user._id)">Delete</button>
+                </ng-container>
+
+                <!-- Show Cancel and Save buttons when in edit mode -->
+                <ng-container *ngIf="user.isEditMode">
+                  <button class="btn btn-secondary me-2" (click)="cancelEdit(user)">Cancel</button>
+                  <button class="btn btn-success me-2" (click)="saveUser(user)">Save</button>
+                </ng-container>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Display success or error message on deletion attempt -->
+        <div *ngIf="message" class="text-center deleteConfirmation">{{ message }}</div>
+      </div>
+    </div>
+  </div>
+</div>
