@@ -11,7 +11,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
-import { FourzerofourComponent } from '../fourzerofour/fourzerofour.component';
 
 // Routes of security component with children paths
 const routes: Routes = [
@@ -23,11 +22,6 @@ const routes: Routes = [
         path: 'signin',
         component: SigninComponent,
         title: 'BDRS: Sign In'
-      },
-      {
-        path: '**',
-        component: FourzerofourComponent,
-        title: 'Not Found'
       }
     ]
   }

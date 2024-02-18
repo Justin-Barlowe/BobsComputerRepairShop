@@ -21,6 +21,7 @@ import { EmployeeLandingComponent } from './employee-landing/employee-landing.co
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { RoleGuard } from './role.guard';
+import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -82,6 +83,11 @@ const routes: Routes = [
         component: AdminComponent,
         title: 'BCRS: Admin',
         canActivate: [authGuard]
+      },
+      {
+        path: '**',
+        component: FourzerofourComponent,
+        title: 'Not Found'
       }
     ]
   },
