@@ -1,3 +1,8 @@
+// Name: Justin Barlowe
+// Date: 2/13/2024
+// File: role.guard.ts
+// Description: Role guard file
+
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
