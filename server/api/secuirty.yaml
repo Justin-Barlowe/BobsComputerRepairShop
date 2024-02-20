@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+  description: API for user authentication and verification
+paths:
+  /api/security/verify/users/{email}/securityquestions:
+    post:
+      tags:
+        - Security
+      description: Verify questions for a user
+      summary: Verify security questions for a user using their email
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+          description: The email address of the user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - securityQuestions
+              properties:
+                securityQuestions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - question
+                      - answer
+                    properties:
+                      question:
+                        type: string
+                      answer:
+                        type: string
+      responses:
+        '200':
+          description: Successfully verified security questions
+        '400':
+          description: Bad request - Invalid input provided
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+paths:
+  /api/security/users/{email}/reset-password:
+    post:
+      tags:
+        - Security
+      description: reset the password for a user
+      summary: Reset the password for a user using their email
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+          description: The email address of the user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - newPassword
+              properties:
+                newPassword:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Password reset successful
+        '400':
+          description: Bad request - Invalid input provided
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
