@@ -83,18 +83,19 @@ const routes: Routes = [
         component: AdminComponent,
         title: 'BCRS: Admin',
         canActivate: [authGuard]
-      },
-      {
-        path: '**',
-        component: FourzerofourComponent,
-        title: 'Not Found'
       }
+
     ]
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
+  },
+  {
+    path: '**',
+    component: FourzerofourComponent,
+    title: 'Not Found'
   }
 ];
 

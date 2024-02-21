@@ -18,6 +18,7 @@ const cors = require("cors");
 const UserAPI = require("./routes/usersApi");
 const SigninAPI = require("./routes/signinApi");
 const SecurityAPI = require("./routes/securityApi")
+const securityQuestions = require("./utils/securityQuestions");
 
 // import MongoDB database connection string from config.json
 const config = require("./utils/config.json");
@@ -60,6 +61,11 @@ const swaggerOptions = {
   apis: ["routes/*.js", path.join(__dirname, "./api/*.yaml")],
 
 };
+
+// Security Questions
+app.get("/api/security-questions", (req, res) => {
+  res.json(securityQuestions);
+});
 
 // Open API specification
 const openapiSpecification = swaggerJsdoc(swaggerOptions);

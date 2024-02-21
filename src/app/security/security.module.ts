@@ -14,11 +14,13 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
+import { RegisterComponent } from './register/register.component';
 
 // @NgModule assign declarations and imports with bootstrap value
 @NgModule({
   declarations: [
-    SecurityComponent
+    SecurityComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
