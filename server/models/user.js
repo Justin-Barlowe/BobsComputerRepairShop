@@ -9,7 +9,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Import userRole schema and securityQuestion schema
-const userRoleSchema = require("../schemas/userRole");
 const securityQuestion = require("../schemas/securityQuestion");
 
 // Create user model

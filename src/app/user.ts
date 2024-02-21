@@ -13,4 +13,5 @@ export interface User {
   isDisabled: boolean;
   // Add the isEditMode property
   isEditMode?: boolean;
+  role: string;
 }
