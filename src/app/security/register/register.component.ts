@@ -43,6 +43,8 @@ export class RegisterComponent implements OnInit {
   }
 
   fetchSecurityQuestions() {
+
+    // Will need to change this to relative path prior to deployment.
     this.http.get<string[]>('http://localhost:3000/api/security-questions')
       .subscribe(questions => {
         this.securityQuestions = questions;

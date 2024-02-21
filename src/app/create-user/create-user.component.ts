@@ -41,7 +41,7 @@ export class CreateUserComponent implements OnInit {
   // If the server returns an error, display an error message.
   createUser(user: any) {
     if (this.createUserForm.valid) {
-      this.http.post('http://localhost:3000/api/users', user)
+      this.http.post('/api/users', user)
         .subscribe(response => {
           console.log(response);
           this.message = 'User created successfully';
