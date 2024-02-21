@@ -21,7 +21,7 @@ const SecurityAPI = require("./routes/securityApi")
 const securityQuestions = require("./utils/securityQuestions");
 
 // import MongoDB database connection string from config.json
-const config = require("./utils/config.json");
+const config = require("./utils/config.js");
 
 // Express variable.
 const app = express();
