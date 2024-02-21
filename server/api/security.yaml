@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: User API
+  title: Users API
   version: 1.0.0
-  description: API for user authentication and verification
+  description: API for managing users
 paths:
   /api/security/verify/users/{email}/securityquestions:
     post:
@@ -47,7 +47,6 @@ paths:
         '500':
           description: Internal server error
 
-paths:
   /api/security/users/{email}/reset-password:
     post:
       tags:
@@ -81,3 +80,64 @@ paths:
           description: User not found
         '500':
           description: Internal server error
+
+  /api/security/register: # Documentation for registering user - John D
+    post:
+      tags:
+        - Security
+      summary: Register a new user
+      description: Adds a new user to the database
+      operationId: registerUser
+      requestBody:
+        description: User object that needs to be added to the database
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userName
+                - password
+                - email
+              properties:
+                userName:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                email:
+                  type: string
+                  format: email
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid input
+        '500':
+          description: Server Error
+
+  /api/security/register/{email}: # Documentation for verifying user - John D
+    get:
+      tags:
+        - Security
+      summary: verify user exists
+      description: verify user already exists in the database
+      operationId: verifyUser
+      parameters:
+        - name: email
+          in: path
+          description: email of user to verify
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully found and verified user
+        '400':
+          description: Invalid username
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+
