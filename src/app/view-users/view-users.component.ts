@@ -7,7 +7,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user'; // Assuming this is the path to your User model
-import { set } from 'mongoose';
 
 // Extend the User model for component-specific properties
 interface EditableUser extends User {
