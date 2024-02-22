@@ -15,6 +15,7 @@ export class UserService {
 
   // apiUrl variable
   private apiUrl = '/api/users'
+  private apiUrl2 = '/api/security'
 
   constructor(private http: HttpClient) { }
 
@@ -47,4 +48,7 @@ export class UserService {
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
+
+  // Register user
+
 }

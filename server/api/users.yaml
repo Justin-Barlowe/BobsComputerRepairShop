@@ -35,6 +35,8 @@ paths:
                 - userName
                 - password
                 - email
+                - firstName
+                - lastName
               properties:
                 userName:
                   type: string
@@ -44,6 +46,10 @@ paths:
                 email:
                   type: string
                   format: email
+                firstName:
+                  type: string
+                lastName:
+                  type: string
       responses:
         '201':
           description: User created successfully

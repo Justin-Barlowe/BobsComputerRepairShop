@@ -74,10 +74,10 @@ router.post("/:email/reset-password", async (req, res) => {
 router.post('/register', async(req, res, next) => {
 
   // Extract properties from the req.body
-  const { userName, password, email } = req.body;
+  const { userName, password, email, securityQuestion1, securityAnswer1, securityQuestion2, securityAnswer2, securityQuestion3, securityAnswer3 } = req.body;
 
   // Check if username and password were entered.
-  if(!userName || !password ) {
+  if(!userName || !password, !email, !securityQuestion1, !securityAnswer1, !securityQuestion2, !securityAnswer2, !securityQuestion3, !securityAnswer3) {
     return res.status(400).json({ error: 'Username and password are required.' })
   }
 
@@ -94,7 +94,12 @@ router.post('/register', async(req, res, next) => {
     const newUser = new User({
       userName,
       password: hashedPassword,
-      email
+      email,
+      securityQuestions: [
+        { question: securityQuestion1, answer: securityAnswer1 },
+        { question: securityQuestion2, answer: securityAnswer2 },
+        { question: securityQuestion3, answer: securityAnswer3 }
+      ]
     });
 
     // Save the the new document to the User collection.

@@ -10,8 +10,12 @@ const Schema = mongoose.Schema;
 
 // the schema for selectedSecurityQuestionSchema
 const selectedSecurityQuestionSchema = new Schema({
-  questionText: { type: String },
-  answerText: { type: String },
+  securityQuestion1: { type: String },
+  securityAnswer1: { type: String },
+  securityQuestion2: { type: String },
+  securityAnswer2: { type: String },
+  securityQuestion3: { type: String },
+  securityAnswer3: { type: String },
 });
 
 // export selectedSecurityQuestionSchema

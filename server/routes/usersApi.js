@@ -74,7 +74,7 @@ router.get("/", async (req, res, next) => {
 
 // Create a new user
 router.post("/", async (req, res, next) => {
-  const { userName, password, email } = req.body;
+  const { userName, password, email, firstName, lastName } = req.body;
 
   // Check if userName and password are provided
   if (!userName || !password) {
@@ -90,6 +90,9 @@ router.post("/", async (req, res, next) => {
       userName,
       password: hashedPassword,
       email,
+      firstName,
+      lastName,
+      role: "user",
     });
 
     const savedUser = await user.save();

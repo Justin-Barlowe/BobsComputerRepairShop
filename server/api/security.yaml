@@ -108,6 +108,18 @@ paths:
                 email:
                   type: string
                   format: email
+                securityQuestions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - question
+                      - answer
+                    properties:
+                      question:
+                        type: string
+                      answer:
+                        type: string
       responses:
         '201':
           description: User created successfully

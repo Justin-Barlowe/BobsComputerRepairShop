@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.createUserForm = new FormGroup({
       'userName': new FormControl(null, Validators.required),
+      // Add validation Regex for password
       'password': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'firstName': new FormControl(null),
@@ -67,7 +68,7 @@ export class RegisterComponent implements OnInit {
   // Create a new user object from the form data and send it to the server.
   // If the form is not valid, display an error message.
   // If the server returns an error, display an error message.
-  createUser(user: any) {
+  registerUser(user: any) {
     if (this.createUserForm.valid) {
       this.http.post('http://localhost:3000/api/security', user)
         .subscribe(response => {
