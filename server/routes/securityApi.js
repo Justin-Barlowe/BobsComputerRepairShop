@@ -77,8 +77,8 @@ router.post('/register', async(req, res, next) => {
   const { userName, password, email, securityQuestion1, securityAnswer1, securityQuestion2, securityAnswer2, securityQuestion3, securityAnswer3 } = req.body;
 
   // Check if username and password were entered.
-  if(!userName || !password, !email, !securityQuestion1, !securityAnswer1, !securityQuestion2, !securityAnswer2, !securityQuestion3, !securityAnswer3) {
-    return res.status(400).json({ error: 'Username and password are required.' })
+  if(!userName || !password || !email || !securityQuestion1 || !securityAnswer1 || !securityQuestion2 || !securityAnswer2 || !securityQuestion3 || !securityAnswer3) {
+    return res.status(400).json({ error: 'Fill out the required fields' })
   }
 
   try {
@@ -92,14 +92,13 @@ router.post('/register', async(req, res, next) => {
 
     // Create a new user document in the User collection with properties for username, password(hashed), and email.
     const newUser = new User({
-      userName,
-      password: hashedPassword,
       email,
-      securityQuestions: [
-        { question: securityQuestion1, answer: securityAnswer1 },
-        { question: securityQuestion2, answer: securityAnswer2 },
-        { question: securityQuestion3, answer: securityAnswer3 }
-      ]
+      password: hashedPassword,
+      firstName,
+      lastName,
+      userName,
+      role: "standard",
+      selectedSecurityQuestions: req.body.selectedSecurityQuestions
     });
 
     // Save the the new document to the User collection.

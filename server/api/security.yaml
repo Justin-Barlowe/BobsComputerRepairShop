@@ -108,13 +108,17 @@ paths:
                 email:
                   type: string
                   format: email
-                securityQuestions:
+                selectedSecurityQuestions:
                   type: array
                   items:
                     type: object
                     required:
-                      - question
-                      - answer
+                      - securityQuestion1
+                      - securityAnswer1
+                      - securityQuestion2
+                      - securityAnswer2
+                      - securityQuestion3
+                      - securityAnswer3
                     properties:
                       question:
                         type: string
