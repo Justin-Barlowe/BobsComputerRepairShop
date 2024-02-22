@@ -15,7 +15,7 @@ const selectedSecurityQuestionSchema = new Schema({
   securityQuestion2: { type: String },
   securityAnswer2: { type: String },
   securityQuestion3: { type: String },
-  securityAnswer3: { type: String },
+
 });
 
 // export selectedSecurityQuestionSchema
