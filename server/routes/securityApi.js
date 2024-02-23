@@ -10,63 +10,67 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 
 // Verify Security Questions
-router.post("/:email/securityquestions", async (req, res) => {
+router.post("/verify-security-questions/:email", async (req, res, next) => {
   try {
-    const { email } = req.params;
-    const user = await User.findOne({ email });
+    const email = req.params.email;
+    const { securityQuestions } = req.body;
+
+    const user = await performOperation(db => {
+      return db.collection("users").findOne({ email: email });
+    })
 
     if (!user) {
-      console.log(`User with email ${email} not found.`);
-      return res.status(404).json({ status: 404, message: `User with email ${email} not found.`});
+      console.error("User not found");
+      next({ status: 404, message: "User not found" });
+      return;
+    };
+
+    if (securityQuestions[0].answer !== user.selectedSecurityQuestions[0].answer ||
+      securityQuestions[1].answer !== user.selectedSecurityQuestions[1].answer ||
+      securityQuestions[2].answer !== user.selectedSecurityQuestions[2].answer) {
+      const err = new Error('Unauthorized')
+      err.status = 401
+      err.message = 'Unauthorized: Security questions do not match'
+      console.log('Security questions do not match', err)
+      next(err)
+      return
     }
 
-    // Check if the provided security questions match the user's stored answers
-    const { securityQuestions } = req.body;
-    if (!securityQuestions || !Array.isArray(securityQuestions)) {
-      console.log("Invalid security questions provided.");
-      return res.status(400).json({ status: 400, message: "Invalid security questions provided." });
-    }
+    console.log("User found", user)
 
-    const validAnswers = securityQuestions.every(sq => {
-      const userSecurityQuestion = user.securityQuestions.find(usq => usq.question === sq.question);
-      return userSecurityQuestion && userSecurityQuestion.answer === sq.answer;
-    });
+    res.send(user)
 
-    if (validAnswers) {
-      console.log("Security questions verified successfully. User can proceed.");
-      return res.status(200).json({ status: 200, message: "Security questions verified successfully. User can proceed.", user });
-    } else {
-      console.log("Invalid security answers provided.");
-      return res.status(403).json({ status: 403, message: "Invalid security answers provided." });
-    }
   } catch (err) {
-    console.error("Internal Server Error:", err);
-    return res.status(500).json({ status: 500, message: "Internal Server Error", error: err});
+    console.error("err", err);
+    next(err);
   }
 });
 
-router.post("/:email/reset-password", async (req, res) => {
+router.post("/reset-password/:email", async (req, res, next) => {
   try {
-    const { email } = req.params;
-    const { newPassword } = req.body;
+    const email = req.params.email;
+    const password = req.body.password;
 
-    // Find the user by email
-    const user = await User.findOne({ email });
+    const user = await performOperation(db => {
+      return db.collection("users").findOne({ email: email });
+    })
 
     if (!user) {
-      console.log(`User with email ${email} not found.`);
-      return res.status(404).json({ status: 404, message: `User with email ${email} not found.` });
-    }
+      console.error("User not found");
+      next({ status: 404, message: "User not found" });
+      return;
+    };
 
-    // Update the user's password
-    user.password = newPassword;
-    await user.save();
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
-    console.log(`password reset successfully for user with email ${email}.`);
-    return res.status(200).json({ status: 200, message: `Password reset successfully for user with email ${email}.` });
+    const result = await performOperation(db => {
+      return db.collection("users").updateOne({ email: email }, { $set: { password: hashedPassword } });
+    })
+
+    res.status(204).send();
   } catch (err) {
-    console.error("Internal Server Error:", err);
-    return res.status(500).json({ status: 500, message: "Internal Server Error", error: err });
+    console.error("err", err);
+    next(err);
   }
 });
 

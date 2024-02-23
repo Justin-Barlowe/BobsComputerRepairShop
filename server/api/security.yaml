@@ -4,12 +4,13 @@ info:
   version: 1.0.0
   description: API for managing users
 paths:
-  /api/security/verify/users/{email}/securityquestions:
+  /api/security/verify/users/{email}/securityQuestions:
     post:
       tags:
         - Security
       description: Verify questions for a user
       summary: Verify security questions for a user using their email
+      operationId: verifySecurityQuestions
       parameters:
         - in: path
           name: email
@@ -53,6 +54,7 @@ paths:
         - Security
       description: reset the password for a user
       summary: Reset the password for a user using their email
+      operationId: resetPassword
       parameters:
         - in: path
           name: email

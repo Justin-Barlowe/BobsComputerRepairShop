@@ -7,6 +7,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SelectedSecurityQuestion } from './user';
 
 @Injectable({
  providedIn: 'root'
@@ -52,6 +53,16 @@ export class UserService {
   // Register user
   registerUser(user: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl2}/register`, user);
+  }
+
+  // Define a method to fetch user by email
+  verifySecurityQuestions(email: string, securityQuestions: SelectedSecurityQuestion[]) {
+    return this.http.post(`/api/users/verify-security-questions/${email}`, { securityQuestions });
+  }
+
+  // Define a method to update user password
+  resetPassword(email: string, password: string) {
+    return this.http.post(`/api/users/reset-password/${email}`, { password });
   }
 
 }
