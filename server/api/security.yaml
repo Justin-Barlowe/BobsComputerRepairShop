@@ -95,35 +95,37 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - userName
-                - password
-                - email
               properties:
                 userName:
                   type: string
                 password:
                   type: string
                   format: password
+                firstName:
+                  type: string
+                lastName:
+                  type: string
                 email:
                   type: string
                   format: email
-                selectedSecurityQuestions:
+                securityQuestions:
                   type: array
                   items:
                     type: object
-                    required:
-                      - securityQuestion1
-                      - securityAnswer1
-                      - securityQuestion2
-                      - securityAnswer2
-                      - securityQuestion3
-                      - securityAnswer3
                     properties:
                       question:
                         type: string
                       answer:
                         type: string
+                  minItems: 3 # minimum items to 3
+                  maxItems: 3 # maximum items to 3
+              required:
+                - userName
+                - password
+                - firstName
+                - lastName
+                - email
+                - securityQuestions
       responses:
         '201':
           description: User created successfully

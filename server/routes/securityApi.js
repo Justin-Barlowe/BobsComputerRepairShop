@@ -16,7 +16,7 @@ router.post("/:email/securityquestions", async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      console.log(`User with email $[email] not found.`);
+      console.log(`User with email ${email} not found.`);
       return res.status(404).json({ status: 404, message: `User with email ${email} not found.`});
     }
 
@@ -74,11 +74,11 @@ router.post("/:email/reset-password", async (req, res) => {
 router.post('/register', async(req, res, next) => {
 
   // Extract properties from the req.body
-  const { userName, password, email, securityQuestion1, securityAnswer1, securityQuestion2, securityAnswer2, securityQuestion3, securityAnswer3 } = req.body;
+  const { userName, password, firstName, lastName, email, securityQuestions } = req.body;
 
-  // Check if username and password were entered.
-  if(!userName || !password || !email || !securityQuestion1 || !securityAnswer1 || !securityQuestion2 || !securityAnswer2 || !securityQuestion3 || !securityAnswer3) {
-    return res.status(400).json({ error: 'Fill out the required fields' })
+  // Check if required fields were filled out.
+  if(!userName || !password || !email || !securityQuestions) {
+    return res.status(404).json({ error: 'Fill out the required fields' })
   }
 
   try {
@@ -87,18 +87,18 @@ router.post('/register', async(req, res, next) => {
 
     // If the email is already in use, respond with 404.
     if (existingUser) {
-      return res.status(404).json({ message: 'This email is already registered under a different account.'})
+      return res.status(401).json({ message: 'This email is already registered under a different account.'})
     }
 
     // Create a new user document in the User collection with properties for username, password(hashed), and email.
     const newUser = new User({
-      email,
+      email: email,
       password: hashedPassword,
-      firstName,
-      lastName,
-      userName,
-      role: "standard",
-      selectedSecurityQuestions: req.body.selectedSecurityQuestions
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+      role: "user",
+      securityQuestions: securityQuestions
     });
 
     // Save the the new document to the User collection.
