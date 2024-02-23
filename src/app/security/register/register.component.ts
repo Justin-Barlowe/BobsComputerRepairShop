@@ -57,9 +57,9 @@ export class RegisterComponent implements OnInit {
   }
 
 
+  // Check if the question is already selected in another field
   isQuestionSelected(question: string, currentField: string): boolean {
     const otherFields = ['securityQuestion1', 'securityQuestion2', 'securityQuestion3'].filter(field => field !== currentField);
-
     for (let field of otherFields) {
       if (this.createUserForm.get(field)?.value === question) {
         return true;
@@ -68,9 +68,9 @@ export class RegisterComponent implements OnInit {
     return false;
   }
 
+  // Register the user by sending the form data to the server
   registerUser() {
     if (this.createUserForm.valid) {
-      // Construct the user object to match your API's expected request body
       const user = {
         userName: this.createUserForm.value.userName,
         password: this.createUserForm.value.password,
@@ -84,10 +84,13 @@ export class RegisterComponent implements OnInit {
         ]
       };
 
-      this.http.post('/api/security/register', user) // Updated endpoint URL
+
+      // Post the user to the server
+      this.http.post('/api/security/register', user)
         .subscribe(response => {
           console.log(response);
           this.message = 'User created successfully';
+          // Redirect to the login page after successful registration.
           this.router.navigate(['/security/signin']);
           this.createUserForm.reset(); // Reset form after submission.
         }, error => {
