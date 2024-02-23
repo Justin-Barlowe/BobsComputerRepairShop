@@ -10,7 +10,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 
 // Verify Security Questions
-router.post("/verify-security-questions/:email", async (req, res, next) => {
+router.post("/:email/securityQuestions", async (req, res, next) => {
   try {
     const email = req.params.email;
     const { securityQuestions } = req.body;
@@ -46,7 +46,7 @@ router.post("/verify-security-questions/:email", async (req, res, next) => {
   }
 });
 
-router.post("/reset-password/:email", async (req, res, next) => {
+router.post("/:email/reset-password", async (req, res, next) => {
   try {
     const email = req.params.email;
     const password = req.body.password;
@@ -56,9 +56,9 @@ router.post("/reset-password/:email", async (req, res, next) => {
     })
 
     if (!user) {
-      console.error("User not found");
-      next({ status: 404, message: "User not found" });
-      return;
+    console.error("User not found");
+    next({ status: 404, message: "User not found" });
+    return;
     };
 
     const hashedPassword = bcrypt.hashSync(password, 10);

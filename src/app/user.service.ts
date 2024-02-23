@@ -57,12 +57,12 @@ export class UserService {
 
   // Define a method to fetch user by email
   verifySecurityQuestions(email: string, securityQuestions: SelectedSecurityQuestion[]) {
-    return this.http.post(`/api/users/verify-security-questions/${email}`, { securityQuestions });
+    return this.http.post(`${this.apiUrl}/${email}/securityQuestions`, { securityQuestions });
   }
 
   // Define a method to update user password
-  resetPassword(email: string, password: string) {
-    return this.http.post(`/api/users/reset-password/${email}`, { password });
+  resetPassword(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${email}/reset-password`, { newPassword: password });
   }
 
 }

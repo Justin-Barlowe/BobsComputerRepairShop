@@ -48,12 +48,12 @@ paths:
         '500':
           description: Internal server error
 
-  /api/security/users/{email}/reset-password:
+  /api/security/user/{email}/reset-password:
     post:
       tags:
         - Security
-      description: reset the password for a user
       summary: Reset the password for a user using their email
+      description: reset the password for a user
       operationId: resetPassword
       parameters:
         - in: path
