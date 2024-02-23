@@ -50,5 +50,8 @@ export class UserService {
   }
 
   // Register user
+  registerUser(user: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl2}/register`, user);
+  }
 
 }
