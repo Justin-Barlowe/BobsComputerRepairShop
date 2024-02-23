@@ -37,7 +37,7 @@ router.post("/:email/securityquestions", async (req, res) => {
       return res.status(200).json({ status: 200, message: "Security questions verified successfully. User can proceed.", user });
     } else {
       console.log("Invalid security answers provided.");
-      return res.status(401).json({ status: 401, message: "Invalid security answers provided." });
+      return res.status(403).json({ status: 403, message: "Invalid security answers provided." });
     }
   } catch (err) {
     console.error("Internal Server Error:", err);
@@ -78,7 +78,7 @@ router.post('/register', async(req, res, next) => {
 
   // Check if required fields were filled out.
   if(!userName || !password || !email || !securityQuestions) {
-    return res.status(404).json({ error: 'Fill out the required fields' })
+    return res.status(400).json({ error: 'Fill out the required fields' })
   }
 
   try {
@@ -87,7 +87,7 @@ router.post('/register', async(req, res, next) => {
 
     // If the email is already in use, respond with 404.
     if (existingUser) {
-      return res.status(401).json({ message: 'This email is already registered under a different account.'})
+      return res.status(409).json({ message: 'This email is already registered under a different account.'})
     }
 
     // Create a new user document in the User collection with properties for username, password(hashed), and email.
