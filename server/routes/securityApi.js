@@ -60,7 +60,7 @@ router.post("/:email/reset-password", async (req, res) => {
 
     // Update the user's password
     user.password = newPassword;
-    await user.saver();
+    await user.save();
 
     console.log(`password reset successfully for user with email ${email}.`);
     return res.status(200).json({ status: 200, message: `Password reset successfully for user with email ${email}.` });
