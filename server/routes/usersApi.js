@@ -155,5 +155,28 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
+// Find Selected Security Questions
+router.post("/:email/security-questions", async (req, res) => {
+  try {
+    const { email } = req.params;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      console.log(`User with email ${email} not found.`);
+      return res.status(404).json({ status: 404, message: `User with email ${email} not found.` });
+    }
+
+    // Extract selected security questions from the user object
+    const { securityQuestions } = user;
+
+    // Send the selected security questions as the response
+    res.status(200).json({ status: 200, message: "Successfully retrieved selected security questions.", securityQuestions });
+  } catch (err) {
+    console.error("Internal Server Error:", err);
+    return res.status(500).json({ status: 500, message: "Internal Server Error", error: err });
+  }
+});
+module.exports = router;
+
 // Export the router
 module.exports = router;

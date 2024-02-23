@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
     this.fetchSecurityQuestions();
   }
 
+  // Fetch security questions from the server
   fetchSecurityQuestions() {
     // Updated the URL to fetch security questions.
     this.http.get<string[]>('/api/security-questions') // Changed URL to a relative path

@@ -165,3 +165,44 @@ paths:
           description: User not found
         '500':
           description: Server error
+  /api/users/{email}/security-questions:
+    post:
+      tags:
+        - Users
+      summary: Find selected security questions by email
+      description: Retrieves the selected security questions for a user by their email
+      operationId: findSelectedSecurityQuestions
+      parameters:
+        - name: email
+          in: path
+          description: Email of the user to retrieve security questions
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved selected security questions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  message:
+                    type: string
+                  securityQuestions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                        answer:
+                          type: string
+        '400':
+          description: Invalid email supplied or invalid request format
+        '404':
+          description: User not found
+        '500':
+          description: Server error
