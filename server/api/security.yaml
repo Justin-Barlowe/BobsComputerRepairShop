@@ -48,40 +48,40 @@ paths:
         '500':
           description: Internal server error
 
-  /api/security/user/{email}/reset-password:
+  /api/security/{email}/reset-password:
     post:
       tags:
         - Security
-      summary: Reset the password for a user using their email
-      description: reset the password for a user
+      description: API to update a user's password
+      summary: Updates the password for a user.
       operationId: resetPassword
       parameters:
-        - in: path
-          name: email
+        - name: email
+          in: path
           required: true
           schema:
             type: string
-          description: The email address of the user
+          description: Username of the user to update.
       requestBody:
+        description: New Password
         required: true
         content:
           application/json:
             schema:
               required:
-                - newPassword
+                - password
               properties:
-                newPassword:
-                  type: string
-                  format: password
+               password:
+                 type: string
       responses:
         '200':
-          description: Password reset successful
-        '400':
-          description: Bad request - Invalid input provided
-        '404':
-          description: User not found
+          description: Query successful
         '500':
           description: Internal server error
+        '501':
+          description: MongoDB Exception
+
+
 
   /api/security/register: # Documentation for registering user - John D
     post:

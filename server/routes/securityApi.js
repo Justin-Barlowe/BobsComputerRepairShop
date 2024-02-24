@@ -46,33 +46,65 @@ router.post("/:email/securityQuestions", async (req, res, next) => {
   }
 });
 
-router.post("/:email/reset-password", async (req, res, next) => {
+// Reset Password API
+router.post("/:email/reset-password", async (req, res) => {
   try {
-    const email = req.params.email;
-    const password = req.body.password;
+    const { password } = req.body;
+    const { email } = req.params;
 
-    const user = await performOperation(db => {
-      return db.collection("users").findOne({ email: email });
-    })
+    if (!password) {
+      return res.status(400).json({ message: "Password is required" });
+    }
+
+    const user = await User.findOne({ email });
 
     if (!user) {
-    console.error("User not found");
-    next({ status: 404, message: "User not found" });
-    return;
-    };
+      return res.status(404).json({ message: "User not found" });
+    }
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    const result = await performOperation(db => {
-      return db.collection("users").updateOne({ email: email }, { $set: { password: hashedPassword } });
-    })
+    user.password = hashedPassword;
+    const updatedUser = await user.save();
 
-    res.status(204).send();
-  } catch (err) {
-    console.error("err", err);
-    next(err);
+    res.status(200).json({ message: "Password reset successful", user: updatedUser });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+// **** OLD CODE DELETE AFTER REVIEW****
+// router.post("/:email/reset-password", async (req, res, next) => {
+//   try {
+//     const email = req.params.email;
+//     const password = req.body.password;
+
+//     const user = await performOperation(db => {
+//       return db.collection("users").findOne({ email: email });
+//     })
+
+//     if (!user) {
+//     console.error("User not found");
+//     next({ status: 404, message: "User not found" });
+//     return;
+//     };
+
+//     const hashedPassword = bcrypt.hashSync(password, 10);
+
+//     const result = await performOperation(db => {
+//       return db.collection("users").updateOne({ email: email }, { $set: { password: hashedPassword } });
+//     })
+
+//     res.status(204).send();
+//   } catch (err) {
+//     console.error("err", err);
+//     next(err);
+//   }
+// });
+// **** OLD CODE DELETE AFTER REVIEW****
+
+
 
 // registerUser API
 router.post('/register', async(req, res, next) => {
