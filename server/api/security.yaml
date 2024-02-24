@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API for managing users
 paths:
-  /api/security/verify/users/{email}/securityQuestions:
+  /api/security/{email}/securityQuestions:
     post:
       tags:
         - Security

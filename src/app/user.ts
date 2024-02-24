@@ -3,11 +3,6 @@
 // File: user.ts
 // Description: User interface file
 
-export interface SelectedSecurityQuestion {
-  question: string;
-  answer: string;
-}
-
 // User interface for the user object in the view all users component.
 export interface User {
   _id: string;

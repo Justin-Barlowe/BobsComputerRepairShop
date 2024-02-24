@@ -12,36 +12,26 @@ const bcrypt = require("bcryptjs");
 // Verify Security Questions
 router.post("/:email/securityQuestions", async (req, res, next) => {
   try {
-    const email = req.params.email;
+    const { email } = req.params;
     const { securityQuestions } = req.body;
 
-    const user = await performOperation(db => {
-      return db.collection("users").findOne({ email: email });
-    })
+    // Retrieve the user from MongoDB based on the email
+    const user = await User.findOne({ email });
 
     if (!user) {
       console.error("User not found");
-      next({ status: 404, message: "User not found" });
-      return;
-    };
-
-    if (securityQuestions[0].answer !== user.selectedSecurityQuestions[0].answer ||
-      securityQuestions[1].answer !== user.selectedSecurityQuestions[1].answer ||
-      securityQuestions[2].answer !== user.selectedSecurityQuestions[2].answer) {
-      const err = new Error('Unauthorized')
-      err.status = 401
-      err.message = 'Unauthorized: Security questions do not match'
-      console.log('Security questions do not match', err)
-      next(err)
-      return
+      return res.status(404).json({ message: "User not found" });
     }
 
-    console.log("User found", user)
+    // Compare the provided answers with the stored security questions' answers
+    const storedSecurityQuestions = user.selectedSecurityQuestions;
+    for (let i = 0; i < securityQuestions.length; i++)
 
-    res.send(user)
-
+    // If all security questions match, send a success response
+    console.log("Security questions match");
+    res.status(200).json({ message: "Successfully verified security questions" });
   } catch (err) {
-    console.error("err", err);
+    console.error("Error:", err);
     next(err);
   }
 });
