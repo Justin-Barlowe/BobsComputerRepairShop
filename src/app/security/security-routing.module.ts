@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { RegisterComponent } from './register/register.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 // Routes of security component with children paths
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
         path: 'signin',
         component: SigninComponent,
         title: 'BDRS: Sign In'
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordComponent,
+        title: 'BDRS: Reset Password'
       }
     ]
   }
