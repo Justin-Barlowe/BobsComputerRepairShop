@@ -23,17 +23,17 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent,
-        title: 'BDRS: Register'
-      },
-      {
-        path: 'signin',
-        component: SigninComponent,
-        title: 'BDRS: Sign In'
+        title: 'BCRS: Register'
       },
       {
         path: 'reset-password',
         component: ResetPasswordComponent,
-        title: 'BDRS: Reset Password'
+        title: 'BCRS: Reset Password'
+      },
+      {
+        path: 'signin',
+        component: SigninComponent,
+        title: 'BCRS: Sign In'
       }
     ]
   }

@@ -22,6 +22,7 @@ import { ViewUsersComponent } from './view-users/view-users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { RoleGuard } from './role.guard';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
+import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
