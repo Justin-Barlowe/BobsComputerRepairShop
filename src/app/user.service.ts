@@ -54,14 +54,30 @@ export class UserService {
     return this.http.post<any>(`${this.apiUrl2}/register`, user);
   }
 
+  // verifySecurityQuestions function
   // Define a method to fetch user by email
-  verifySecurityQuestions(email: string, securityQuestions: any[]): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${email}/securityQuestions`, { securityQuestions });
+  verifySecurityQuestions(email: string, securityAnswers: { question: string, answer: string }[]): Observable<any> {
+    return this.http.post(`/api/users/${email}/security-questions`, { securityQuestions: securityAnswers });
   }
 
+  // resetPassword function
   // Define a method to update user password
   resetPassword(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${email}/reset-password`, { newPassword: password });
+    return this.http.post(`/api/security/${email}/reset-password`, { password });
+  }
+
+  // verifyEmail function
+  // Define a method to check on user email
+  verifyUser(email: any): Observable<any> {
+    return this.http.get(`${this.apiUrl2}/register/${email}`);
+  }
+
+  findSelectedSecurityQuestions(email: string, securityQuestions: any[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${email}/security-questions`, { securityQuestions });
+  }
+
+  fetchSecurityQuestions(): Observable<any[]> {
+    return this.http.get<any[]>('/api/security-questions');
   }
 
 }
