@@ -19,9 +19,6 @@
 
             <div class="row">
               <div class="col-md-12">
-                <div *ngIf="!isLoadingLabels" class="spinner-border" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
 
                 <!-- Security Question 1 -->
                 <label *ngIf="!isLoadingLabels" for="q1" class="form-label">{{ securityQuestion1 }}</label>
@@ -36,7 +33,7 @@
                 <input type="text" formControlName="securityAnswer3" class="form-control">
 
                 <!-- Validation Errors -->
-                <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['securityAnswer1'].invalid && (sqForm.controls['securityAnswer1'].dirty || sqForm.controls['securityAnswer1'].touched)">
+                <div class="validation-message mt-2" style="color: #f8b400;" *ngIf="sqForm.controls['securityAnswer1'].invalid && (sqForm.controls['securityAnswer1'].dirty || sqForm.controls['securityAnswer1'].touched)">
                   <div *ngIf="sqForm.controls['securityAnswer1'].hasError('required')">
                     Answer is required.
                   </div>
@@ -54,7 +51,7 @@
           </button>
         </form>
       </div>
-      <a class="text-underline-hover text-dark" routerLink="/forgot-password">Return</a>
+      <a class="text-underline-hover" style="color: #f8b400;" routerLink="/">Return</a>
     </div>
   </div>
 </div>

@@ -1,0 +1,120 @@
+/* Override Bootstrap theme for Gryffindor Theme */
+.btn {
+  border-radius: 0 !important;
+  color: #f8b400 !important;
+  border-color: #f8b400 !important;
+}
+
+.btn:hover {
+  background-color: #f8b400 !important;
+  color: black !important;
+  border-color: #f8b400 !important;
+}
+
+input, select {
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+  background-color: #212529; /* Ensure dark background */
+  color: white !important; /* Ensure text is always white */
+}
+
+input:focus, select:focus {
+  background-color: #212529 !important; /* Keep background dark on focus */
+  box-shadow: none !important;
+  color: white !important; /* Ensure text remains white on focus */
+}
+
+input:hover, select:hover {
+  border-color: #f8b400 !important; /* Highlight border on hover */
+}
+
+input::placeholder {
+  color: #adb5bd; /* Lighter color for placeholders for contrast */
+}
+
+#userConfirmation {
+  color: #f8b400 !important;
+  font-size: large !important;
+}
+
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat;
+  background-position: right 0.7em top 50%;
+  background-size: 24px;
+}
+
+.form-control-lg.custom-select {
+  cursor: pointer;
+}
+
+.card {
+  background-color: #212529; /* Dark background for the card */
+  color: white; /* White text color for better readability */
+}
+
+.alert-danger {
+  background-color: #730000; /* Dark red for error alerts, fitting the Gryffindor theme */
+  color: white; /* White text for contrast */
+  border: none; /* Remove default border */
+}
+
+legend {
+  color: #f8b400; /* Golden color for the legend text to match the theme */
+}
+
+/* Style the loading spinner to match the theme */
+.spinner-border {
+  color: #f8b400; /* Golden color for the spinner */
+}
+
+/* Override Bootstrap theme for Gryffindor Theme */
+.btn {
+  border-radius: 0 !important;
+  color: white !important;
+  border-color: #f8b400 !important;
+  background-color: #f8b400 !important;
+}
+
+/* Override theme on hover */
+.btn:hover {
+  background-color: #f8b400 !important;
+  color: black !important;
+  border-color: #f8b400 !important;
+}
+
+/* Remove border on input field and override color */
+input {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+  color: white;
+}
+
+/* Remove white background from input field when focused */
+input:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+
+/* Change placeholder color due to dark background */
+input::placeholder {
+  color: white;
+}
+
+input[type="email"] {
+  color: white;
+}
+
+#userConfirmation {
+  color: #f8b400 !important;
+  font-size: large !important;
+}
