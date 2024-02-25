@@ -1,3 +1,8 @@
+// Name: John Davidson, Justin Barlowe, Nolan Berryhill
+// Date: 2/25/2024
+// File: register.component.ts
+// Description: register component file
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

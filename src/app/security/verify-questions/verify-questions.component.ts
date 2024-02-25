@@ -1,3 +1,8 @@
+// Name: John Davidson, Justin Barlowe, Nolan Berryhill
+// Date: 2/25/2024
+// File: verify-questions.component.ts
+// Description: verify-questions component file
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';

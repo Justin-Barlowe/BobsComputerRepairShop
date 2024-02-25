@@ -1,3 +1,8 @@
+// Name: John Davidson, Justin Barlowe, Nolan Berryhill
+// Date: 2/25/2024
+// File: reset-password.component.ts
+// Description: reset-password component file
+
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/user.service';
 import { ActivatedRoute, Router } from '@angular/router';

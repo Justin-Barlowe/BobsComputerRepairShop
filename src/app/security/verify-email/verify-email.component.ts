@@ -1,3 +1,8 @@
+// Name: John Davidson, Justin Barlowe, Nolan Berryhill
+// Date: 2/25/2024
+// File: verify-email.component.ts
+// Description: verify-email component file
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
