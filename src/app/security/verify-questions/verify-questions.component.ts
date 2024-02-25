@@ -3,16 +3,20 @@
 // File: verify-questions.component.ts
 // Description: verify-questions component file
 
+// Import statement
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+// Component for selector, templateUrl, styleUrls
 @Component({
   selector: 'app-verify-questions',
   templateUrl: './verify-questions.component.html',
   styleUrls: ['./verify-questions.component.css']
 })
+
+// Export VerifyQuestionsComponent
 export class VerifyQuestionsComponent implements OnInit {
   selectedSecurityQuestions: any[] = [];
   email: string = '';
@@ -24,6 +28,7 @@ export class VerifyQuestionsComponent implements OnInit {
   securityQuestion3: string = '';
   sqForm: FormGroup;
 
+  // Constructor with securityAnswer
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private fb: FormBuilder) {
     this.sqForm = this.fb.group({
       securityAnswer1: [null, Validators.compose([Validators.required])],
@@ -32,6 +37,7 @@ export class VerifyQuestionsComponent implements OnInit {
     });
   }
 
+  // ngOnInit function
   ngOnInit(): void {
     this.email = this.route.snapshot.queryParamMap.get('email') || '';
 
@@ -60,6 +66,7 @@ export class VerifyQuestionsComponent implements OnInit {
     });
   }
 
+  // verifySecurityQuestions function
   verifySecurityQuestions() {
     this.isLoadingSubmit = true;
 

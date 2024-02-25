@@ -3,17 +3,20 @@
 // File: register.component.ts
 // Description: register component file
 
+// Import statements
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
+// Component for selector, templateUrl, styleUrls
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+// Export RegisterComponent
 export class RegisterComponent implements OnInit {
   createUserForm: FormGroup;
   message: string = '';

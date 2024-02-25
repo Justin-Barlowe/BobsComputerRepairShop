@@ -1,16 +1,19 @@
-// Name: Justin Barlowe
-// Date: 02/15/2024
+// Name: John Davidson, Justin Barlowe, Nolan Berryhill
+// Date: 02/25/2024
 // File: user.service.ts
 // Description: This is the user service file
 
-
+// Import statements
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+// @ Injectable of root
 @Injectable({
  providedIn: 'root'
 })
+
+// Export UserService
 export class UserService {
 
   // apiUrl variable
@@ -72,10 +75,14 @@ export class UserService {
     return this.http.get(`${this.apiUrl2}/register/${email}`);
   }
 
+  // findSelectedSecurityQuestions function
+  // Define a method to find user security questions
   findSelectedSecurityQuestions(email: string, securityQuestions: any[]): Observable<any> {
     return this.http.post(`${this.apiUrl}/${email}/security-questions`, { securityQuestions });
   }
 
+  // fetchSecurityQuestions function
+  // Define a method to fetch security questions
   fetchSecurityQuestions(): Observable<any[]> {
     return this.http.get<any[]>('/api/security-questions');
   }

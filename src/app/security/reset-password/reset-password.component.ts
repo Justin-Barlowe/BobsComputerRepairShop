@@ -3,16 +3,20 @@
 // File: reset-password.component.ts
 // Description: reset-password component file
 
+// imports statements
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+// Component for selector, templateUrl, styleUrls
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
+
+// Export ResetPasswordComponent
 export class ResetPasswordComponent {
   errorMessage: string = ''; // Error message variable
   email: string = ''; // Email address variable

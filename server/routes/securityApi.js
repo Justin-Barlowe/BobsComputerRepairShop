@@ -1,5 +1,5 @@
 // Name: Justin Barlowe, Nolan Berryhill, John Davidson
-// Date: 02/19/2024
+// Date: 02/25/2024
 // File: server/routes/securityApi.js
 // Purpose: This file contains the security API routes, Register, verifyUser, verifySecurityQuestion, and resetPassword.
 
@@ -12,12 +12,15 @@ const bcrypt = require("bcryptjs");
 // Verify Security Questions
 router.post("/:email/securityQuestions", async (req, res, next) => {
   try {
+
+    // Const gets req.params/body
     const { email } = req.params;
     const { securityQuestions } = req.body;
 
     // Retrieve the user from MongoDB based on the email
     const user = await User.findOne({ email });
 
+    // Error if user is not found in the database
     if (!user) {
       console.error("User not found");
       return res.status(404).json({ message: "User not found" });
@@ -32,6 +35,7 @@ router.post("/:email/securityQuestions", async (req, res, next) => {
       return correspondingQuestion && correspondingQuestion.answer === providedQuestion.answer;
     });
 
+    // If the questions are valid and if it is not valid function
     if (isValid) {
       console.log("Security questions match");
       res.status(200).json({ message: "Successfully verified security questions" });
@@ -47,24 +51,31 @@ router.post("/:email/securityQuestions", async (req, res, next) => {
 // Reset Password API
 router.post("/:email/reset-password", async (req, res) => {
   try {
+
+    // Const gets req.params/body
     const { password } = req.body;
     const { email } = req.params;
 
+    // A password is required and must be entered
     if (!password) {
       return res.status(400).json({ message: "Password is required" });
     }
 
+    // Const gets a limitation assigned to it
     const user = await User.findOne({ email });
 
+    // If user is not found error
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Give const a value
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     user.password = hashedPassword;
     const updatedUser = await user.save();
 
+    // Message sent for successful change or a 500 error message
     res.status(200).json({ message: "Password reset successful", user: updatedUser });
   } catch (error) {
     console.error(error);

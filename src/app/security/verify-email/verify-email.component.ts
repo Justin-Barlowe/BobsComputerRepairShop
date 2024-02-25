@@ -3,16 +3,20 @@
 // File: verify-email.component.ts
 // Description: verify-email component file
 
+// Import statements
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
 
+// Component for selector, templateUrl, styleUrls
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.css']
 })
+
+// Export VerifyEmailComponent
 export class VerifyEmailComponent {
   errorMessage: string; // error message variable
   isLoading: boolean = false; // loading variable
@@ -20,6 +24,7 @@ export class VerifyEmailComponent {
   // email form group for the verify email form
   emailForm: FormGroup;
 
+  // Constructor with private
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {
     this.errorMessage = '';
     // Initialize the form group

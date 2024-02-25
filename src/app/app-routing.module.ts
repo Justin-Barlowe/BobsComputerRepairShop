@@ -1,8 +1,8 @@
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
- * Modified by: Justin Barlowe
- * Modified Date: 02/13/2024
+ * Modified by: Justin Barlowe, John Davidson, Nolan Berryhill
+ * Modified Date: 02/25/2024
  * Date: 8/5/23
  */
 

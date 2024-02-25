@@ -1,4 +1,11 @@
+/**
+  Title: faq.component.css
+  Author: Justin Barlowe
+  Date: 2/25/2024
+  Description: Styles for BCRS faq page
+*/
 
+/** accordion-button styles for faq */
 .accordion-button::after {
     background-image: none !important;
 }

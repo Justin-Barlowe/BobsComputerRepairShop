@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: User API
+  title: SignIn API
   version: 1.0.0
   description: API for finding all users
 paths:

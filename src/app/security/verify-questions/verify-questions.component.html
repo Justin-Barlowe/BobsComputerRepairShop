@@ -1,7 +1,17 @@
+<!--
+  Title: verify-questions.component.html
+  Author: Nolan Berryhill
+  Date: 02/25/2024
+  Description: View verify questions for BCRS
+-->
+
+<!-- Opening for Security Questions -->
 <div class="container mt-5">
   <div class="row justify-content-center mt-5">
     <div class="col-lg-8 col-md-10">
       <div class="card shadow p-4">
+
+        <!-- Form for verifySecurityQuestions -->
         <form [formGroup]="sqForm" (ngSubmit)="verifySecurityQuestions()" class="form row g-3">
 
           <!-- Error Message -->
@@ -51,7 +61,8 @@
           </button>
         </form>
       </div>
-      <a class="text-underline-hover" style="color: #f8b400;" routerLink="/">Return</a>
+      <!-- Return to signin button -->
+      <a class="text-underline-hover" style="color: #f8b400;" routerLink="/security/signin">Return To Sign In</a>
     </div>
   </div>
 </div>

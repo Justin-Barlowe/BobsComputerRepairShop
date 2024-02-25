@@ -1,3 +1,10 @@
+/**
+  Title: register.component.css
+  Author: Justin Barlowe
+  Date: 2/25/2024
+  Description: Styles for BCRS register page
+*/
+
 /* Override Bootstrap theme for Gryffindor Theme */
 .btn {
   border-radius: 0 !important;

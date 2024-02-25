@@ -1,7 +1,7 @@
 /**
  * Title: usersApi.js
  * Author: Justin Barlowe, John Davidson, Nolan Berryhill
- * Date: 02/14/2024
+ * Date: 02/25/2024
  */
 
 // imports statements
