@@ -24,12 +24,20 @@ router.post("/:email/securityQuestions", async (req, res, next) => {
     }
 
     // Compare the provided answers with the stored security questions' answers
-    const storedSecurityQuestions = user.selectedSecurityQuestions;
-    for (let i = 0; i < securityQuestions.length; i++)
+    const storedSecurityQuestions = user.securityQuestions;
 
-    // If all security questions match, send a success response
-    console.log("Security questions match");
-    res.status(200).json({ message: "Successfully verified security questions" });
+    // Verify the answers
+    const isValid = securityQuestions.every((providedQuestion) => {
+      const correspondingQuestion = storedSecurityQuestions.find(question => question.question === providedQuestion.question);
+      return correspondingQuestion && correspondingQuestion.answer === providedQuestion.answer;
+    });
+
+    if (isValid) {
+      console.log("Security questions match");
+      res.status(200).json({ message: "Successfully verified security questions" });
+    } else {
+      res.status(400).json({ message: "Invalid security answers." });
+    }
   } catch (err) {
     console.error("Error:", err);
     next(err);

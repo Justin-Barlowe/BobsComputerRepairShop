@@ -57,7 +57,7 @@ export class UserService {
   // verifySecurityQuestions function
   // Define a method to fetch user by email
   verifySecurityQuestions(email: string, securityAnswers: { question: string, answer: string }[]): Observable<any> {
-    return this.http.post(`/api/users/${email}/security-questions`, { securityQuestions: securityAnswers });
+    return this.http.post(`/api/security/${email}/securityQuestions`, { securityQuestions: securityAnswers });
   }
 
   // resetPassword function
