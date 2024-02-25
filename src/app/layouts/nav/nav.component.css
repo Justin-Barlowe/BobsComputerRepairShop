@@ -64,3 +64,13 @@
 .sign-out-link {
   cursor: pointer;
 }
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(248, 180, 0, 0.88)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    width: 80%; /* Decrease the width to 80% */
+    margin: auto; /* Center the links */
+  }
+}
