@@ -1,3 +1,214 @@
-<p>faq works!</p>
+<!--
+  Title: faq.component.html
+  Author: Justin Barlowe
+  Date: 02/25/2024
+  Description: View FAQ page
+-->
 
-<!-- Faq will go here -->
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5 mt-5">FAQs</h1>
+    <div class="accordion bg-dark text-white" id="accordionExample">
+        <div class="accordion-item bg-dark text-white">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <strong>User Configuration</strong>
+                </button>
+            </h2>
+
+            <!-- Viewing Users Section -->
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                <div class="faq-users-section">
+                  <h5>Viewing Users</h5>
+                  <ol>
+                    <li>
+                      <strong>What is the purpose of the view user page?</strong>
+                      <p>The view user page is designed to display information about users within our platform. It provides a convenient way to view user profiles and manage user data.</p>
+                    </li>
+                    <li>
+                      <strong>How do I access my view user page?</strong>
+                      <p>You can access your view user page by navigating to the Employee Portal section of our platform and selecting the "View All Users" option. Note: View All Users is only accessible by admin users.</p>
+                    </li>
+                  </ol>
+
+                  <h5>Account Management:</h5>
+                  <ol>
+                    <li>
+                      <strong>How do I create an account?</strong>
+                      <p>There are two ways to create an account. From the employee portal navigate to "Create User" and enter users information and click "Create User" alternatively users can register themselves via "Register" on the sign in page.</p>
+                    </li>
+                    <li>
+                      <strong>Can I delete an account?</strong>
+                      <p>Yes, when viewing users on the right of the user there is a delete button. This will disable the user and make them unable to log in.</p>
+                    </li>
+                  </ol>
+
+                  <h5>Editing Users:</h5>
+                  <ol>
+                    <li>
+                      <strong>How do I edit user information?</strong>
+                      <p>To edit user information, navigate to the view user page and click on the "Edit" button next to the user's profile. This will open inline fields where you can make changes to the user's details.</p>
+                    </li>
+                    <li>
+                      <strong>What information can I edit for users?</strong>
+                      <p>You can edit various details for users, including their name, email address, username, and their role. </p>
+                    </li>
+                    <li>
+                      <strong>How do I save changes after editing a user?</strong>
+                      <p>After making changes to a user's information, simply click on the "Save" button within the inline editing interface. Your changes will be saved automatically.</p>
+                    </li>
+                  </ol>
+
+                </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Section -->
+
+        <!-- Account Registration Section -->
+        <div class="accordion-item bg-dark text-white">
+            <h2 class="accordion-header bg-dark text-white" id="headingTwo">
+                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <strong>Account Registraton</strong>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="faq-registration-section">
+
+                    <h5>General Questions:</h5>
+                    <ol>
+                      <li>
+                        <strong>What is the account registration process?</strong>
+                        <p>The account registration process allows users to create a new account on our platform. Users need to provide basic information such as username, password, email, and security questions.</p>
+                      </li>
+                      <li>
+                        <strong>How do I start the registration process?</strong>
+                        <p>To begin the registration process, click on the "Register" button on the sign-in page. This will redirect you to the registration form.</p>
+                      </li>
+                      <li>
+                        <strong>What are the requirements for creating a password?</strong>
+                        <p>Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.</p>
+                      </li>
+                    </ol>
+
+                    <h5>Username and Email:</h5>
+                    <ol>
+                      <li>
+                        <strong>Can I choose my own username?</strong>
+                        <p>Yes, during the registration process, you'll be prompted to enter a username of your choice.</p>
+                      </li>
+                      <li>
+                        <strong>Do I need to provide a valid email address?</strong>
+                        <p>Yes, a valid email address is required for account verification and communication purposes.</p>
+                      </li>
+                    </ol>
+
+                    <h5>Security Questions:</h5>
+                    <ol>
+                      <li>
+                        <strong>Why are security questions required?</strong>
+                        <p>Security questions add an additional layer of account security. They are used for account recovery purposes in case you forget your password.</p>
+                      </li>
+                      <li>
+                        <strong>How many security questions do I need to answer?</strong>
+                        <p>During registration, you'll need to answer three security questions of your choice.</p>
+                      </li>
+                    </ol>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Password Section -->
+        <div class="accordion-item bg-dark text-white">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <strong>Reset Password</strong>
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="faq-resetpass-section">
+
+                    <h5>General Questions:</h5>
+                    <ol>
+                      <li>
+                        <strong>What is the password reset process?</strong>
+                        <p>The password reset process allows users to regain access to their account if they've forgotten their password. Users need to provide their email and answer security questions to verify their identity.</p>
+                      </li>
+                      <li>
+                        <strong>How do I start the password reset process?</strong>
+                        <p>To initiate the password reset process, click on the "Reset Password" button on the sign-in page. This will redirect you to the password reset form.</p>
+                      </li>
+                    </ol>
+
+                    <h5>Email Verification:</h5>
+                    <ol>
+                      <li>
+                        <strong>Why is my email required for password reset?</strong>
+                        <p>Your email is required to verify your identity and ensure account security during the password reset process.</p>
+                      </li>
+                    </ol>
+
+                    <h5>Security Questions:</h5>
+                    <ol>
+                      <li>
+                        <strong>Why are security questions asked during password reset?</strong>
+                        <p>Security questions are used to further verify your identity before allowing you to reset your password.</p>
+                      </li>
+                      <li>
+                        <strong>How do I answer the security questions?</strong>
+                        <p>During the password reset process, you'll be prompted to answer the security questions that you previously set up for your account.</p>
+                      </li>
+                    </ol>
+
+                    <h5>New Password:</h5>
+                    <ol>
+                      <li>
+                        <strong>What are the requirements for the new password?</strong>
+                        <p>Your new password must meet the same requirements as during the registration process: at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.</p>
+                      </li>
+                      <li>
+                        <strong>How do I set a new password?</strong>
+                        <p>Once you've successfully verified your identity and answered the security questions, you'll be prompted to enter a new password.</p>
+                      </li>
+                    </ol>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Repair Request Section -->
+        <div class="accordion-item bg-dark text-white">
+            <h2 class="accordion-header bg-dark text-white" id="headingFour">
+                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <strong>Service Repair Request</strong>
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse bg-dark text-white" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    FAQ Content 4
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Summary Section -->
+        <div class="accordion-item bg-dark text-white">
+            <h2 class="accordion-header bg-dark text-white" id="headingFive">
+                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <strong>Invoice Summary</strong>
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    FAQ Content 5
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

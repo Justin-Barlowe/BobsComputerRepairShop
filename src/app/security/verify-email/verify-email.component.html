@@ -1,0 +1,65 @@
+<!--
+  Title: verify-email.component.html
+  Author: Nolan Berryhill, Justin Barlowe
+  Date: 02/25/2024
+  Description: View verify email for BCRS
+-->
+
+<!-- Opening for verify-email -->
+<div class="container mt-5">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow p-4">
+
+        <!-- Form for verifyUser -->
+        <form [formGroup]="emailForm" (ngSubmit)="verifyUser()" class="form row g-3">
+
+          <!-- Opening for fieldset -->
+          <fieldset class="mb-3 form-group">
+
+            <!-- Legend for Employee Information -->
+            <legend>Employee Information</legend>
+
+            <!-- Opening for email section -->
+            <div class="row">
+              <div class="col-md-12">
+                <label class="form-label" for="email"></label>
+                <input class="form-control" formControlName="email" type="text" id="email" name="email" placeholder="Email" required>
+
+                 <!-- validation errors -->
+                <div class="validation-message mt-2" style="color: #f8b400;" *ngIf="emailForm.controls['email'].invalid && (emailForm.controls['email'].dirty || emailForm.controls['email'].touched)">
+                  <span *ngIf="emailForm.controls['email'].hasError('required')" class="validation-message">
+                    Email is required.
+                  </span>
+
+                  <span *ngIf="emailForm.controls['email'].hasError('email')" class="validation-message">
+                    Email must be a valid email address.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- vError Message -->
+          <div *ngIf="errorMessage" class="row" style="color: #f8b400;">
+            <div class="col-12">
+              <span class="validation-message">{{ errorMessage }}</span>
+            </div>
+          </div>
+
+          <!-- Button to verify account -->
+          <button type="submit" id="submit" [disabled]="!emailForm.valid" class="btn btn-lg text-white mx-auto d-block">
+            <span *ngIf="!isLoading">Verify Account</span>
+
+            <!-- Loading... after clicking submit -->
+            <div *ngIf="isLoading">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
+            </div>
+          </button>
+        </form>
+      </div>
+      <!-- Return to signin button -->
+      <a class="text-underline-hover" style="color: #f8b400;" routerLink="/security/signin">Return To Sign In</a>
+    </div>
+  </div>
+</div>

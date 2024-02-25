@@ -1,0 +1,68 @@
+<!--
+  Title: verify-questions.component.html
+  Author: Nolan Berryhill
+  Date: 02/25/2024
+  Description: View verify questions for BCRS
+-->
+
+<!-- Opening for Security Questions -->
+<div class="container mt-5">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow p-4">
+
+        <!-- Form for verifySecurityQuestions -->
+        <form [formGroup]="sqForm" (ngSubmit)="verifySecurityQuestions()" class="form row g-3">
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="row">
+            <div class="col-12">
+              <div class="alert alert-danger">
+                {{ errorMessage }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Security Questions -->
+          <fieldset class="mb-3 form-group">
+            <legend>Security Questions</legend>
+
+            <div class="row">
+              <div class="col-md-12">
+
+                <!-- Security Question 1 -->
+                <label *ngIf="!isLoadingLabels" for="q1" class="form-label">{{ securityQuestion1 }}</label>
+                <input type="text" formControlName="securityAnswer1" class="form-control">
+
+                <!-- Security Question 2 -->
+                <label *ngIf="!isLoadingLabels" for="q2" class="form-label">{{ securityQuestion2 }}</label>
+                <input type="text" formControlName="securityAnswer2" class="form-control">
+
+                <!-- Security Question 3 -->
+                <label *ngIf="!isLoadingLabels" for="q3" class="form-label">{{ securityQuestion3 }}</label>
+                <input type="text" formControlName="securityAnswer3" class="form-control">
+
+                <!-- Validation Errors -->
+                <div class="validation-message mt-2" style="color: #f8b400;" *ngIf="sqForm.controls['securityAnswer1'].invalid && (sqForm.controls['securityAnswer1'].dirty || sqForm.controls['securityAnswer1'].touched)">
+                  <div *ngIf="sqForm.controls['securityAnswer1'].hasError('required')">
+                    Answer is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submit" [disabled]="!sqForm.valid" class="btn btn-lg bg-dark text-white mx-auto d-block">
+            <span *ngIf="!isLoadingSubmit">Verify Security Questions</span>
+            <div *ngIf="isLoadingSubmit">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
+            </div>
+          </button>
+        </form>
+      </div>
+      <!-- Return to signin button -->
+      <a class="text-underline-hover" style="color: #f8b400;" routerLink="/security/signin">Return To Sign In</a>
+    </div>
+  </div>
+</div>

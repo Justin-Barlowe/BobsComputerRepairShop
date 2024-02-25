@@ -17,9 +17,11 @@ const cors = require("cors");
 // Import API routes
 const UserAPI = require("./routes/usersApi");
 const SigninAPI = require("./routes/signinApi");
+const SecurityAPI = require("./routes/securityApi")
+const securityQuestions = require("./utils/securityQuestions");
 
 // import MongoDB database connection string from config.json
-const config = require("./utils/config.json");
+const config = require("./utils/config.js");
 
 // Express variable.
 const app = express();
@@ -60,6 +62,11 @@ const swaggerOptions = {
 
 };
 
+// Security Questions
+app.get("/api/security-questions", (req, res) => {
+  res.json(securityQuestions);
+});
+
 // Open API specification
 const openapiSpecification = swaggerJsdoc(swaggerOptions);
 
@@ -67,6 +74,7 @@ const openapiSpecification = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use("/api/users", UserAPI);
 app.use("/api/signin", SigninAPI);
+app.use("/api/security", SecurityAPI);
 
 // Connect to Database
 mongoose.connect(CONN).then(

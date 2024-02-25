@@ -22,3 +22,7 @@ body {
 .password-input {
   color: white !important;
 }
+
+.container {
+  margin-bottom: 100px;
+}

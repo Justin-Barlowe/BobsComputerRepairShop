@@ -1,0 +1,21 @@
+/**
+  Title: employee-directory.component.css
+  Author: Justin Barlowe
+  Date: 2/25/2024
+  Description: Styles for BCRS employee-directory page
+*/
+
+.container {
+  padding-bottom: 100px;
+}
+
+/* Styling for employee images */
+.employee-image {
+  border: 1px solid #f8b400;
+  border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+}
+
+
+

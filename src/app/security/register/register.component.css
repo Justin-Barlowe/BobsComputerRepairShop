@@ -1,0 +1,60 @@
+/**
+  Title: register.component.css
+  Author: Justin Barlowe
+  Date: 2/25/2024
+  Description: Styles for BCRS register page
+*/
+
+/* Override Bootstrap theme for Gryffindor Theme */
+.btn {
+  border-radius: 0 !important;
+  color: #f8b400 !important;
+  border-color: #f8b400 !important;
+}
+
+.btn:hover {
+  background-color: #f8b400 !important;
+  color: black !important;
+  border-color: #f8b400 !important;
+}
+
+input, select {
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+  background-color: #212529; /* Ensure dark background */
+  color: white !important; /* Ensure text is always white */
+}
+
+input:focus, select:focus {
+  background-color: #212529 !important; /* Keep background dark on focus */
+  box-shadow: none !important;
+  color: white !important; /* Ensure text remains white on focus */
+}
+
+input:hover, select:hover {
+  border-color: #f8b400 !important; /* Highlight border on hover */
+}
+
+input::placeholder {
+  color: #adb5bd; /* Lighter color for placeholders for contrast */
+}
+
+#userConfirmation {
+  color: #f8b400 !important;
+  font-size: large !important;
+}
+
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat;
+  background-position: right 0.7em top 50%;
+  background-size: 24px;
+}
+
+.form-control-lg.custom-select {
+  cursor: pointer;
+}

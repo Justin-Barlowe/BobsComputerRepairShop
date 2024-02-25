@@ -29,6 +29,7 @@ import { EmployeeLandingComponent } from './employee-landing/employee-landing.co
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { Observable } from 'rxjs';
+import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 
 // @NgModule assign declarations and imports with bootstrap value
 @NgModule({
@@ -45,7 +46,8 @@ import { Observable } from 'rxjs';
     AdminComponent,
     EmployeeLandingComponent,
     ViewUsersComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    EmployeeDirectoryComponent
   ],
   imports: [
     BrowserModule,

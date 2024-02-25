@@ -8,11 +8,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Import userRole schema and securityQuestion schema
-const userRoleSchema = require("../schemas/userRole");
-const securityQuestion = require("../schemas/securityQuestion");
+// Define the securityQuestion schema
+const securityQuestionSchema = new Schema(
+  {
+  question: { type: String, required: true },
+  answer: { type: String, required: true }
+  },
+  { _id: false }
+  );
 
-// Create user model
+// Create the user schema
 const userSchema = new Schema(
   {
     userName: { type: String, required: true, unique: true },
@@ -24,7 +29,7 @@ const userSchema = new Schema(
     email: { type: String },
     isDisabled: { type: Boolean, default: false },
     role: { type: String },
-    securityQuestion: [securityQuestion],
+    securityQuestions: [securityQuestionSchema], // Embed securityQuestion schema directly
     dateCreated: { type: Date, default: new Date() },
     dateModified: { type: Date },
   },
