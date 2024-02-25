@@ -29,6 +29,10 @@ Date: 2/17/2024-->
         <li class="list-group-item bg-dark text-center">
           <a href="/search-invoices" class="text-white h2 portalLinks">Search Invoices</a>
         </li>
+        <!-- Employee directory link -->
+        <li class="list-group-item bg-dark text-center">
+          <a routerLink="/employee-directory" class="text-white h2 portalLinks">Employee Directory</a>
+        </li>
 
         <!-- ngIf directive to only show user or admin links -->
         <li class="list-group-item bg-dark text-center" *ngIf="userRole === 'admin'">

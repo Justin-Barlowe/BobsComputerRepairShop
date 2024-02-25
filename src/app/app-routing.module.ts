@@ -23,6 +23,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { RoleGuard } from './role.guard';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
+import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -64,6 +65,12 @@ const routes: Routes = [
         path: 'employee-landing',
         component: EmployeeLandingComponent,
         title: 'BCRS: Employee Landing',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'employee-directory',
+        component: EmployeeDirectoryComponent,
+        title: 'BCRS: Employee Directory',
         canActivate: [authGuard]
       },
       {
