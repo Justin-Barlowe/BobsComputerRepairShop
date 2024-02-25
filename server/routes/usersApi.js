@@ -176,7 +176,6 @@ router.post("/:email/security-questions", async (req, res) => {
     return res.status(500).json({ status: 500, message: "Internal Server Error", error: err });
   }
 });
-module.exports = router;
 
 // Export the router
 module.exports = router;

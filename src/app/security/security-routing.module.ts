@@ -12,6 +12,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { RegisterComponent } from './register/register.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { VerifyQuestionsComponent } from './verify-questions/verify-questions.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 // Routes of security component with children paths
@@ -24,6 +26,16 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
         title: 'BCRS: Register'
+      },
+      {
+        path: 'verify-email',
+        component: VerifyEmailComponent,
+        title: 'BCRS: Verify Email'
+      },
+      {
+        path: 'verify-questions',
+        component: VerifyQuestionsComponent,
+        title: 'BCRS: Verify Questions'
       },
       {
         path: 'reset-password',

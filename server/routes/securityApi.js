@@ -64,38 +64,6 @@ router.post("/:email/reset-password", async (req, res) => {
   }
 });
 
-// **** OLD CODE DELETE AFTER REVIEW****
-// router.post("/:email/reset-password", async (req, res, next) => {
-//   try {
-//     const email = req.params.email;
-//     const password = req.body.password;
-
-//     const user = await performOperation(db => {
-//       return db.collection("users").findOne({ email: email });
-//     })
-
-//     if (!user) {
-//     console.error("User not found");
-//     next({ status: 404, message: "User not found" });
-//     return;
-//     };
-
-//     const hashedPassword = bcrypt.hashSync(password, 10);
-
-//     const result = await performOperation(db => {
-//       return db.collection("users").updateOne({ email: email }, { $set: { password: hashedPassword } });
-//     })
-
-//     res.status(204).send();
-//   } catch (err) {
-//     console.error("err", err);
-//     next(err);
-//   }
-// });
-// **** OLD CODE DELETE AFTER REVIEW****
-
-
-
 // registerUser API
 router.post('/register', async(req, res, next) => {
 
