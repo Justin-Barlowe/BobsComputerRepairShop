@@ -1,9 +1,20 @@
-<div *ngIf="user">
-  <h2>User Profile</h2>
-  <p><strong>Name:</strong> {{user.firstName}}</p>
-  <p><strong>Username:</strong> {{user.userName}}</p>
-  <p><strong>Role:</strong> {{user.role}}</p>
-  <p><strong>Phone Number: </strong> {{user.phoneNumber }}</p>
-  <p><strong>Email: </strong> {{ user.email }}</p>
-  <p><strong>Address: </strong> {{ user.address }}</p>
+<div class="container mt-5">
+  <div class="d-flex justify-content-center">
+    <div class="card text-white bg-dark mb-3 w-50">
+      <div *ngIf="user" class="p-3">
+        <h2 class="text-center">User Profile</h2>
+        <p><strong>Name:</strong> {{ user.firstName }} {{ user.lastName }}</p>
+        <p><strong>Username:</strong> {{ user.userName }}</p>
+        <p><strong>Role:</strong> {{ user.role }}</p>
+        <p><strong>Phone Number: </strong> {{ user.phoneNumber }}</p>
+        <p><strong>Email: </strong> {{ user.email }}</p>
+        <p><strong>Address: </strong> {{ user.address }}</p>
+        <div class="text-center">
+          <button class="btn btn-primary me-2 text-center" id="editButton">
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
