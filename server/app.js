@@ -19,6 +19,7 @@ const UserAPI = require("./routes/usersApi");
 const SigninAPI = require("./routes/signinApi");
 const SecurityAPI = require("./routes/securityApi")
 const securityQuestions = require("./utils/securityQuestions");
+const InvoiceAPI = require("./routes/invoiceApi");
 
 // import MongoDB database connection string from config.json
 const config = require("./utils/config.js");
@@ -75,6 +76,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use("/api/users", UserAPI);
 app.use("/api/signin", SigninAPI);
 app.use("/api/security", SecurityAPI);
+app.use("/api/invoice", InvoiceAPI);
 
 // Connect to Database
 mongoose.connect(CONN).then(
