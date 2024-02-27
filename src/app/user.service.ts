@@ -19,6 +19,7 @@ export class UserService {
   // apiUrl variable
   private apiUrl = '/api/users'
   private apiUrl2 = '/api/security'
+  private apiUrl3 = '/api/invoice'
 
   constructor(private http: HttpClient) { }
 
