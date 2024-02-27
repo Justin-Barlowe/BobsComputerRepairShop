@@ -1,49 +1,58 @@
+
 openapi: 3.0.0
 info:
   title: Invoice API
   version: 1.0.0
-  description: API for invoices
+  description: API for managing invoices
+
 paths:
   /api/invoice/{userName}:
     post:
       tags:
         - Invoices
-      description: API to create a new invoice
       summary: Creates a new invoice
+      description: API endpoint to create a new invoice for a given user
       operationId: createInvoice
       parameters:
-       - name: userName
-         in: path
-         description: userName of the user who created the invoice
-         required: true
-         schema:
-           type: string
+        - name: userName
+          in: path
+          description: The username of the user who is creating the invoice
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
+              type: object
+              required:
+                - lineItems
               properties:
-               lineItems:
-                 type: object
-                 properties:
-                    title:
-                      type: string
-                    price:
-                      type: number
-               price:
-                 type: number
-               partsAmount:
-                 type: number
-               priceAmount:
-                 type: number
-               laborAmount:
-                 type: number
-               lineItemTotal:
-                 type: number
-               total:
-                 type: number
-
+                lineItems:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - title
+                      - price
+                    properties:
+                      title:
+                        type: string
+                      price:
+                        type: number
+                price:
+                  type: number
+                partsAmount:
+                  type: number
+                priceAmount:
+                  type: number
+                laborAmount:
+                  type: number
+                lineItemTotal:
+                  type: number
+                total:
+                  type: number
 
       responses:
         '200':
