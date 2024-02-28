@@ -10,9 +10,10 @@ const Invoice = require("../models/invoice");
 
 // Create Invoice
 router.post("/:userName", async (req, res) => {
+  const { userName } = req.params;
 
   // Check if userName is provided
-  if (!req.params.userName) {
+  if (!userName) {
     return res.status(400).json({
       status: "400",
       message: "Bad Request: userName is required"
@@ -20,46 +21,32 @@ router.post("/:userName", async (req, res) => {
   }
 
   // Create a new invoice object
-  try {
-    const newInvoice = {
-      userName: req.params.userName,
-      lineItems: req.body.lineItems,
-      partsAmount: req.body.partsAmount,
-      priceAmount: req.body.priceAmount,
-      laborAmount: req.body.laborAmount,
-      lineItemTotal: req.body.lineItemTotal,
-      total: req.body.total,
-    };
+  const newInvoice = {
+    userName,
+    lineItems: req.body.lineItems,
+    partsAmount: req.body.partsAmount,
+    priceAmount: req.body.priceAmount,
+    laborAmount: req.body.laborAmount,
+    lineItemTotal: req.body.lineItemTotal,
+    total: req.body.total,
+  };
 
+  try {
     // Log the new invoice object
     console.log(newInvoice);
-    Invoice.create(newInvoice)
-      .then(invoice => {
-        // If there is no error, log the invoice and return a 200 status code
-        if (!invoice) {
-          return res.status(404).json({
-            status: "404",
-            message: "Not Found: Invoice could not be created"
-          });
-        }
-        console.log(invoice);
-        res.status(200).json({
-          status: "200",
-          message: "Query successful",
-          data: invoice
-        });
-      })
-      .catch(err => {
-        // If there is an error, log the error and return a 500 status code
-        console.log(err);
-        res.status(500).json({
-          status: "500",
-          message: "Internal Server Error",
-          error: err
-        });
-      });
-  } catch (e) { // If there is an error, log the error and return a 500 status code
-    console.log(e);
+
+    // Create and log the invoice
+    const invoice = await Invoice.create(newInvoice);
+    console.log(invoice);
+
+    res.status(200).json({
+      status: "200",
+      message: "Query successful",
+      data: invoice
+    });
+
+  } catch (e) { // Catch any error during invoice creation or logging
+    console.error(e); // Use console.error for errors
     res.status(500).json({
       status: "500",
       message: "Internal Server Error",
@@ -67,6 +54,7 @@ router.post("/:userName", async (req, res) => {
     });
   }
 });
+
 
 // findPurchasesByService
 router.get('/', async (req, res) => {
