@@ -26,3 +26,7 @@ body {
 .container {
   margin-bottom: 100px;
 }
+
+.gold {
+  color: #f8b400 !important;
+}
