@@ -15,3 +15,29 @@
   justify-content: space-between;
   margin-bottom: 1em;
 }
+
+input {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+  color: white;
+}
+
+/* Remove white background from input field when focused */
+input:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}
+
+/* Change placeholder color due to dark background */
+input::placeholder {
+  color: white;
+}
+
+.message {
+  color: #f8b400;
+}

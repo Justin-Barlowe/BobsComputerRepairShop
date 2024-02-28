@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center">
     <div class="card text-white bg-dark mb-3 w-50">
       <div *ngIf="user" class="p-3">
-        <h2 class="text-center">User Profile</h2>
+        <h2 class="text-center">My Profile</h2>
         <p><strong>Name:</strong><br> {{ user.firstName }} {{ user.lastName }}</p>
         <p><strong>Username:</strong><br> {{ user.userName }}</p>
         <p><strong>Role:</strong><br> {{ user.role }}</p>
@@ -29,6 +29,7 @@
           <button *ngIf="isEditing" class="btn btn-secondary text-center" id="cancelButton" (click)="cancelEdit()">
             Cancel
           </button>
+          <p class="pt-3 message">{{ message }}</p>
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ export class MyProfileComponent implements OnInit {
   user: any;
   isEditing = false;
   originalUser: any;
+  message: string = ''; // Initialize the 'message' property
 
   constructor(private userService: UserService, private cookieService: CookieService) { }
 
@@ -50,9 +51,9 @@ export class MyProfileComponent implements OnInit {
   // Save the user's profile
   saveProfile() {
     this.userService.updateUser(this.user._id, this.user).subscribe(() => {
-      // handle success
+      this.message = 'Profile saved';
     }, error => {
-      // handle error
+      this.message = 'Profile save failed';
     });
   }
 }
