@@ -131,16 +131,11 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
-// Update a user
+
 router.put('/:id', async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const updateData = req.body;
-
-    // Optional: Hash the new password if it's being changed.
-    if(updateData.password) {
-      updateData.password = bcrypt.hashSync(updateData.password, 10);
-    }
+    let updateData = { ...req.body };
 
     const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
 
