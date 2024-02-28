@@ -68,4 +68,27 @@ router.post("/:userName", async (req, res) => {
   }
 });
 
+// findPurchasesByService
+router.get('/', async (req, res) => {
+  try {
+    const aggregationPipeline = [
+      { $unwind: '$lineItems' }, // Deconstruct the lineItems array
+      { $group: {
+          _id: '$lineItems.title', // Group by lineItem titles
+          count: { $sum: 1 } // Count occurrences of each title
+        }
+      },
+      { $sort: { _id: 1 } } // Sort by title in ascending order
+    ];
+
+    const result = await Invoice.aggregate(aggregationPipeline);
+
+    res.status(200).json({ data: result });
+
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
