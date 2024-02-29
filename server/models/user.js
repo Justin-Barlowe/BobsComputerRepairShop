@@ -32,7 +32,8 @@ const userSchema = new Schema(
     securityQuestions: [securityQuestionSchema], // Embed securityQuestion schema directly
     dateCreated: { type: Date, default: new Date() },
     dateModified: { type: Date },
-    lastLoggedIn: { type: Date }
+    lastLoggedIn: { type: Date },
+    profilePicture: { type: String }
   },
   { collection: "users" }
 );

@@ -9,6 +9,8 @@ const express = require("express");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const { ObjectId } = require("mongodb");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 const router = express.Router();
 
@@ -170,6 +172,22 @@ router.post("/:email/security-questions", async (req, res) => {
     console.error("Internal Server Error:", err);
     return res.status(500).json({ status: 500, message: "Internal Server Error", error: err });
   }
+});
+
+// Upload Profile Picture
+router.post('/uploadProfilePicture', upload.single('file'), async (req, res) => {
+  const file = req.file;
+
+  // Validate the file type
+  if (!file.mimetype.startsWith('image/')) {
+    return res.status(400).json({ error: 'Invalid file type. You can only upload image files.' });
+  }
+
+  const userId = req.body.userId;
+  const user = await User.findById(userId);
+  user.profilePicture = '/uploads/' + file.filename;
+  await user.save();
+  res.json({ profilePicture: user.profilePicture });
 });
 
 // Export the router
