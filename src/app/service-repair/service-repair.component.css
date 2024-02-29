@@ -1,0 +1,15 @@
+.btn {
+  border-radius: 0 !important;
+  color:#f8b400 !important;
+  border-color: #f8b400 !important;
+}
+
+.btn:hover {
+  background-color: #f8b400 !important;
+  color: black !important;
+  border-color: #f8b400 !important;
+}
+
+.form-check input:checked + label{
+  color:#f8b400;
+}

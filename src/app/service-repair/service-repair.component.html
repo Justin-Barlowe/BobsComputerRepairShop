@@ -1,0 +1,57 @@
+<!--
+  Title: service-repair.component.html
+  Author: John Davidson
+  Date: 02/28/2024
+  Description: Generate invoice page
+-->
+
+<div class="container pt-5" style="align-items: center; display: flex; justify-content: center">
+  <div class="card bg-dark text-white w-50">
+    <div class="card-title text-center mt-3"><h3>Generate Invoice</h3></div>
+    <div class="card-body p-5 text center">
+      <form>
+        <div class="form-check">
+          <input type="checkbox" id="ram" name="ram">
+          <label for="ram">RAM Upgrade</label><br />
+
+          <input type="checkbox" id="password" name="password">
+          <label for="password">Password Reset</label><br />
+
+          <input type="checkbox" id="rebuild" name="rebuild">
+          <label for="rebuild">Rebuild</label><br />
+
+          <input type="checkbox" id="dtest" name="dtest">
+          <label for="dtest">Diagnostic Test</label><br />
+
+          <input type="checkbox" id="clean" name="clean">
+          <label for="clean">PC Clean up</label><br />
+
+          <input type="checkbox" id="" name="">
+          <label for=""></label><br />
+
+          <input type="checkbox" id="" name="">
+          <label for="">Item 1</label><br />
+
+          <input type="checkbox" id="" name="">
+          <label for="">Item 2</label><br />
+
+          <input type="checkbox" id="" name="">
+          <label for="">Item 3</label><br />
+        </div>
+        <h5 class="text-center">Additional Services</h5>
+
+        <div class="mt-3">
+          <label for="parts">Parts</label>
+          <input type="text" id="parts" name="parts">
+        </div>
+        <br />
+        <div class="">
+          <label for="labor">Labor</label>
+          <input type="text" id="labor" name="labor">
+        </div>
+
+        <button class="btn btn-lg mt-5">Create Invoice</button>
+      </form>
+    </div>
+  </div>
+</div>
