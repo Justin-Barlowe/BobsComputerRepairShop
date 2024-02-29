@@ -25,7 +25,6 @@ router.post("/:userName", async (req, res) => {
     userName,
     lineItems: req.body.lineItems,
     partsAmount: req.body.partsAmount,
-    priceAmount: req.body.priceAmount,
     laborAmount: req.body.laborAmount,
     lineItemTotal: req.body.lineItemTotal,
     total: req.body.total,

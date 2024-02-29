@@ -45,8 +45,6 @@ paths:
                   type: number
                 partsAmount:
                   type: number
-                priceAmount:
-                  type: number
                 laborAmount:
                   type: number
                 lineItemTotal:
