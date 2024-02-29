@@ -48,6 +48,14 @@ export class MyProfileComponent implements OnInit {
     this.isEditing = false;
   }
 
+  getLastLoggedIn() {
+    if (this.user && this.user.lastLoggedIn) {
+      const date = new Date(this.user.lastLoggedIn);
+      return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+    }
+    return 'N/A';
+  }
+
   // Save the user's profile
   saveProfile() {
     this.userService.updateUser(this.user._id, this.user).subscribe(() => {

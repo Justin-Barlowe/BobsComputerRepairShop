@@ -3,6 +3,7 @@
     <div class="card text-white bg-dark mb-3 w-50">
       <div *ngIf="user" class="p-3">
         <h2 class="text-center gold">My Profile</h2>
+        <p class="text-center">Last Logged In: {{ getLastLoggedIn() }}</p>
         <p><strong>Name:</strong><br> {{ user.firstName }} {{ user.lastName }}</p>
         <p><strong>Username:</strong><br> {{ user.userName }}</p>
         <p><strong>Role:</strong><br> {{ user.role }}</p>
