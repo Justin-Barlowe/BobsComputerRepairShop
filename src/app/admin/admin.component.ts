@@ -1,28 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables  } from 'chart.js';
 Chart.register(...registerables);
-import { InvoiceService } from '../invoice.service';
+
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
-  constructor(private invoiceService: InvoiceService) {}
-
-  ngOnInit(): void {
-    // Fetch data from the service when the component initializes
-    this.invoiceService.findPurchasesByService().subscribe(
-      data => {
-        // Create the pie chart once the data is retrieved
-        this.createPieChart(data);
-      },
-      error => {
-        console.error('Error fetching data:', error);
-      }
-    );
-  }
+export class AdminComponent {
 
   // Function to create the pie chart
   private createPieChart(data: any): void {
