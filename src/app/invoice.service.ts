@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 // Export InvoiceService
 export class InvoiceService {
 
-  private apiUrl3 = '/api/invoice'
+  private apiUrl3 = '/api/invoice';
 
   constructor(private http: HttpClient) { }
 
