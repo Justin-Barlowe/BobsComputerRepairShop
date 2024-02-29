@@ -43,9 +43,43 @@ export class MyProfileComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
+  // Cancel the edit mode
   cancelEdit() {
     this.user = { ...this.originalUser };  // restore the original user data
     this.isEditing = false;
+  }
+
+  // Get the user's last logged in date
+  getLastLoggedIn() {
+    if (this.user && this.user.lastLoggedIn) {
+      const date = new Date(this.user.lastLoggedIn);
+      return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+    }
+    return 'N/A';
+  }
+
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+    }
+  }
+
+  // Upload the user's profile picture
+  onUploadButtonClicked() {
+    if (this.selectedFile) {
+      this.userService.uploadProfilePicture(this.user._id, this.selectedFile).subscribe(response => {
+        console.log(response);
+        // Update the user's profile picture and show a success message
+        this.user.profilePicture = response.profilePicture;
+        this.message = 'Profile picture uploaded successfully!';
+      }, error => {
+        // Show an error message
+        console.error(error);
+        this.message = error.error.error;
+      });
+    }
   }
 
   // Save the user's profile
@@ -56,4 +90,5 @@ export class MyProfileComponent implements OnInit {
       this.message = 'Profile save failed';
     });
   }
+
 }

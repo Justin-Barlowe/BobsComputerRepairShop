@@ -23,6 +23,10 @@ router.post("/", async (req, res) => {
       // If they match allow them to sign in
       if (passwordIsValid) {
         console.log("Login successful");
+
+        user.lastLoggedIn = Date.now();
+        await user.save();
+
         return res.status(200).json({ status: 200, message: 'Login successful', user: user });
 
       } // If they don't match throw error for email or password

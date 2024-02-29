@@ -41,3 +41,32 @@ input::placeholder {
 .message {
   color: #f8b400;
 }
+
+.profile-picture {
+  border-radius: 50%;
+max-height: 175px;
+}
+
+button {
+  background-color: #f8b400 !important;
+  border-color: #f8b400 !important;
+  color: black !important;
+}
+
+button:hover {
+  background-color: #c69100 !important;
+  border-color: #c69100 !important;
+  color: black !important;
+}
+
+#cancelButton {
+  background-color: #cc0a00 !important;
+  border-color: #cc0a00 !important;
+  color: black !important;
+}
+
+#cancelButton:hover {
+  background-color: #cc0a00 !important;
+  border-color: #cc0a00 !important;
+  color: black !important;
+}

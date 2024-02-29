@@ -3,30 +3,81 @@
     <div class="card text-white bg-dark mb-3 w-50">
       <div *ngIf="user" class="p-3">
         <h2 class="text-center gold">My Profile</h2>
-        <p><strong>Name:</strong><br> {{ user.firstName }} {{ user.lastName }}</p>
-        <p><strong>Username:</strong><br> {{ user.userName }}</p>
-        <p><strong>Role:</strong><br> {{ user.role }}</p>
-        <p><strong>Email: </strong> <br> {{ user.email }}</p>
+        <p class="text-center">Last Logged In: {{ getLastLoggedIn() }}</p>
+        <!-- Display the profile picture -->
+        <div class="text-center">
+        <img
+          *ngIf="user.profilePicture"
+          [src]="user.profilePicture"
+          class="profile-picture"
+        />
+        </div>
+        <!-- Show the file input and upload button only in edit mode -->
+        <div *ngIf="isEditing" class="text-center">
+          <p>Update Profile Picture</p>
+          <input type="file" accept="image/*" #fileInput (change)="onFileSelected($event)" />
+          <br>
+          <br>
+          <button (click)="onUploadButtonClicked()">Upload</button>
+        </div>
+
+        <p>
+          <strong>Name:</strong><br />
+          {{ user.firstName }} {{ user.lastName }}
+        </p>
+        <p>
+          <strong>Username:</strong><br />
+          {{ user.userName }}
+        </p>
+        <p>
+          <strong>Role:</strong><br />
+          {{ user.role }}
+        </p>
+        <p>
+          <strong>Email: </strong> <br />
+          {{ user.email }}
+        </p>
         <div>
           <strong>Phone Number: </strong>
         </div>
         <div>
-          <span *ngIf="!isEditing" class="user-field">{{ user.phoneNumber }}</span>
-          <input *ngIf="isEditing" type="tel" [(ngModel)]="user.phoneNumber" class="user-field-input w-75">
+          <span *ngIf="!isEditing" class="user-field">{{
+            user.phoneNumber
+          }}</span>
+          <input
+            *ngIf="isEditing"
+            type="tel"
+            [(ngModel)]="user.phoneNumber"
+            class="user-field-input w-75"
+          />
         </div>
         <div>
           <strong>Address: </strong>
         </div>
         <div>
           <span *ngIf="!isEditing" class="user-field">{{ user.address }}</span>
-          <input *ngIf="isEditing" type="text" [(ngModel)]="user.address" class="user-field-input w-75">
+          <input
+            *ngIf="isEditing"
+            type="text"
+            [(ngModel)]="user.address"
+            class="user-field-input w-75"
+          />
         </div>
-        <br>
+        <br />
         <div class="text-center">
-          <button class="btn btn-primary me-2 text-center" id="editButton" (click)="toggleEdit()">
-            {{ isEditing ? 'Save' : 'Edit' }}
+          <button
+            class="btn btn-primary me-2 text-center"
+            id="editButton"
+            (click)="toggleEdit()"
+          >
+            {{ isEditing ? "Save" : "Edit" }}
           </button>
-          <button *ngIf="isEditing" class="btn btn-secondary text-center" id="cancelButton" (click)="cancelEdit()">
+          <button
+            *ngIf="isEditing"
+            class="btn btn-secondary text-center"
+            id="cancelButton"
+            (click)="cancelEdit()"
+          >
             Cancel
           </button>
           <p class="pt-3 message">{{ message }}</p>

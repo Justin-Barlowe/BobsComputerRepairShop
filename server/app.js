@@ -20,6 +20,8 @@ const SigninAPI = require("./routes/signinApi");
 const SecurityAPI = require("./routes/securityApi")
 const securityQuestions = require("./utils/securityQuestions");
 const InvoiceAPI = require("./routes/invoiceApi");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 // import MongoDB database connection string from config.json
 const config = require("./utils/config.js");
@@ -38,6 +40,7 @@ app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/",
   express.static(path.join(__dirname, "../dist/bcrs"))
 );
+app.use('/uploads', express.static('uploads'));
 
 // Use CORS to allow all origins.
 app.use(cors());
