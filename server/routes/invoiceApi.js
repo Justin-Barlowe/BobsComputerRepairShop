@@ -58,6 +58,7 @@ router.post("/:userName", async (req, res) => {
 // findPurchasesByService
 router.get('/', async (req, res) => {
   try {
+    // Define aggregation pipeline to find purchases by service
     const aggregationPipeline = [
       { $unwind: '$lineItems' }, // Deconstruct the lineItems array
       { $group: {
@@ -68,13 +69,15 @@ router.get('/', async (req, res) => {
       { $sort: { _id: 1 } } // Sort by title in ascending order
     ];
 
+    // Execute aggregation pipeline on the Invoice collection
     const result = await Invoice.aggregate(aggregationPipeline);
 
+    // Respond with aggregated data
     res.status(200).json({ data: result });
 
   } catch (err) {
-    console.error('Error:', err);
-    res.status(500).json({ error: err.message });
+    console.error('Error:', err); // Log any erros that occur
+    res.status(500).json({ error: err.message }); // Respond with error status and message
   }
 });
 

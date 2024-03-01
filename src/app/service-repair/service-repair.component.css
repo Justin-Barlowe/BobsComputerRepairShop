@@ -2,6 +2,7 @@
   border-radius: 0 !important;
   color:#f8b400 !important;
   border-color: #f8b400 !important;
+  width: 50% !important;
 }
 
 .btn:hover {
@@ -12,4 +13,8 @@
 
 .form-check input:checked + label{
   color:#f8b400;
+}
+
+.input-parts, .input-labor {
+  width: 50%;
 }

@@ -12,42 +12,47 @@
       <form [formGroup]="invoiceForm" (ngSubmit)="createInvoice(user)">
         <div class="form-check">
           <input type="checkbox" formControlName="ram">
-          <label for="ram">RAM Upgrade</label><br />
+          <label for="ram">RAM Upgrade - $89.99</label><br />
 
           <input type="checkbox" formControlName="password">
-          <label for="password">Password Reset</label><br />
+          <label for="password">Password Reset - $29.99</label><br />
 
           <input type="checkbox" formControlName="rebuild">
-          <label for="rebuild">Rebuild</label><br />
+          <label for="rebuild">Rebuild - $149.99</label><br />
 
           <input type="checkbox" formControlName="dtest">
-          <label for="dtest">Diagnostic Test</label><br />
+          <label for="dtest">Diagnostic Test - $69.99</label><br />
 
           <input type="checkbox" formControlName="softClean">
-          <label for="clean">PC Clean up</label><br />
+          <label for="clean">PC Clean up - $69.99</label><br />
 
           <input type="checkbox" formControlName="reset">
-          <label for="">PC Reset</label><br />
+          <label for="">PC Reset - $59.99</label><br />
 
           <input type="checkbox" formControlName="installOs">
-          <label for="">Install OS</label><br />
+          <label for="">Install OS - $39.99</label><br />
 
           <input type="checkbox" formControlName="hardwareClean">
-          <label for="">Hardware Cleaning</label><br />
+          <label for="">Hardware Cleaning - $64.99</label><br />
         </div>
-        <h5 class="text-center">Additional Services</h5>
+
+        <hr>
+        <h5 class="text-center mt-3">Additional Services</h5>
 
         <div class="mt-3">
-          <label for="parts">Parts</label>
-          <input type="text" formControlName="parts" >
+          <label for="parts">Parts: </label>
+          <input class="form-control input-parts" type="text" placeholder="Parts" formControlName="parts" >
         </div>
         <br />
         <div class="">
-          <label for="labor">Labor</label>
-          <input type="text" formControlName="labor">
+          <label for="labor">Labor: </label>
+          <input class="form-control input-labor" type="text" placeholder="Labor" formControlName="labor">
         </div>
 
-        <button type="submit" [disabled]="!invoiceForm.valid" class="btn btn-lg mt-5">Create Invoice</button>
+        <div class="row justify-content-center">
+          <button type="submit" [disabled]="!invoiceForm.valid" class="btn btn-lg mt-5">Create Invoice</button>
+        </div>
+
       </form>
     </div>
   </div>

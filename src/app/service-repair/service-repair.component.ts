@@ -15,9 +15,11 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./service-repair.component.css']
 })
 export class ServiceRepairComponent implements OnInit {
-  message: string = '';
+  message: string = ''; // Variable to hold messages for user interaction
 
-  user: any;
+  user: any; // Variable to hold user data
+
+  // Injecting services
   constructor(
     private userService: UserService,
     private invoiceService: InvoiceService,
@@ -25,12 +27,14 @@ export class ServiceRepairComponent implements OnInit {
     private fb: FormBuilder) {}
 
   ngOnInit() {
+    // Grab the signed in user data from the cookie
     const userId = this.cookieService.get('userId');
     this.userService.getUser(userId).subscribe(user => {
       this.user = user;
     });
   }
 
+  // Reactive form for creating invoice
   invoiceForm = this.fb.group({
     ram: [false],
     password: [false],
@@ -40,22 +44,24 @@ export class ServiceRepairComponent implements OnInit {
     reset: [false],
     installOs: [false],
     hardwareClean: [false],
-    parts: ['', Validators.pattern("^[0-9]*$")],
-    labor: ['', Validators.pattern("^[0-9]*$")]
+    parts: ['', Validators.pattern("^[0-9]*$")], // Input field for parts with numeric validation
+    labor: ['', Validators.pattern("^[0-9]*$")] // Input field for labor with numeric validation
   })
 
+  // Function to create invoice based on form data
   createInvoice(user: any) {
     if (this.invoiceForm.valid) {
+      // If form is valid, call the invoice service to create invoice
       this.invoiceService.createInvoice(user).subscribe(response =>{
         console.log(response);
-        this.message = 'Invoice Created';
-        this.invoiceForm.reset();
+        this.message = 'Invoice Created'; // Set success message
+        this.invoiceForm.reset(); // Reset form after successful submission
       }, error => {
         console.error(error);
-        this.message = 'An error occurred while generating the invoice';
+        this.message = 'An error occurred while generating the invoice'; // Set error message
       });
     } else {
-      this.message = 'Please select a service before submitting the form.'
+      this.message = 'Please select a service before submitting the form.' // Set error message for incomplete form
     }
   }
 
