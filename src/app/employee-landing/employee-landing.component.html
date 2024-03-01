@@ -31,14 +31,9 @@ Date: 3/01/2024-->
           <a routerLink="/employee-directory" class="text-white h2 portalLinks">Employee Directory</a>
         </li>
 
-        <!-- Employee directory link -->
-        <li class="list-group-item bg-dark text-center">
-          <a routerLink="/admin" class="text-white h2 portalLinks">Service Purchases Graph</a>
-        </li>
-
         <!-- ngIf directive to only show user or admin links -->
         <li class="list-group-item bg-dark text-center" *ngIf="userRole === 'admin'">
-          <a href="/admin-area" class="text-white h2 portalLinks">Admin</a>
+          <a routerLink="/admin" class="text-white h2 portalLinks">Service Purchase Graph</a>
         </li>
       </ul>
     </div>

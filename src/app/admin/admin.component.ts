@@ -96,7 +96,18 @@ export class AdminComponent implements OnInit {
           }]
         },
         options: {
-          responsive: true
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: 'white',
+                font: {
+                  size: 16
+                }
+              }
+            }
+          }
         }
       });
     } catch (error) {
