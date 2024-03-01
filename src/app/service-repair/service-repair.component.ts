@@ -95,7 +95,7 @@ export class ServiceRepairComponent implements OnInit {
       };
 
       // Get the username
-      const userName = this.user.userName; // replace this with actual username
+      const userName = this.user.userName;
       // Call the service to create the invoice
       this.invoiceService.createInvoice(userName, invoiceData).subscribe(response => {
         console.log(response);
