@@ -1,8 +1,18 @@
 <div class="container">
   <h2>Service Purchases</h2>
 
-  <div class="chart-container chart">
+  <!-- Chart -->
+  <div class="chart-container">
     <canvas id="myPieChart"></canvas>
   </div>
 
+  <!-- Data -->
+  <div *ngIf="dataReceived">
+    <h3>Data Received:</h3>
+    <ul>
+      <li *ngFor="let item of data">
+        <strong>{{ item._id }}</strong>: {{ item.count }}
+      </li>
+    </ul>
+  </div>
 </div>
