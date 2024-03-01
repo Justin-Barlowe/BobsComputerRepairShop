@@ -1,18 +1,17 @@
+<!-- Name: Nolan Berryhill
+File: admin.component.html
+Description: HTML file for the admin component
+Date: 3/01/2024-->
+
+<!-- opening for admin component -->
 <div class="container">
+
+  <!-- header for purchases -->
   <h2>Service Purchases</h2>
 
-  <!-- Chart -->
+  <!-- Chart location -->
   <div class="chart-container">
     <canvas id="myPieChart"></canvas>
   </div>
 
-  <!-- Data -->
-  <div *ngIf="dataReceived">
-    <h3>Data Received:</h3>
-    <ul>
-      <li *ngFor="let item of data">
-        <strong>{{ item._id }}</strong>: {{ item.count }}
-      </li>
-    </ul>
-  </div>
 </div>
