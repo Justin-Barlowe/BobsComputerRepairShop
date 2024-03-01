@@ -32,6 +32,7 @@ import { Observable } from 'rxjs';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 
 // @NgModule assign declarations and imports with bootstrap value
 @NgModule({
@@ -51,7 +52,8 @@ import { ServiceRepairComponent } from './service-repair/service-repair.componen
     CreateUserComponent,
     EmployeeDirectoryComponent,
     MyProfileComponent,
-    ServiceRepairComponent
+    ServiceRepairComponent,
+    InvoiceSummaryComponent
   ],
   imports: [
     BrowserModule,

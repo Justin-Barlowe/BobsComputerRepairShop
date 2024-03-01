@@ -1,4 +1,4 @@
-// Title: employee-directory.component.ts
+// Title: service-repair.component.ts
 // Author: John Davidson
 // Date: 2/28/2024
 // Description: Service repair component file
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { InvoiceService } from '../invoice.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -38,6 +39,7 @@ export class ServiceRepairComponent implements OnInit {
     private userService: UserService,
     private invoiceService: InvoiceService,
     private cookieService: CookieService,
+    private router: Router,
     private fb: FormBuilder) {}
 
     ngOnInit() {
@@ -101,6 +103,8 @@ export class ServiceRepairComponent implements OnInit {
         console.log(response);
         // Set the success message
         this.message = 'Invoice Created';
+        this.invoiceService.setLastCreatedInvoice(response); // Store the invoice data
+        this.router.navigate(['/invoice-summary']);
         // Reset the form
         this.invoiceForm.reset();
       }, error => {

@@ -1,0 +1,32 @@
+<!-- Name: Justin Barlowe -->
+<!-- Date: 03/01/2024 -->
+<!-- File: invoice-summary.component.html -->
+<!-- Description: Invoice Summary HTML component -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card bg-dark text-white">
+        <div class="card-header">
+          <h2 class="text-center">Invoice Summary</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="mt-4">Item Summary</h3>
+          <ul class="list-group bg-dark text-white">
+            <li class="list-group-item bg-dark text-white" *ngFor="let item of invoice.lineItems">
+              {{ item.title }}: {{ item.price | currency }}
+            </li>
+          </ul>
+          <br>
+          <p><strong>Parts Amount:</strong> {{ invoice.partsAmount | currency }}</p>
+          <p><strong>Labor Amount:</strong> {{ invoice.laborAmount | currency }}</p>
+          <p class="text-center h4"><strong>Total:</strong> {{ invoice.total | currency }}</p>
+          <div class="text-center mt-4">
+            <button class="btn" (click)="generatePDF()">Download PDF</button>
+          </div>
+          <div class="text-center mt-4">
+          <a class="text-center mt-4 return" [routerLink]="['/service-repair']">New Invoice</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

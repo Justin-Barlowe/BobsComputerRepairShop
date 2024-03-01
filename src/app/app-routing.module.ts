@@ -26,6 +26,7 @@ import { ResetPasswordComponent } from './security/reset-password/reset-password
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -85,6 +86,12 @@ const routes: Routes = [
         path: 'service-repair',
         component: ServiceRepairComponent,
         title: 'BCRS: Service Repair',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'invoice-summary',
+        component: InvoiceSummaryComponent,
+        title: 'BCRS: Invoice Summary',
         canActivate: [authGuard]
       },
       {
