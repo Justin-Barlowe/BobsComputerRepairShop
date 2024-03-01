@@ -20,6 +20,8 @@ const invoiceSchema = new Schema({
   lineItemTotal: { type: Number },
   total: { type: Number },
   orderDate: { type: Date, default: new Date() },
+  firstName: { type: String },
+  lastName: { type: String },
 });
 
 // Export Schema

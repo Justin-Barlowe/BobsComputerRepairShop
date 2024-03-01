@@ -36,39 +36,43 @@ export class InvoiceSummaryComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Method to generate a PDF invoice summary
-  generatePDF() {
-    const doc = new jsPDF(); // Create a new jsPDF instance
+// Method to generate a PDF invoice summary
+generatePDF() {
+  const doc = new jsPDF(); // Create a new jsPDF instance
 
-    // Add header to the PDF
-    doc.setFontSize(20);
-    doc.text('Bobs Computer Repair Shop', 10, 10);
-    doc.setFontSize(12);
-    doc.text(`Invoice Date: ${new Date().toLocaleDateString()}`, 10, 20);
+  // Add header to the PDF
+  doc.setFontSize(20);
+  doc.text('Bobs Computer Repair Shop', 10, 10);
+  doc.setFontSize(12);
+  doc.text(`Invoice Date: ${new Date().toLocaleDateString()}`, 10, 20);
 
-    // Loop through line items in the invoice to add them to the PDF
-    let yPos = 30; // Initial Y position for line items
-    this.invoice.lineItems.forEach((item: any, index: number) => {
-      doc.text(`${index + 1}. ${item.title}: $${item.price}`, 10, yPos);
-      yPos += 10; // Increment Y position for each new line item
-    });
+  // Add customer's name to the PDF
+  doc.text(`Customer Name: ${this.invoice.firstName} ${this.invoice.lastName}`, 10, 30);
 
-    // Add parts amount, labor amount, and total to the PDF
-    doc.text(`Parts Amount: $${this.invoice.partsAmount}`, 10, yPos + 10);
-    doc.text(`Labor Amount: $${this.invoice.laborAmount}`, 10, yPos + 20);
-    doc.setFontSize(14);
-    doc.text(`Total: $${this.invoice.total}`, 10, yPos + 30);
+  // Loop through line items in the invoice to add them to the PDF
+  let yPos = 40; // Initial Y position for line items
+  this.invoice.lineItems.forEach((item: any, index: number) => {
+    doc.text(`${index + 1}. ${item.title}: $${item.price}`, 10, yPos);
+    yPos += 10; // Increment Y position for each new line item
+  });
 
-    // Add footer to the PDF
-    doc.setFontSize(10);
-    doc.text(`Page 1 of 1`, 10, doc.internal.pageSize.height - 10);
+  // Add parts amount, labor amount, and total to the PDF
+  doc.text(`Parts Amount: $${this.invoice.partsAmount}`, 10, yPos + 10);
+  doc.text(`Labor Amount: $${this.invoice.laborAmount}`, 10, yPos + 20);
+  doc.setFontSize(14);
+  doc.text(`Total: $${this.invoice.total}`, 10, yPos + 30);
 
-    // Save the generated PDF with a filename
-    doc.save('InvoiceSummary.pdf');
-  }
+  // Add footer to the PDF
+  doc.setFontSize(10);
+  doc.text(`Page 1 of 1`, 10, doc.internal.pageSize.height - 10);
 
-  // ngOnDestroy lifecycle hook to clean up the subscription when the component is destroyed
-  ngOnDestroy() {
-    this.invoiceSubscription.unsubscribe(); // Unsubscribe to prevent memory leaks
-  }
+  // Save the generated PDF with a filename
+  doc.save('InvoiceSummary.pdf');
+}
+
+// ngOnDestroy lifecycle hook to clean up the subscription when the component is destroyed
+ngOnDestroy() {
+  this.invoiceSubscription.unsubscribe(); // Unsubscribe to prevent memory leaks
+}
+
 }

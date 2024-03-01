@@ -28,6 +28,8 @@ router.post("/:userName", async (req, res) => {
     laborAmount: req.body.laborAmount,
     lineItemTotal: req.body.lineItemTotal,
     total: req.body.total,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName
   };
 
   try {

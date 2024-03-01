@@ -9,6 +9,17 @@
   <div class="card bg-dark text-white w-50">
     <div class="card-title text-center mt-3"><h3>Generate Invoice</h3></div>
     <div class="card-body p-5 text center">
+      <div class="text-center"><h4>Customer Name</h4></div>
+      <form [formGroup]="invoiceForm">
+      <div>
+        <input class="form-control" type="text" placeholder="First Name" formControlName="firstName" >
+      </div>
+      <br />
+      <div class="mb-3">
+        <input class="form-control" type="text" placeholder="Last Name" formControlName="lastName">
+      </div>
+    </form>
+      <div class="text-center"><h3>Services</h3></div>
       <form [formGroup]="invoiceForm" (ngSubmit)="createInvoice()">
         <div class="form-check">
           <input type="checkbox" formControlName="ram">
@@ -39,15 +50,13 @@
 
         <hr>
         <h5 class="text-center mt-3">Additional Services</h5>
-
+        <br />
         <div class="mt-3">
-          <label for="parts">Parts: </label>
-          <input class="form-control input-parts" type="text" placeholder="Parts" formControlName="parts" >
+          <input class="form-control input-parts" type="text" placeholder="Parts Amount" formControlName="parts" >
         </div>
         <br />
         <div class="">
-          <label for="labor">Labor: </label>
-          <input class="form-control input-labor" type="text" placeholder="Labor" formControlName="labor">
+          <input class="form-control input-labor" type="text" placeholder="Labor Hours" formControlName="labor">
         </div>
 
         <p class="text-center pt-5 total"><strong>Total: </strong>{{ total }}</p>
