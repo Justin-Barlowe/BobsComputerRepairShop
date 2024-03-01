@@ -59,3 +59,31 @@ paths:
           description: Internal server error
         '501':
           description: MongoDB Exception
+  /api/invoice:
+    get:
+      tags:
+        - Invoices
+      summary: Finds all invoice documents and collects lineItems
+      description: API endpoint to sort invoices by service purchased
+      operationId: findPurchasesByService
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        count:
+                          type: integer
+        '500':
+          description: Internal server error
+
+
