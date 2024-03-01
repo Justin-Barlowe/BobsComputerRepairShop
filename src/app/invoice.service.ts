@@ -21,8 +21,8 @@ export class InvoiceService {
   constructor(private http: HttpClient) { }
 
   // createInvoice function - will create an invoice
-  createInvoice(user: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl3}/${user}`, user);
+  createInvoice(userName: string, invoiceData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl3}/${userName}`, invoiceData);
   }
 // findPurchasesByService function - will collect all services purchased in the lineItems array
   findPurchasesByService(): Observable<any> {

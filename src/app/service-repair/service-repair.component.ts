@@ -14,9 +14,12 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   templateUrl: './service-repair.component.html',
   styleUrls: ['./service-repair.component.css']
 })
+
+
+// Export ServiceRepairComponent
 export class ServiceRepairComponent implements OnInit {
   message: string = ''; // Variable to hold messages for user interaction
-
+  total = 0; // Variable to hold the total amount of the invoice
   user: any; // Variable to hold user data
 
   lineItems = [
@@ -37,13 +40,20 @@ export class ServiceRepairComponent implements OnInit {
     private cookieService: CookieService,
     private fb: FormBuilder) {}
 
-  ngOnInit() {
-    // Grab the signed in user data from the cookie
-    const userId = this.cookieService.get('userId');
-    this.userService.getUser(userId).subscribe(user => {
-      this.user = user;
-    });
-  }
+    ngOnInit() {
+      // Grab the signed in user data from the cookie
+      const userId = this.cookieService.get('userId');
+      this.userService.getUser(userId).subscribe(user => {
+        this.user = user;
+      });
+
+      Object.keys(this.invoiceForm.controls).forEach(key => {
+        this.invoiceForm.get(key)?.valueChanges.subscribe(value => {
+          this.message = '';
+          this.updateTotal(); // Call updateTotal when the form value changes
+        });
+      });
+    }
 
   // Reactive form for creating invoice
   invoiceForm = this.fb.group({
@@ -61,20 +71,83 @@ export class ServiceRepairComponent implements OnInit {
 
 
   // Function to create invoice based on form data
-  createInvoice(user: any) {
-    if (this.invoiceForm.valid) {
-      // If form is valid, call the invoice service to create invoice
-      this.invoiceService.createInvoice(user).subscribe(response =>{
+  createInvoice() {
+    // Check if the form is valid
+    if (this.invoiceForm && this.invoiceForm.valid) {
+      // Get the selected services from the form
+      const selectedServices = this.getSelectedServices();
+      // Get the parts amount from the form, convert it to a number, or default to 0
+      const partsAmount = Number(this.invoiceForm.get('parts')?.value) || 0;
+      // Get the labor amount from the form, convert it to a number, or default to 0
+      const laborAmount = Number(this.invoiceForm.get('labor')?.value) || 0;
+      // Calculate the total price of the selected services
+      const lineItemTotal = selectedServices.reduce((total, item) => total + item.price, 0);
+      // Calculate the total invoice amount and format it to 2 decimal places
+      const total = (lineItemTotal + partsAmount + laborAmount).toFixed(2);
+
+      // Create the invoice data object
+      const invoiceData = {
+        lineItems: selectedServices,
+        partsAmount,
+        laborAmount,
+        lineItemTotal: lineItemTotal.toFixed(2),
+        total,
+      };
+
+      // Get the username
+      const userName = this.user.userName; // replace this with actual username
+      // Call the service to create the invoice
+      this.invoiceService.createInvoice(userName, invoiceData).subscribe(response => {
         console.log(response);
-        this.message = 'Invoice Created'; // Set success message
-        this.invoiceForm.reset(); // Reset form after successful submission
+        // Set the success message
+        this.message = 'Invoice Created';
+        // Reset the form
+        this.invoiceForm.reset();
       }, error => {
         console.error(error);
-        this.message = 'An error occurred while generating the invoice'; // Set error message
+        // Set the error message
+        this.message = 'An error occurred while generating the invoice';
       });
     } else {
-      this.message = 'Please select a service before submitting the form.' // Set error message for incomplete form
+      // Set the error message if the form is not valid
+      this.message = 'Please select a service before submitting the form.'
     }
+  }
+
+  // Method to get the selected services from the form
+  getSelectedServices() {
+    // Check if the invoice form exists.
+    if (this.invoiceForm) {
+      // Filter the line items based on the form controls. If a form control's value is truthy,
+      // it means the corresponding service is selected.
+      const selectedServices = this.lineItems
+        .filter((item, index) => this.invoiceForm?.get(Object.keys(this.invoiceForm.controls)[index])?.value)
+        // Map the filtered items to an object with only the title and price properties.
+        .map(item => ({ title: item.title, price: item.price }));
+
+      // Calculate the total price of the selected services.
+      this.total = selectedServices.reduce((total, item) => total + item.price, 0);
+      // Format the total to 2 decimal places.
+      this.total = Number(this.total.toFixed(2));
+      // Return the selected services.
+      return selectedServices;
+    }
+    // If the invoice form does not exist, return an empty array.
+    return [];
+  }
+
+  // This method updates the total amount of the invoice for the front-end.
+  updateTotal() {
+    // Get the selected services.
+    const selectedServices = this.getSelectedServices();
+    // Get the parts amount from the form, convert it to a number, or default to 0 if it's not a number.
+    const partsAmount = Number(this.invoiceForm.get('parts')?.value) || 0;
+    // Get the labor amount from the form, convert it to a number, or default to 0 if it's not a number.
+    const laborAmount = Number(this.invoiceForm.get('labor')?.value) || 0;
+    // Calculate the total price of the selected services, parts, and labor.
+    this.total = selectedServices.reduce((total, item) => total + item.price, 0) + partsAmount + laborAmount;
+    // Format the total to 2 decimal places.
+    this.total = Number(this.total.toFixed(2));
   }
 
 }

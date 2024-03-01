@@ -9,7 +9,7 @@
   <div class="card bg-dark text-white w-50">
     <div class="card-title text-center mt-3"><h3>Generate Invoice</h3></div>
     <div class="card-body p-5 text center">
-      <form [formGroup]="invoiceForm" (ngSubmit)="createInvoice(user)">
+      <form [formGroup]="invoiceForm" (ngSubmit)="createInvoice()">
         <div class="form-check">
           <input type="checkbox" formControlName="ram">
           <label for="ram">RAM Upgrade - $89.99</label><br />
@@ -50,9 +50,13 @@
           <input class="form-control input-labor" type="text" placeholder="Labor" formControlName="labor">
         </div>
 
+        <p class="text-center pt-5 total"><strong>Total: </strong>{{ total }}</p>
+
         <div class="row justify-content-center">
           <button type="submit" [disabled]="!invoiceForm.valid" class="btn btn-lg mt-5">Create Invoice</button>
         </div>
+
+        <p class="text-center text-white">{{ message }}</p>
 
       </form>
     </div>
