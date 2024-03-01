@@ -4,18 +4,20 @@
 // Description: Invoice summary component file
 // File: invoice-summary.component.ts
 
-
+// Import Statements
 import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import { Subscription } from 'rxjs';
 import { InvoiceService } from '../invoice.service';
 
-
+// Selector, templateUrl, styleUrls for Component
 @Component({
   selector: 'app-invoice-summary',
   templateUrl: './invoice-summary.component.html',
   styleUrls: ['./invoice-summary.component.css']
 })
+
+// Export InvoiceSummaryComponent
 export class InvoiceSummaryComponent implements OnInit, OnDestroy {
 
   invoice: any; // Property to hold the invoice data

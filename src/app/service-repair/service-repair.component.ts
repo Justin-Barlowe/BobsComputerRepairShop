@@ -3,6 +3,7 @@
 // Date: 2/28/2024
 // Description: Service repair component file
 
+// import statements
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { InvoiceService } from '../invoice.service';
@@ -10,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
+// Selector, templateUrl, styleUrls for Component
 @Component({
   selector: 'app-service-repair',
   templateUrl: './service-repair.component.html',

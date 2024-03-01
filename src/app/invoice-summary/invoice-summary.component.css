@@ -1,3 +1,11 @@
+/**
+  Title: invoice=summary.component.css
+  Author: Justin Barlowe
+  Date: 3/01/2024
+  Description: Styles for BCRS invoice summary page
+*/
+
+
 /* Override Bootstrap theme for Gryffindor Theme */
 .btn {
   border-radius: 0 !important;

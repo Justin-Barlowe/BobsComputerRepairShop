@@ -5,10 +5,15 @@
   Description: Generate invoice page
 -->
 
+<!-- Opening for service-repair -->
 <div class="container pt-5" style="align-items: center; display: flex; justify-content: center">
   <div class="card bg-dark text-white w-50">
+
+    <!-- Header for Generate Invoice -->
     <div class="card-title text-center mt-3"><h3>Generate Invoice</h3></div>
     <div class="card-body p-5 text center">
+
+      <!-- Placement for customer name -->
       <div class="text-center"><h4>Customer Name</h4></div>
       <form [formGroup]="invoiceForm">
       <div>
@@ -19,6 +24,8 @@
         <input class="form-control" type="text" placeholder="Last Name" formControlName="lastName">
       </div>
     </form>
+
+    <!-- Options for what services the customer is buying -->
       <div class="text-center"><h3>Services</h3></div>
       <form [formGroup]="invoiceForm" (ngSubmit)="createInvoice()">
         <div class="form-check">
@@ -59,8 +66,10 @@
           <input class="form-control input-labor" type="text" placeholder="Labor Hours" formControlName="labor">
         </div>
 
+        <!-- Total amounts for above selections -->
         <p class="text-center pt-5 total"><strong>Total: </strong>{{ total }}</p>
 
+        <!-- Create invoice -->
         <div class="row justify-content-center">
           <button type="submit" [disabled]="!invoiceForm.valid" class="btn btn-lg mt-5">Create Invoice</button>
         </div>
