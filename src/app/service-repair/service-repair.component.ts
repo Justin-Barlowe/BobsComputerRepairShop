@@ -19,6 +19,17 @@ export class ServiceRepairComponent implements OnInit {
 
   user: any; // Variable to hold user data
 
+  lineItems = [
+    { title: "RAM Upgrade", price: 89.99 },
+    { title: "Password Reset", price: 29.99 },
+    { title: "PC Rebuild", price: 149.99 },
+    { title: "Diagnostic Test", price: 69.99 },
+    { title: "PC Clean Up", price: 69.99 },
+    { title: "PC Reset", price: 59.99 },
+    { title: "Install OS", price: 39.99},
+    { title: "Hardware Cleaning", price: 64.99}
+  ]
+
   // Injecting services
   constructor(
     private userService: UserService,
@@ -47,6 +58,7 @@ export class ServiceRepairComponent implements OnInit {
     parts: ['', Validators.pattern("^[0-9]*$")], // Input field for parts with numeric validation
     labor: ['', Validators.pattern("^[0-9]*$")] // Input field for labor with numeric validation
   })
+
 
   // Function to create invoice based on form data
   createInvoice(user: any) {
