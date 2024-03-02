@@ -20,6 +20,7 @@ export class UserService {
   private apiUrl = '/api/users'
   private apiUrl2 = '/api/security'
 
+
   constructor(private http: HttpClient) { }
 
   // getUsers function
@@ -86,5 +87,16 @@ export class UserService {
   fetchSecurityQuestions(): Observable<any[]> {
     return this.http.get<any[]>('/api/security-questions');
   }
+
+  // uploadProfilePicture function
+  // Define a method to upload user profile picture
+  uploadProfilePicture(userId: string, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('userId', userId);
+
+    return this.http.post(`${this.apiUrl}/uploadProfilePicture`, formData);
+  }
+
 
 }

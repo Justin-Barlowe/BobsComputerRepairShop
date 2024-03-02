@@ -48,7 +48,9 @@ export class SigninComponent {
             this.cookieService.set('name', response.user.firstName + ' ' + response.user.lastName);
             // Store the user's role in a cookie
             this.cookieService.set('userRole', response.user.role);
-            // Navigate to the admin page
+            // Store the user's id in a cookie
+            this.cookieService.set('userId', response.user._id);
+            // Navigate to the employee-landing page
             this.router.navigate(['/employee-landing']);
           } else {
             // If the server returns an error, set the error message

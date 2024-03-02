@@ -1,0 +1,66 @@
+<!-- Opening of divs for the view invoices page -->
+<div class="container mt-5">
+  <div class="d-flex justify-content-center">
+    <div class="card text-white bg-dark mb-3 w-100">
+      <div class="card-header text-center h1 gold">View All Invoices</div>
+      <div class="card-body">
+        <table class="table" style="background-color: #343a40 !important; color: white !important;">
+          <!-- Table headers -->
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">
+                Employee
+                <br>
+                <!-- Search field for Employee -->
+                <input [(ngModel)]="employeeSearch" (input)="filterInvoices()" placeholder="Search Employee" />
+              </th>
+              <th scope="col">
+                Customer
+                <br>
+                <!-- Search field for Customer -->
+                <input [(ngModel)]="customerSearch" (input)="filterInvoices()" placeholder="Search Customer" />
+              </th>
+              <th scope="col">Total</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">Services</th>
+              <th scope="col">
+                Status
+                <br>
+                <!-- Dropdown field for Status -->
+                <select [(ngModel)]="statusSearch" (change)="filterInvoices()" class="form-control custom-dropdown">
+                  <option value="">All</option>
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Complete">Complete</option>
+                </select>
+              </th>
+            </tr>
+          </thead>
+          <!-- Invoice information -->
+          <tbody>
+            <tr *ngFor="let invoice of filteredInvoices; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ invoice.userName }}</td>
+              <td>{{ invoice.firstName }} {{ invoice.lastName }}</td>
+              <td>{{ invoice.total | currency }}</td>
+              <td>{{ invoice.orderDate | date }}</td>
+              <td>
+                <div *ngFor="let item of invoice.lineItems">
+                  {{ item.title }}: {{ item.price | currency }}
+                </div>
+              </td>
+              <td>
+                <select [(ngModel)]="invoice.status" (ngModelChange)="updateStatus(invoice._id, invoice.status)" class="form-control custom-dropdown">
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Complete">Complete</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

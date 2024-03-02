@@ -1,0 +1,126 @@
+
+openapi: 3.0.0
+info:
+  title: Invoice API
+  version: 1.0.0
+  description: API for managing invoices
+
+paths:
+  /api/invoice/{userName}:
+    post:
+      tags:
+        - Invoices
+      summary: Creates a new invoice
+      description: API endpoint to create a new invoice for a given user
+      operationId: createInvoice
+      parameters:
+        - name: userName
+          in: path
+          description: The username of the user who is creating the invoice
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - lineItems
+              properties:
+                lineItems:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - title
+                      - price
+                    properties:
+                      title:
+                        type: string
+                      price:
+                        type: number
+                price:
+                  type: number
+                partsAmount:
+                  type: number
+                laborAmount:
+                  type: number
+                lineItemTotal:
+                  type: number
+                total:
+                  type: number
+
+      responses:
+        '200':
+          description: Query successful
+        '500':
+          description: Internal server error
+        '501':
+          description: MongoDB Exception
+  /api/invoice:
+    get:
+      tags:
+        - Invoices
+      summary: Finds all invoice documents and collects lineItems
+      description: API endpoint to sort invoices by service purchased
+      operationId: findPurchasesByService
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        count:
+                          type: integer
+        '500':
+          description: Internal server error
+
+  /api/invoice/all:
+    get:
+      tags:
+        - Invoices
+      summary: Get all invoices
+      description: This API endpoint retrieves all invoices.
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "200"
+                  message:
+                    type: string
+                    example: "Query successful"
+                  data:
+                    type: array
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "500"
+                  message:
+                    type: string
+                    example: "Internal Server Error"
+                  error:
+                    type: string
+

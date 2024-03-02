@@ -24,6 +24,10 @@ import { RoleGuard } from './role.guard';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
+import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -68,9 +72,27 @@ const routes: Routes = [
         canActivate: [authGuard]
       },
       {
+        path: 'my-profile',
+        component: MyProfileComponent,
+        title: 'BCRS: My Profile',
+        canActivate: [authGuard]
+      },
+      {
         path: 'employee-directory',
         component: EmployeeDirectoryComponent,
         title: 'BCRS: Employee Directory',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'service-repair',
+        component: ServiceRepairComponent,
+        title: 'BCRS: Service Repair',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'invoice-summary',
+        component: InvoiceSummaryComponent,
+        title: 'BCRS: Invoice Summary',
         canActivate: [authGuard]
       },
       {
@@ -79,6 +101,12 @@ const routes: Routes = [
         title: 'BCRS: View Users',
         canActivate: [RoleGuard],
         data: { role: 'admin' }
+      },
+      {
+        path: 'view-invoices',
+        component: ViewInvoicesComponent,
+        title: 'BCRS: View Invoices',
+        canActivate: [authGuard]
       },
       {
         path: 'create-user',

@@ -1,0 +1,54 @@
+/**
+  Title: service-repair.component.css
+  Author: Justin Barlowe
+  Date: 3/01/2024
+  Description: Styles for BCRS service repair page
+*/
+
+/* Styles for btn  */
+
+.btn {
+  border-radius: 0 !important;
+  color:#f8b400 !important;
+  border-color: #f8b400 !important;
+  width: 50% !important;
+}
+
+.btn:hover {
+  background-color: #f8b400 !important;
+  color: black !important;
+  border-color: #f8b400 !important;
+}
+
+/* Styles for form-check  */
+.form-check input:checked + label{
+  color:#f8b400;
+}
+
+/* Styles for input */
+.input-parts, .input-labor {
+  width: 50%;
+}
+
+
+input {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+  color: white;
+}
+
+/* Remove white background from input field when focused */
+input:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}
+
+/* Change placeholder color due to dark background */
+input::placeholder {
+  color: white;
+}
