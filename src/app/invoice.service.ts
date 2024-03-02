@@ -30,11 +30,23 @@ export class InvoiceService {
     return this.http.get<any>(this.apiUrl3);
   }
 
+  // setLastCreatedInvoice function - will set the last created invoice
   setLastCreatedInvoice(invoiceData: any) {
     this.lastCreatedInvoice.next(invoiceData);
   }
 
+  // getLastCreatedInvoice function - will get the last created invoice
   getLastCreatedInvoice() {
     return this.lastCreatedInvoice.asObservable();
+  }
+
+  // Get invoices function
+  getAllInvoices(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl3}/all`);
+  }
+
+  //Update invoice status function.
+  updateInvoiceStatus(invoiceId: string, status: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl3}/${invoiceId}`, { status });
   }
 }

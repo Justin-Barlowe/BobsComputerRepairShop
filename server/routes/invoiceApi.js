@@ -83,4 +83,46 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get All Invoices
+router.get("/all", async (req, res) => {
+  try {
+    const invoices = await Invoice.find({});
+    res.status(200).json({
+      status: "200",
+      message: "Query successful",
+      data: invoices
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      status: "500",
+      message: "Internal Server Error",
+      error: e.message
+    });
+  }
+});
+
+// Update invoices
+router.put("/:invoiceId", async (req, res) => {
+  const { invoiceId } = req.params;
+  const { status } = req.body;
+
+  try {
+    const updatedInvoice = await Invoice.findByIdAndUpdate(invoiceId, { status }, { new: true });
+    res.status(200).json({
+      status: "200",
+      message: "Invoice status updated successfully",
+      data: updatedInvoice
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      status: "500",
+      message: "Internal Server Error",
+      error: e.message
+    });
+  }
+});
+
+
 module.exports = router;

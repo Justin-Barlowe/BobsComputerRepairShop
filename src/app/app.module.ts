@@ -33,6 +33,7 @@ import { EmployeeDirectoryComponent } from './employee-directory/employee-direct
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
+import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
 
 // @NgModule assign declarations and imports with bootstrap value
 @NgModule({
@@ -53,7 +54,8 @@ import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.compo
     EmployeeDirectoryComponent,
     MyProfileComponent,
     ServiceRepairComponent,
-    InvoiceSummaryComponent
+    InvoiceSummaryComponent,
+    ViewInvoicesComponent
   ],
   imports: [
     BrowserModule,

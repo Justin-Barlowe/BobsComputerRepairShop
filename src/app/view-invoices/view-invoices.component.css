@@ -1,0 +1,55 @@
+/* Styling for the dropdown */
+.form-control {
+  background-color: #212529 !important;
+  color: white !important;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+}
+
+/* Styling for the dropdown options */
+.form-control option {
+  background-color: #212529 !important;
+  color: white !important;
+}
+
+/* Styling for the dropdown when focused */
+.form-control:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}
+
+/* Styling for the dropdown with arrow */
+.custom-dropdown {
+  background: #212529 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='5'><path fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") no-repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #f8b400;
+  outline: none;
+  color: white;
+}
+
+/* Remove white background from input field when focused */
+input:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}
+
+/* Change placeholder color due to dark background */
+input::placeholder {
+  color: white;
+}

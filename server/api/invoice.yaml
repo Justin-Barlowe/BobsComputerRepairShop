@@ -86,4 +86,41 @@ paths:
         '500':
           description: Internal server error
 
+  /api/invoice/all:
+    get:
+      tags:
+        - Invoices
+      summary: Get all invoices
+      description: This API endpoint retrieves all invoices.
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "200"
+                  message:
+                    type: string
+                    example: "Query successful"
+                  data:
+                    type: array
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "500"
+                  message:
+                    type: string
+                    example: "Internal Server Error"
+                  error:
+                    type: string
 
