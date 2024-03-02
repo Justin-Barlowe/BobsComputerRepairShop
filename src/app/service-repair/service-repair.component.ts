@@ -77,6 +77,19 @@ export class ServiceRepairComponent implements OnInit {
 createInvoice() {
   // Check if the form is valid
   if (this.invoiceForm && this.invoiceForm.valid) {
+
+    // Check if at least one checkbox is selected or if either parts or labor fields have values
+    const isAnyFieldSelected = Object.keys(this.invoiceForm.controls).some(key => {
+      if (['firstName', 'lastName'].includes(key)) return false; // Skip checking firstName and lastName fields
+      return this.invoiceForm.get(key)?.value;
+    });
+
+    if (!isAnyFieldSelected) {
+      // If no other field is selected or filled out, set error message and return
+      this.message = 'Please select at least one service or fill out parts/labor fields.';
+      return;
+    }
+
     // Get the selected services from the form
     const selectedServices = this.getSelectedServices();
     // Get the parts amount from the form, convert it to a number, or default to 0
