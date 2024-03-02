@@ -8,8 +8,6 @@ const securityQuestions = [
   'What was your childhood nickname?',
   'What is the name of your favorite childhood friend?',
   'What is your favorite color?',
-  'What is your favorite sports team?',
-  'What was your dream job as a child?',
 ];
 
 module.exports = securityQuestions;

@@ -11,7 +11,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-// Selector, templateUrl, styleUrls for Component
 @Component({
   selector: 'app-service-repair',
   templateUrl: './service-repair.component.html',
@@ -126,7 +125,6 @@ createInvoice() {
     // Check if the invoice form exists.
     if (this.invoiceForm) {
       // Filter the line items based on the form controls. If a form control's value is truthy,
-      // it means the corresponding service is selected.
       const selectedServices = this.lineItems
         .filter((item, index) => this.invoiceForm?.get(Object.keys(this.invoiceForm.controls)[index])?.value)
         // Map the filtered items to an object with only the title and price properties.
