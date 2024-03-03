@@ -30,8 +30,8 @@
   width: 50%;
 }
 
-
-input {
+/* Styling for the text fields */
+.type-field {
   border: none;
   border-radius: 0;
   background-color: transparent;

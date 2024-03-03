@@ -10,61 +10,63 @@
   <div class="card bg-dark text-white w-50">
 
     <!-- Header for Generate Invoice -->
-    <div class="card-title text-center mt-3"><h3>Generate Invoice</h3></div>
+    <div class="card-title text-center mt-3"><h3 class="fw-bold gold">Generate Invoice</h3></div>
     <div class="card-body p-5 text center">
 
       <!-- Placement for customer name -->
-      <div class="text-center"><h4>Customer Name</h4></div>
+      <div class="text-center mb-3"><h4>Customer Name</h4></div>
       <form [formGroup]="invoiceForm">
       <div>
-        <input class="form-control" type="text" placeholder="First Name" formControlName="firstName" >
+        <input class="form-control type-field" type="text" placeholder="First Name" formControlName="firstName" >
       </div>
       <br />
       <div class="mb-3">
-        <input class="form-control" type="text" placeholder="Last Name" formControlName="lastName">
+        <input class="form-control type-field" type="text" placeholder="Last Name" formControlName="lastName">
       </div>
     </form>
 
     <!-- Options for what services the customer is buying -->
-      <div class="text-center"><h3>Services</h3></div>
+      <div class="text-center mt-4 mb-4"><h4>Services</h4></div>
       <form [formGroup]="invoiceForm" (ngSubmit)="createInvoice()">
         <div class="form-check">
-          <input type="checkbox" formControlName="ram">
-          <label for="ram">RAM Upgrade - $89.99</label><br />
+          <input class="form-check-input" type="checkbox" formControlName="ram">
+          <label class="form-check-label" for="ram">RAM Upgrade - $89.99</label><br />
 
-          <input type="checkbox" formControlName="password">
-          <label for="password">Password Reset - $29.99</label><br />
+          <input class="form-check-input" type="checkbox" formControlName="password">
+          <label class="form-check-label" for="password">Password Reset - $29.99</label><br />
 
-          <input type="checkbox" formControlName="rebuild">
-          <label for="rebuild">Rebuild - $149.99</label><br />
+          <input class="form-check-input" type="checkbox" formControlName="rebuild">
+          <label class="form-check-label" for="rebuild">Rebuild - $149.99</label><br />
 
-          <input type="checkbox" formControlName="dtest">
-          <label for="dtest">Diagnostic Test - $69.99</label><br />
+          <input class="form-check-input" type="checkbox" formControlName="dtest">
+          <label class="form-check-label" for="dtest">Diagnostic Test - $69.99</label><br />
 
-          <input type="checkbox" formControlName="softClean">
-          <label for="clean">PC Clean up - $69.99</label><br />
+          <input class="form-check-input" type="checkbox" formControlName="softClean">
+          <label class="form-check-label" for="clean">PC Clean up - $69.99</label><br />
 
-          <input type="checkbox" formControlName="reset">
-          <label for="reset">PC Reset - $59.99</label><br />
+          <input class="form-check-input" type="checkbox" formControlName="reset">
+          <label class="form-check-label" for="reset">PC Reset - $59.99</label><br />
 
-          <input type="checkbox" formControlName="installOs">
-          <label for="installOs">Install OS - $39.99</label><br />
+          <input class="form-check-input" type="checkbox" formControlName="installOs">
+          <label class="form-check-label" for="installOs">Install OS - $39.99</label><br />
 
-          <input type="checkbox" formControlName="hardwareClean">
-          <label for="hardwareClean">Hardware Cleaning - $64.99</label>
+          <input class="form-check-input" type="checkbox" formControlName="hardwareClean">
+          <label class="form-check-label" for="hardwareClean">Hardware Cleaning - $64.99</label>
           <br />
         </div>
 
+        <!-- Input fields for alternative services provided -->
         <hr>
         <h5 class="text-center mt-3">Additional Services</h5>
         <br />
         <div class="mt-3">
-          <input class="form-control input-parts" type="text" placeholder="Parts Amount" formControlName="parts" >
+          <p>Enter total amount for parts.</p>
+          <input class="form-control input-parts type-field" type="text" placeholder="Parts Amount" formControlName="parts" >
         </div>
         <br />
-        <div class="">
-
-          <input class="form-control input-labor" type="text" placeholder="Labor Hours" formControlName="labor">
+        <div>
+          <p>Enter number of hours for labor,<br>Labor is calculated at $50/hour.</p>
+          <input class="form-control input-labor type-field" type="text" placeholder="Labor Hours" formControlName="labor">
         </div>
 
         <!-- Total amounts for above selections -->
@@ -75,7 +77,7 @@
           <button type="submit" [disabled]="!invoiceForm.valid" class="btn btn-lg mt-5">Create Invoice</button>
         </div>
 
-        <p class="text-center text-white">{{ message }}</p>
+        <p class="text-center text-white mt-3">{{ message }}</p>
 
       </form>
     </div>
