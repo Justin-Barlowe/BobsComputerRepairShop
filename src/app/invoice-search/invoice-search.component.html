@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="card bg-dark text-white text-center mb-5" style="width: auto; max-width: 400px; margin: auto;">
+    <h1 class="pt-4" style="color:#f8b400">Search for Invoice</h1>
+    <div class="row mb-4">
+      <div class="col p-5">
+        <form [formGroup]="invoiceSearchForm" (ngSubmit)="searchInvoices()">
+          <div class="form-group">
+            <input formControlName="firstName" type="text" class="form-control mb-3" placeholder="First Name">
+            <input formControlName="lastName" type="text" class="form-control mb-5" placeholder="Last Name">
+            <button class="btn btn-outline-secondary w-100" type="submit">Search</button>
+            <div *ngIf="errorMessage" class="mt-3" style="color: #f8b400">{{ errorMessage }}</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Results Table -->
+  <div class="d-flex justify-content-center">
+    <div class="card text-white bg-dark mb-3 w-100">
+      <div class="card-header text-center h1 gold">Search Results</div>
+      <div class="card-body">
+        <table class="table" style="background-color: #343a40 !important; color: white !important;">
+          <!-- Table headers -->
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Total</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">Services</th>
+              <th scope="col">Pay Status</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <!-- Invoice information -->
+          <tbody>
+            <tr *ngFor="let invoice of searchResults; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ invoice.firstName }} {{ invoice.lastName }}</td>
+              <td>{{ invoice.total | currency }}</td>
+              <td>{{ invoice.orderDate | date }}</td>
+              <td>
+                <div *ngFor="let item of invoice.lineItems">
+                  {{ item.title }}: {{ item.price | currency }}
+                </div>
+              </td>
+              <td>{{ invoice.payStatus }}</td>
+              <td>{{ invoice.status }}</td>
+              <td>
+                <button class="btn">Pay</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

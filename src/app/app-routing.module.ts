@@ -28,6 +28,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
+import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -64,6 +65,11 @@ const routes: Routes = [
         path: 'faq',
         component: FaqComponent,
         title: 'BCRS: FAQ'
+      },
+      {
+        path: 'invoice-search',
+        component: InvoiceSearchComponent,
+        title: 'BCRS: Invoice Search',
       },
       {
         path: 'employee-landing',

@@ -19,13 +19,14 @@ export class ViewInvoicesComponent implements OnInit {
   employeeSearch: string = ''; // Variable to hold employee search text
   customerSearch: string = ''; // Variable to hold customer search text
   statusSearch: string = ''; // Variable to hold status search text
+  payStatusSearch: string = ''; // Variable to hold pay status search text
 
   // Constructor with injected InvoiceService
   constructor(private invoiceService: InvoiceService, private cdr: ChangeDetectorRef) { }
 
   // Function to update invoice status
-  updateStatus(invoiceId: string, status: string) {
-    this.invoiceService.updateInvoiceStatus(invoiceId, status).subscribe({
+  updateStatus(invoiceId: string, status: string, payStatus: string) {
+    this.invoiceService.updateInvoiceStatus(invoiceId, status, payStatus).subscribe({
       next: (response) => {
         this.message = 'Invoice status updated successfully!';
       },
@@ -41,6 +42,7 @@ export class ViewInvoicesComponent implements OnInit {
     this.filteredInvoices = this.invoices.filter(invoice =>
       (!this.employeeSearch || invoice.userName.toLowerCase().includes(this.employeeSearch.toLowerCase())) &&
       (!this.customerSearch || (invoice.firstName + ' ' + invoice.lastName).toLowerCase().includes(this.customerSearch.toLowerCase())) &&
+      (!this.payStatusSearch || invoice.payStatus.toLowerCase().includes(this.payStatusSearch.toLowerCase())) &&
       (!this.statusSearch || invoice.status.toLowerCase().includes(this.statusSearch.toLowerCase()))
     );
   }
