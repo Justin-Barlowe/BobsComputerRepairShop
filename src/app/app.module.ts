@@ -35,6 +35,7 @@ import { ServiceRepairComponent } from './service-repair/service-repair.componen
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
 import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
+import { ServicesComponent } from './services/services.component';
 
 // @NgModule assign declarations and imports with bootstrap value
 @NgModule({
@@ -57,7 +58,8 @@ import { InvoiceSearchComponent } from './invoice-search/invoice-search.componen
     ServiceRepairComponent,
     InvoiceSummaryComponent,
     ViewInvoicesComponent,
-    InvoiceSearchComponent
+    InvoiceSearchComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
