@@ -21,6 +21,7 @@ export class RoleGuard implements CanActivate {
     // Get the user's role from the cookie or local storage
     const userRole = this.cookie.get('userRole');
 
+    // Check if the user's role matches the required role
     if (userRole && userRole === requiredRole) {
       console.log(`User role is ${userRole}, access granted.`);
       return true;
