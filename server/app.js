@@ -42,6 +42,10 @@ app.use("/",
 );
 app.use('/uploads', express.static('uploads'));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/bcrs/index.html'));
+});
+
 // Use CORS to allow all origins.
 app.use(cors());
 
