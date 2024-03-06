@@ -11,50 +11,38 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const YAML = require("yamljs");
 const cors = require("cors");
-
-// Import API routes
-const UserAPI = require("./routes/usersApi");
-const SigninAPI = require("./routes/signinApi");
-const SecurityAPI = require("./routes/securityApi")
-const securityQuestions = require("./utils/securityQuestions");
-const InvoiceAPI = require("./routes/invoiceApi");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
-
-// import MongoDB database connection string from config.json
-const config = require("./utils/config.js");
-
-// Express variable.
-const app = express();
 
 // Swagger Imports
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
-// Express middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../dist/bcrs")));
-app.use("/",
-  express.static(path.join(__dirname, "../dist/bcrs"))
-);
-app.use('/uploads', express.static('uploads'));
+// Import API routes
+const UserAPI = require("./routes/usersApi");
+const SigninAPI = require("./routes/signinApi");
+const SecurityAPI = require("./routes/securityApi");
+const InvoiceAPI = require("./routes/invoiceApi");
+const securityQuestions = require("./utils/securityQuestions");
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../dist/bcrs/index.html'));
-});
+// Set up multer for file uploads
+const upload = multer({ dest: "uploads/" });
 
-// Use CORS to allow all origins.
+// Import MongoDB database connection string from config.json
+const config = require("./utils/config.js");
+
+// Express variable.
+const app = express();
+
+// Use CORS to allow all origins. This should be one of the first middlewares you use.
 app.use(cors());
 
+// Express middleware for parsing JSON and urlencoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Set port to environment variable or 3000
-const PORT = process.env.PORT || 3000;
-
-// Connect to database
-const CONN = config.dbConn;
+// Serve static files from 'uploads' directory
+app.use('/uploads', express.static('uploads'));
 
 // Swagger Options
 const swaggerOptions = {
@@ -66,27 +54,36 @@ const swaggerOptions = {
     },
   },
   // Path to the API docs
-  apis: ["routes/*.js", path.join(__dirname, "./api/*.yaml")],
-
+  apis: ["./routes/*.js"], // Ensure this path is correct for your project structure.
 };
-
-// Security Questions
-app.get("/api/security-questions", (req, res) => {
-  res.json(securityQuestions);
-});
 
 // Open API specification
 const openapiSpecification = swaggerJsdoc(swaggerOptions);
 
 // Connect SwaggerUI
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+
+// API routes
 app.use("/api/users", UserAPI);
 app.use("/api/signin", SigninAPI);
 app.use("/api/security", SecurityAPI);
 app.use("/api/invoice", InvoiceAPI);
 
+// Route for security questions
+app.get("/api/security-questions", (req, res) => {
+  res.json(securityQuestions);
+});
+
+// Serve static files from the Angular app build directory
+app.use(express.static(path.join(__dirname, "../dist/bcrs")));
+
+// Catch-all route to serve the Angular app index.html for all other requests
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../dist/bcrs/index.html'));
+});
+
 // Connect to Database
-mongoose.connect(CONN).then(
+mongoose.connect(config.dbConn).then(
   () => {
     console.log("Connection to the database was successful");
   },
@@ -103,10 +100,13 @@ mongoose.connection.on("disconnected", () => {
   console.log("Server disconnected from host (MongoDB Atlas).");
 });
 
+// Set port to environment variable or 3000
+const PORT = process.env.PORT || 3000;
+
 // Connect to express server
 app.listen(PORT, () => {
   console.log("Application started and listening on PORT: " + PORT);
 });
 
-// Export app
+// Export app for potential testing or modular use
 module.exports = app;
