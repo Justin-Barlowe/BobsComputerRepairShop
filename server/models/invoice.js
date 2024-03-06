@@ -22,7 +22,8 @@ const invoiceSchema = new Schema({
   orderDate: { type: Date, default: new Date() },
   firstName: { type: String },
   lastName: { type: String },
-  status: { type: String, default: "Pending" }
+  status: { type: String, default: "Pending" },
+  payStatus: { type: String, default: "Unpaid" }
 });
 
 // Export Schema

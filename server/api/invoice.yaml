@@ -123,4 +123,62 @@ paths:
                     example: "Internal Server Error"
                   error:
                     type: string
+  /api/invoice/search:
+    get:
+      tags:
+        - Invoices
+      summary: Search invoices by customer's first and last name
+      description: API endpoint to search for invoices based on the customer's first and last name.
+      operationId: searchInvoicesByName
+      parameters:
+        - name: firstName
+          in: query
+          description: The first name of the customer
+          required: true
+          schema:
+            type: string
+        - name: lastName
+          in: query
+          description: The last name of the customer
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    userName:
+                      type: string
+                    lineItems:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                          price:
+                            type: number
+                    partsAmount:
+                      type: number
+                    laborAmount:
+                      type: number
+                    lineItemTotal:
+                      type: number
+                    total:
+                      type: number
+                    firstName:
+                      type: string
+                    lastName:
+                      type: string
+        '404':
+          description: No invoices found
+        '500':
+          description: Internal server error
+
 

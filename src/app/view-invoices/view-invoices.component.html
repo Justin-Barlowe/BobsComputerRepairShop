@@ -25,6 +25,16 @@
               <th scope="col">Order Date</th>
               <th scope="col">Services</th>
               <th scope="col">
+                Pay Status
+                <br>
+                <!-- Dropdown field for Status -->
+                <select [(ngModel)]="payStatusSearch" (change)="filterInvoices()" class="form-control custom-dropdown">
+                  <option value="">All</option>
+                  <option value="Unpaid">Unpaid</option>
+                  <option value="Paid">Paid</option>
+                </select>
+              </th>
+              <th scope="col">
                 Status
                 <br>
                 <!-- Dropdown field for Status -->
@@ -51,7 +61,13 @@
                 </div>
               </td>
               <td>
-                <select [(ngModel)]="invoice.status" (ngModelChange)="updateStatus(invoice._id, invoice.status)" class="form-control custom-dropdown">
+                <select [(ngModel)]="invoice.payStatus" (ngModelChange)="updateStatus(invoice._id, invoice.status, invoice.payStatus)" class="form-control custom-dropdown">
+                  <option value="Unpaid">Unpaid</option>
+                  <option value="Paid">Paid</option>
+                </select>
+              </td>
+              <td>
+                <select [(ngModel)]="invoice.status" (ngModelChange)="updateStatus(invoice._id, invoice.status, invoice.payStatus)" class="form-control custom-dropdown">
                   <option value="Pending">Pending</option>
                   <option value="In Progress">In Progress</option>
                   <option value="Complete">Complete</option>

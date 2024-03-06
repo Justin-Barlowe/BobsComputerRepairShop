@@ -105,15 +105,61 @@ router.get("/all", async (req, res) => {
 // Update invoices
 router.put("/:invoiceId", async (req, res) => {
   const { invoiceId } = req.params;
-  const { status } = req.body;
+  const { status, payStatus } = req.body;
 
   try {
-    const updatedInvoice = await Invoice.findByIdAndUpdate(invoiceId, { status }, { new: true });
+    const updatedInvoice = await Invoice.findByIdAndUpdate(
+      invoiceId,
+      { $set: { status: status, payStatus: payStatus } },
+      { new: true }
+    );
+
     res.status(200).json({
       status: "200",
       message: "Invoice status updated successfully",
       data: updatedInvoice
     });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      status: "500",
+      message: "Internal Server Error",
+      error: e.message
+    });
+  }
+});
+
+// Search for Invoices by First Name and Last Name
+router.get("/search", async (req, res) => {
+  const { firstName, lastName } = req.query;
+
+  // Check if both firstName and lastName are provided
+  if (!firstName || !lastName) {
+    return res.status(400).json({
+      status: "400",
+      message: "Both firstName and lastName are required"
+    });
+  }
+
+  try {
+    // Use the find method to search for invoices with the given firstName and lastName
+    const invoices = await Invoice.find({ firstName: firstName, lastName: lastName });
+
+    // Check if any invoices are found
+    if (!invoices.length) {
+      return res.status(404).json({
+        status: "404",
+        message: "No invoices found with the provided firstName and lastName"
+      });
+    }
+
+    // Return the found invoices
+    res.status(200).json({
+      status: "200",
+      message: "Query successful",
+      data: invoices
+    });
+
   } catch (e) {
     console.error(e);
     res.status(500).json({

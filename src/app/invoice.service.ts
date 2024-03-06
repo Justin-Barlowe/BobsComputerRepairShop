@@ -46,7 +46,13 @@ export class InvoiceService {
   }
 
   //Update invoice status function.
-  updateInvoiceStatus(invoiceId: string, status: string): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl3}/${invoiceId}`, { status });
+  updateInvoiceStatus(invoiceId: string, status: string, payStatus: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl3}/${invoiceId}`, { status, payStatus });
   }
+
+  // Find invoice by first and last name function.
+  searchInvoices(firstName: string, lastName: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl3}/search`, { params: { firstName, lastName } });
+  }
+
 }
